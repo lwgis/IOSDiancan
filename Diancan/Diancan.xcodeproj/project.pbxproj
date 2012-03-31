@@ -10,8 +10,6 @@
 		180EE1D814F7153E007E40AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180EE1D714F7153E007E40AA /* QuartzCore.framework */; };
 		1811FA60151A308100E11027 /* 加号.png in Resources */ = {isa = PBXBuildFile; fileRef = 1811FA5F151A308100E11027 /* 加号.png */; };
 		1822FBC6151D124C004CC4CD /* MyMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1822FBC5151D124C004CC4CD /* MyMenuView.m */; };
-		18737283152147E900969633 /* testCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18737281152147E900969633 /* testCoreData.xcdatamodeld */; };
-		1873728A1521481200969633 /* testCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 187372841521481200969633 /* testCoreData.xcdatamodeld */; };
 		1873728B1521481200969633 /* UpdateRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 187372871521481200969633 /* UpdateRecord.m */; };
 		1873728C1521481200969633 /* UpdateRecord+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 187372891521481200969633 /* UpdateRecord+Search.m */; };
 		1874102B1510F21300AAA72C /* bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 187410241510F21300AAA72C /* bottom.png */; };
@@ -47,6 +45,7 @@
 		187AB36115213E0E00103EDF /* RecipeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB35415213E0E00103EDF /* RecipeImage.m */; };
 		18BCB17F14FF23B700488BA3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BCB17E14FF23B700488BA3 /* CoreData.framework */; };
 		18BD3FD5151845560002ED95 /* LargeMyTable.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BD3FD4151845560002ED95 /* LargeMyTable.png */; };
+		18C0FFA3152729AB003184F3 /* testCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18C0FFA2152729AB003184F3 /* testCoreData.xcdatamodeld */; };
 		18C4CE4E14F5267E007B2742 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE4D14F5267E007B2742 /* UIKit.framework */; };
 		18C4CE5014F5267E007B2742 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE4F14F5267E007B2742 /* Foundation.framework */; };
 		18C4CE5214F5267E007B2742 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE5114F5267E007B2742 /* CoreGraphics.framework */; };
@@ -55,7 +54,6 @@
 		A44D83FF15209DC900296CDC /* RestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D83FE15209DC900296CDC /* RestEngine.m */; };
 		A475B34C1521AB1A00A8EAD8 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A475B3471521AB1A00A8EAD8 /* Category.m */; };
 		A475B34D1521AB1A00A8EAD8 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = A475B3491521AB1A00A8EAD8 /* Recipe.m */; };
-		A475B34E1521AB1A00A8EAD8 /* testCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A475B34A1521AB1A00A8EAD8 /* testCoreData.xcdatamodeld */; };
 		A4C4497715184C5C004569A3 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C4497615184C5C004569A3 /* CFNetwork.framework */; };
 		A4C4497A15184C71004569A3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C4497915184C71004569A3 /* SystemConfiguration.framework */; };
 		A4C4497C15184C84004569A3 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C4497B15184C84004569A3 /* Security.framework */; };
@@ -78,8 +76,6 @@
 		1811FA5F151A308100E11027 /* 加号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加号.png"; sourceTree = "<group>"; };
 		1822FBC4151D124B004CC4CD /* MyMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMenuView.h; path = Classes/MyMenuView.h; sourceTree = "<group>"; };
 		1822FBC5151D124C004CC4CD /* MyMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMenuView.m; path = Classes/MyMenuView.m; sourceTree = "<group>"; };
-		18737282152147E900969633 /* testCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = testCoreData.xcdatamodel; sourceTree = "<group>"; };
-		187372851521481200969633 /* testCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = testCoreData.xcdatamodel; sourceTree = "<group>"; };
 		187372861521481200969633 /* UpdateRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateRecord.h; path = model/UpdateRecord.h; sourceTree = "<group>"; };
 		187372871521481200969633 /* UpdateRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateRecord.m; path = model/UpdateRecord.m; sourceTree = "<group>"; };
 		187372881521481200969633 /* UpdateRecord+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UpdateRecord+Search.h"; path = "model/UpdateRecord+Search.h"; sourceTree = "<group>"; };
@@ -149,7 +145,6 @@
 		A475B3471521AB1A00A8EAD8 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Category.m; path = model/Category.m; sourceTree = "<group>"; };
 		A475B3481521AB1A00A8EAD8 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Recipe.h; path = model/Recipe.h; sourceTree = "<group>"; };
 		A475B3491521AB1A00A8EAD8 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Recipe.m; path = model/Recipe.m; sourceTree = "<group>"; };
-		A475B34B1521AB1A00A8EAD8 /* testCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = testCoreData.xcdatamodel; sourceTree = "<group>"; };
 		A4C4497615184C5C004569A3 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A4C4497915184C71004569A3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A4C4497B15184C84004569A3 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -210,19 +205,17 @@
 		18BCB13714FF19CA00488BA3 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				18C0FFA2152729AB003184F3 /* testCoreData.xcdatamodeld */,
 				A475B3461521AB1900A8EAD8 /* Category.h */,
 				A475B3471521AB1A00A8EAD8 /* Category.m */,
 				A475B3481521AB1A00A8EAD8 /* Recipe.h */,
 				A475B3491521AB1A00A8EAD8 /* Recipe.m */,
 				187AB34B15213E0E00103EDF /* Desk.h */,
 				187AB34C15213E0E00103EDF /* Desk.m */,
-				A475B34A1521AB1A00A8EAD8 /* testCoreData.xcdatamodeld */,
-				187372841521481200969633 /* testCoreData.xcdatamodeld */,
 				187372861521481200969633 /* UpdateRecord.h */,
 				187372871521481200969633 /* UpdateRecord.m */,
 				187372881521481200969633 /* UpdateRecord+Search.h */,
 				187372891521481200969633 /* UpdateRecord+Search.m */,
-				18737281152147E900969633 /* testCoreData.xcdatamodeld */,
 				187AB34715213E0E00103EDF /* Category+Search.h */,
 				187AB34815213E0E00103EDF /* Category+Search.m */,
 				187AB34915213E0E00103EDF /* CategoryImage.h */,
@@ -503,13 +496,10 @@
 				187AB35F15213E0E00103EDF /* ZTRecipe.m in Sources */,
 				187AB36015213E0E00103EDF /* Recipe+Search.m in Sources */,
 				187AB36115213E0E00103EDF /* RecipeImage.m in Sources */,
-				18737283152147E900969633 /* testCoreData.xcdatamodeld in Sources */,
-				1873728A1521481200969633 /* testCoreData.xcdatamodeld in Sources */,
 				1873728B1521481200969633 /* UpdateRecord.m in Sources */,
 				1873728C1521481200969633 /* UpdateRecord+Search.m in Sources */,
 				A475B34C1521AB1A00A8EAD8 /* Category.m in Sources */,
 				A475B34D1521AB1A00A8EAD8 /* Recipe.m in Sources */,
-				A475B34E1521AB1A00A8EAD8 /* testCoreData.xcdatamodeld in Sources */,
 				A4CFC1D515241823003940C2 /* AFHTTPClient.m in Sources */,
 				A4CFC1D615241823003940C2 /* AFHTTPRequestOperation.m in Sources */,
 				A4CFC1D715241823003940C2 /* AFImageRequestOperation.m in Sources */,
@@ -522,6 +512,7 @@
 				A4CFC1DE15241823003940C2 /* UIImageView+AFNetworking.m in Sources */,
 				A4CFC1F015244DC6003940C2 /* SDURLCache.m in Sources */,
 				A4CFC1F715249010003940C2 /* ZTDesk.m in Sources */,
+				18C0FFA3152729AB003184F3 /* testCoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,34 +631,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		18737281152147E900969633 /* testCoreData.xcdatamodeld */ = {
+		18C0FFA2152729AB003184F3 /* testCoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				18737282152147E900969633 /* testCoreData.xcdatamodel */,
 			);
-			currentVersion = 18737282152147E900969633 /* testCoreData.xcdatamodel */;
-			name = testCoreData.xcdatamodeld;
-			path = model/testCoreData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		187372841521481200969633 /* testCoreData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				187372851521481200969633 /* testCoreData.xcdatamodel */,
-			);
-			currentVersion = 187372851521481200969633 /* testCoreData.xcdatamodel */;
-			name = testCoreData.xcdatamodeld;
-			path = model/testCoreData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		A475B34A1521AB1A00A8EAD8 /* testCoreData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				A475B34B1521AB1A00A8EAD8 /* testCoreData.xcdatamodel */,
-			);
-			currentVersion = A475B34B1521AB1A00A8EAD8 /* testCoreData.xcdatamodel */;
 			name = testCoreData.xcdatamodeld;
 			path = model/testCoreData.xcdatamodeld;
 			sourceTree = "<group>";
