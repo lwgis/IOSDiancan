@@ -45,7 +45,6 @@
 		187AB36115213E0E00103EDF /* RecipeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB35415213E0E00103EDF /* RecipeImage.m */; };
 		18BCB17F14FF23B700488BA3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BCB17E14FF23B700488BA3 /* CoreData.framework */; };
 		18BD3FD5151845560002ED95 /* LargeMyTable.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BD3FD4151845560002ED95 /* LargeMyTable.png */; };
-		18C0FFA3152729AB003184F3 /* testCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18C0FFA2152729AB003184F3 /* testCoreData.xcdatamodeld */; };
 		18C4CE4E14F5267E007B2742 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE4D14F5267E007B2742 /* UIKit.framework */; };
 		18C4CE5014F5267E007B2742 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE4F14F5267E007B2742 /* Foundation.framework */; };
 		18C4CE5214F5267E007B2742 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE5114F5267E007B2742 /* CoreGraphics.framework */; };
@@ -205,7 +204,6 @@
 		18BCB13714FF19CA00488BA3 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				18C0FFA2152729AB003184F3 /* testCoreData.xcdatamodeld */,
 				A475B3461521AB1900A8EAD8 /* Category.h */,
 				A475B3471521AB1A00A8EAD8 /* Category.m */,
 				A475B3481521AB1A00A8EAD8 /* Recipe.h */,
@@ -512,7 +510,6 @@
 				A4CFC1DE15241823003940C2 /* UIImageView+AFNetworking.m in Sources */,
 				A4CFC1F015244DC6003940C2 /* SDURLCache.m in Sources */,
 				A4CFC1F715249010003940C2 /* ZTDesk.m in Sources */,
-				18C0FFA3152729AB003184F3 /* testCoreData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,18 +626,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		18C0FFA2152729AB003184F3 /* testCoreData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-			);
-			name = testCoreData.xcdatamodeld;
-			path = model/testCoreData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 18C4CE4014F5267D007B2742 /* Project object */;
 }
