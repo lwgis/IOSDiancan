@@ -15,4 +15,20 @@
 @synthesize dID;
 @synthesize dName;
 
+- (void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.dID forKey:@"dID"];
+	[coder encodeObject:self.dName forKey:@"dName"];
+	[coder encodeObject:self.dCapacity forKey:@"dCapacity"];
+}
+
+
+- (id)initWithCoder:(NSCoder *)coder {
+	self = [super init];
+	if (self != nil) {
+		self.dID = [coder decodeObjectForKey:@"dID"];
+		self.dName = [coder decodeObjectForKey:@"dName"];
+		self.dCapacity = [coder decodeObjectForKey:@"dCapacity"];
+	}
+	return self;
+}
 @end

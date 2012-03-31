@@ -48,4 +48,5 @@ typedef void (^SubmitOrderResponseBlock)(NSString *orderURL);
 //获取订单详情
 typedef void (^OrderDetailCompletionBlock)(NSDictionary *orderURL);
 - (void) getOrderDetail:(NSInteger)oid OnCompletion:(OrderDetailCompletionBlock) completeBlock onError:(ErrorBlock) errorBlock;
+
 @end

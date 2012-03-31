@@ -66,7 +66,7 @@
         [self addSubview:activityIndcatorView];
         [activityIndcatorView startAnimating];
     }
-    [recipe getRecipeImage:^(UIImage *image) {
+    [aRecipe getRecipeImage:^(UIImage *image) {
 
     if (foodImageView==nil) {
         foodImageView=[[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 230)] autorelease];

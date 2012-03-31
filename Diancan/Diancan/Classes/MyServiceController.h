@@ -18,4 +18,13 @@
 - (IBAction)getOrderDetail:(id)sender;
 
 @property (retain, nonatomic) IBOutlet UIImageView *myImageView;
+
+
+- (IBAction)serializationTest:(id)sender;
+
+- (IBAction)unserializationTest:(id)sender;
+
+- (IBAction)archiveTest:(id)sender;
+
+- (IBAction)unarchiveTest:(id)sender;
 @end

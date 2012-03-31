@@ -53,7 +53,7 @@
     [engine release];
     
     SDURLCache *urlCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024*5   // 1MB mem cache
-                                                         diskCapacity:1024*1024*20 // 5MB disk cache
+                                                         diskCapacity:1024*1024*80 // 5MB disk cache
                                                              diskPath:[SDURLCache defaultCachePath]];
     [NSURLCache setSharedURLCache:urlCache];
     [urlCache release];

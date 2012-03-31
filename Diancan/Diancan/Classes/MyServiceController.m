@@ -9,7 +9,7 @@
 #import "MyServiceController.h"
 
 #import "ZTCategory.h"
-
+#import "ZTDesk.h"
 #import "SDURLCache.h"
 
 #import "UIImageView+AFNetworking.h"
@@ -79,16 +79,18 @@
 {
 //    NSString *imageURL = @"test1.jpg";
 //    NSString *imageURL = @"test2.jpg";
-    NSString *imageURL = @"test5.jpg";
-//
-////    NSString *imageURL = @"10e8efae-308b-4400-8612-0cff9d5679da.png";
-//    [ApplicationDelegate.restEngine getImage:imageURL OnCompletion:^(UIImage *image) {
+//    NSString *imageURL = @"test5.jpg";
+
+    NSString *imageURL = @"10e8efae-308b-4400-8612-0cff9d5679da.png";
+    [ApplicationDelegate.restEngine getImage:imageURL OnCompletion:^(UIImage *image) {
 //        NSLog(@"图片获取成功");
-//    } onError:^(NSError *error) {
-//        NSLog(@"获取失败");
-//    }];
+    [myImageView setImage:image];
+
+    } onError:^(NSError *error) {
+        NSLog(@"获取失败");
+    }];
     
-    [myImageView setImageWithURL:[NSURL URLWithString:IMAGE_URL(imageURL)]];
+//    [myImageView setImageWithURL:[NSURL URLWithString:IMAGE_URL(imageURL)]];
 }
 
 - (IBAction)getAllDesk:(id)sender 
@@ -100,10 +102,8 @@
     }];
 }
 
-- (IBAction)submitOrder:(id)sender 
+- (NSMutableDictionary *)getTestOrder
 {
-    NSLog(@"提交订单");
-    
     NSMutableArray *recipes = [NSMutableArray array];
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -125,12 +125,21 @@
     [body setValue:@"11" forKey:@"tid"];
     [body setValue:@"4" forKey:@"number"];
     [body setValue:recipes forKey:@"recipes"];
+    return body;
+}
+
+- (IBAction)submitOrder:(id)sender 
+{
+    NSLog(@"提交订单");
+    
+    NSMutableDictionary *body = [self getTestOrder];
     
     [ApplicationDelegate.restEngine submitOrder:body OnCompletion:^(NSString *orderURL) {
         NSLog(@"提交订单成功:%@",orderURL);
     } onError:^(NSError *error) {
         NSLog(@"error:%@",error);
     }];
+    
 }
 
 - (IBAction)getOrderDetail:(id)sender
@@ -145,5 +154,42 @@
 - (void)dealloc {
     [myImageView release];
     [super dealloc];
+}
+- (IBAction)serializationTest:(id)sender 
+{
+    NSString *serializationFile = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"tempOrder"];
+    NSMutableDictionary *body = [self getTestOrder];
+    [body writeToFile:serializationFile atomically:YES];
+    NSLog(@"序列化成功：%@",body);
+}
+
+- (IBAction)unserializationTest:(id)sender 
+{
+    NSString *serializationFile = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"tempOrder"];
+    
+    NSMutableDictionary *body = [NSDictionary dictionaryWithContentsOfFile:serializationFile];
+    NSLog(@"反序列化成功：%@",body);
+}
+
+- (IBAction)archiveTest:(id)sender 
+{
+    ZTDesk *c = [[ZTDesk alloc] init];
+    [c setDID:[NSNumber numberWithInteger:45]];
+    [c setDName:@"1号桌子"];
+    [c setDCapacity: [NSNumber numberWithInteger:5]];
+    
+    NSString *file = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"desk.archive"];
+    BOOL result = [NSKeyedArchiver archiveRootObject:c
+                                              toFile:file];
+    [c release];
+    NSLog(@"archive成功：%@",result ? @"YES" : @"NO");
+}
+
+- (IBAction)unarchiveTest:(id)sender 
+{
+     NSString *file = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"desk.archive"];
+    
+    ZTDesk *c = (ZTDesk *)[NSKeyedUnarchiver unarchiveObjectWithFile:file];
+    NSLog(@"unarchive成功：%@",c);
 }
 @end

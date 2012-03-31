@@ -28,11 +28,12 @@
     NSString *imageURL = self.rImageURL;
     [ApplicationDelegate.restEngine getImage:imageURL OnCompletion:^(UIImage *image) {
         _rImage=image;
+        [self.rImageView setImage:_rImage];
         getRecipeImageBlock(_rImage);
         //        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
     } onError:^(NSError *error) {
-        NSLog(@"获取菜图片失败");
+        NSLog(@"获取失败");
     }];
 
 

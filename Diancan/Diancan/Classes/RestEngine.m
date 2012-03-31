@@ -30,7 +30,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"所有种类:%@",JSON);
+//        NSLog(@"所有种类:%@",JSON);
         NSMutableArray *array = [NSMutableArray array];   
 
         for (NSDictionary *dic in JSON) {
@@ -56,7 +56,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"种类菜单:%@",JSON);
+//        NSLog(@"种类菜单:%@",JSON);
         NSMutableArray *array = [NSMutableArray array];   
         for (NSDictionary *dic in JSON) {
             ZTRecipe *recipe = [[ZTRecipe alloc] init];
@@ -83,7 +83,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"所有桌子:%@",JSON);
+//        NSLog(@"所有桌子:%@",JSON);
         NSMutableArray *array = [NSMutableArray array];   
         
         for (NSDictionary *dic in JSON) {
@@ -107,7 +107,16 @@
     NSURL *url = [NSURL URLWithString:IMAGE_URL(urlStr)];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
     
+//    AFImageRequestOperation *ooo = [AFImageRequestOperation imageRequestOperationWithRequest:request imageProcessingBlock:^UIImage *(UIImage *) {
+//        
+//    } cacheName:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//        
+//    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+//        
+//    }];
+    
     AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
+        NSLog(@"获取图片成功");
         completeBlock(image);
     }];
     

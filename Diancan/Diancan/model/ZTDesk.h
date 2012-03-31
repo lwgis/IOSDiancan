@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface ZTDesk : NSObject
+@interface ZTDesk : NSObject <NSCoding>
 
 @property (nonatomic, retain) NSNumber * dCapacity;
 @property (nonatomic, retain) NSNumber * dID;
