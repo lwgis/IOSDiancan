@@ -1,1 +1,1 @@
-*.xcuserstate
+git rm --cached ProjectFolder.xcodeproj/project.xcworkspace/xcuserdata/apple.xcuserdatad/UserInterfaceState.xcuserstate
