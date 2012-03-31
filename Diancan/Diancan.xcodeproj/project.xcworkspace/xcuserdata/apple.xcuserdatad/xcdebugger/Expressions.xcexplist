@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[MainMenuController viewDidLoad]:MainMenuController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "badgeValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MainMenuController tableView:didSelectRowAtIndexPath:]:MainMenuController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.navigationController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[FoodInfoController clickRightButton]:FoodInfoController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tabBarItem.badgeValue">
+            </PersistentString>
+            <PersistentString
+               value = "badgeValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MainMenuController tableView:cellForRowAtIndexPath:]:MainMenuController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "(__NSCFNumber *)num">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[CategoryView loadDataByCategory:]:CategoryView.m">
+      </ContextState>
+      <ContextState
+         contextName = "GLOBAL">
+         <PersistentStrings>
+            <PersistentString
+               value = "aCategory.cID">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

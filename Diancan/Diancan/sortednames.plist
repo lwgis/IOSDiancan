@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>热菜</key>
+	<array>
+		<string>地三鲜</string>
+		<string>宫保鸡丁</string>
+		<string>回锅肉</string>
+		<string>水煮肉</string>
+		<string>水煮牛肉</string>
+		<string>豌豆炒肉</string>
+		<string>铁板烧鸡</string>
+		<string>水煮鱼</string>
+	</array>
+	<key>凉菜</key>
+	<array>
+		<string>凉拌黄瓜</string>
+		<string>凉拌皮蛋</string>
+		<string>凉拌折耳根</string>
+	</array>
+	<key>汤</key>
+	<array>
+		<string>西红柿蛋汤</string>
+		<string>三鲜汤</string>
+		<string>排骨藕烫</string>
+	</array>
+</dict>
+</plist>
