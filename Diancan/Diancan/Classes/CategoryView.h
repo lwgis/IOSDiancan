@@ -14,6 +14,7 @@
     UIImageView *imageView;
     CategoryView *curentView;
     NSInteger showIndex;
+    UIImageView *categoryImageView;
 }
 @property(nonatomic,retain)UILabel *labelTopCategoryName;
 @property(nonatomic,retain) ZTCategory *category;
