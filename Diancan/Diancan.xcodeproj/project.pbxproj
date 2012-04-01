@@ -43,6 +43,8 @@
 		187AB35F15213E0E00103EDF /* ZTRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB35015213E0E00103EDF /* ZTRecipe.m */; };
 		187AB36015213E0E00103EDF /* Recipe+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB35215213E0E00103EDF /* Recipe+Search.m */; };
 		187AB36115213E0E00103EDF /* RecipeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB35415213E0E00103EDF /* RecipeImage.m */; };
+		18825F2615287FEB0078EE1E /* ZTLeftListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18825F2515287FEB0078EE1E /* ZTLeftListView.m */; };
+		18825F29152893420078EE1E /* ListMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18825F28152893420078EE1E /* ListMainView.m */; };
 		18BCB17F14FF23B700488BA3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BCB17E14FF23B700488BA3 /* CoreData.framework */; };
 		18BD3FD5151845560002ED95 /* LargeMyTable.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BD3FD4151845560002ED95 /* LargeMyTable.png */; };
 		18C4CE4E14F5267E007B2742 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE4D14F5267E007B2742 /* UIKit.framework */; };
@@ -128,6 +130,10 @@
 		187AB35215213E0E00103EDF /* Recipe+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Recipe+Search.m"; path = "model/Recipe+Search.m"; sourceTree = "<group>"; };
 		187AB35315213E0E00103EDF /* RecipeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeImage.h; path = model/RecipeImage.h; sourceTree = "<group>"; };
 		187AB35415213E0E00103EDF /* RecipeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeImage.m; path = model/RecipeImage.m; sourceTree = "<group>"; };
+		18825F2415287FEB0078EE1E /* ZTLeftListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTLeftListView.h; path = Classes/ListMainView/ZTLeftListView.h; sourceTree = "<group>"; };
+		18825F2515287FEB0078EE1E /* ZTLeftListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTLeftListView.m; path = Classes/ListMainView/ZTLeftListView.m; sourceTree = "<group>"; };
+		18825F27152893420078EE1E /* ListMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListMainView.h; path = Classes/ListMainView/ListMainView.h; sourceTree = "<group>"; };
+		18825F28152893420078EE1E /* ListMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListMainView.m; path = Classes/ListMainView/ListMainView.m; sourceTree = "<group>"; };
 		18BCB17E14FF23B700488BA3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		18BD3FD4151845560002ED95 /* LargeMyTable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LargeMyTable.png; path = Image/itemImage/LargeMyTable.png; sourceTree = "<group>"; };
 		18C4CE4914F5267E007B2742 /* Diancan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diancan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +199,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18825F22152879450078EE1E /* ListMainView */ = {
+			isa = PBXGroup;
+			children = (
+				18825F2415287FEB0078EE1E /* ZTLeftListView.h */,
+				18825F2515287FEB0078EE1E /* ZTLeftListView.m */,
+				18825F27152893420078EE1E /* ListMainView.h */,
+				18825F28152893420078EE1E /* ListMainView.m */,
+			);
+			name = ListMainView;
+			sourceTree = "<group>";
+		};
 		18880CE514F6CE41006CCC29 /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +312,7 @@
 		18C4CE6414F52698007B2742 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				18825F22152879450078EE1E /* ListMainView */,
 				A44D83FD15209DC900296CDC /* RestEngine.h */,
 				A44D83FE15209DC900296CDC /* RestEngine.m */,
 				1874105A1510F24C00AAA72C /* CategoryView.h */,
@@ -510,6 +528,8 @@
 				A4CFC1DE15241823003940C2 /* UIImageView+AFNetworking.m in Sources */,
 				A4CFC1F015244DC6003940C2 /* SDURLCache.m in Sources */,
 				A4CFC1F715249010003940C2 /* ZTDesk.m in Sources */,
+				18825F2615287FEB0078EE1E /* ZTLeftListView.m in Sources */,
+				18825F29152893420078EE1E /* ListMainView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

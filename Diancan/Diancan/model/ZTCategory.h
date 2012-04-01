@@ -14,6 +14,8 @@ typedef void(^getCategoryImageBlock)(UIImage *image);
 @property (nonatomic, retain) NSString * cImageURL;
 @property (nonatomic, retain) NSString * cName;
 @property (nonatomic, retain) NSString * cDescription;
+@property(nonatomic,retain)UIImage *cImage;
+-(void)getCategoryImage:(getCategoryImageBlock) getCaotegoryImageBlock;
 
 @end
 

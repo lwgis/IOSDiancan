@@ -112,7 +112,7 @@
         [self insertSubview:labelFoodName atIndex:([self.subviews count]-1)];
     }
     [self SetFoodNum];
-           }];
+    }];
     
 }
 -(void)clickBtnAddFood

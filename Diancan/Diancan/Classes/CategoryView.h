@@ -15,6 +15,8 @@
     CategoryView *curentView;
     NSInteger showIndex;
 }
+@property(nonatomic,retain)UIImageView *categoryImageView;
+
 @property(nonatomic,retain)UILabel *labelTopCategoryName;
 @property(nonatomic,retain) ZTCategory *category;
 @property BOOL isVerticalMoved;

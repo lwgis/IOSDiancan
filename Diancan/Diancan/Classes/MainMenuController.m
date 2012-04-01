@@ -15,8 +15,6 @@
 #import "FoodView.h"
 #import "ZTCategory.h"
 @implementation MainMenuController
-@synthesize fetchedResultsController = __fetchedResultsController;
-@synthesize managedObjectContext = __managedObjectContext;
 @synthesize listCategoryView,isVerticalMoved,listCategory;
 //显示指定索引的View
 -(void)ShowCategoryView:(NSInteger)index{
@@ -47,10 +45,7 @@
     [UIView commitAnimations];
     currentCategoryView=(CategoryView *)[self.listCategoryView objectAtIndex:index];
     [currentCategoryView setTitleImage:YES];
-    if(currentCategoryView.previousCategoryView!=nil)
-        [currentCategoryView.previousCategoryView setCategoryInfo:currentCategoryView.previousCategoryView.category];
-    if(currentCategoryView.behindCategoryView!=nil)
-        [currentCategoryView.behindCategoryView setCategoryInfo:currentCategoryView.behindCategoryView.category];
+
     [currentCategoryView setCategoryInfo:currentCategoryView.category];
 
 }
@@ -87,13 +82,15 @@
     [UIView commitAnimations];
     currentCategoryView=(CategoryView *)[self.listCategoryView objectAtIndex:index.section];
     [currentCategoryView setTitleImage:YES];
-    if(currentCategoryView.previousCategoryView!=nil)
-        [currentCategoryView.previousCategoryView setCategoryInfo:currentCategoryView.previousCategoryView.category];
-    if(currentCategoryView.behindCategoryView!=nil)
-        [currentCategoryView.behindCategoryView setCategoryInfo:currentCategoryView.behindCategoryView.category];
+//    if(currentCategoryView.previousCategoryView!=nil)
+//        [currentCategoryView.previousCategoryView setCategoryInfo:currentCategoryView.previousCategoryView.category];
+//    if(currentCategoryView.behindCategoryView!=nil)
+//        [currentCategoryView.behindCategoryView setCategoryInfo:currentCategoryView.behindCategoryView.category];
     [currentCategoryView setCategoryInfo:currentCategoryView.category];
     [aCategoryView ShowFoodView:index.row Animation:YES];
-    
+    if(currentCategoryView.categoryImageView.superview!=nil){
+        [currentCategoryView.categoryImageView setHidden:YES];
+    }
 }
 
 -(void)setTopLabel{
@@ -123,9 +120,7 @@
 #pragma mark - View lifecycle
 
 - (void)loadFoodData {
-    ZTAppDelegate *appDelegate=(ZTAppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.managedObjectContext=appDelegate.managedObjectContext;
-    self.listCategoryView=[[NSMutableArray alloc] init] ;
+    self.listCategoryView=[[[NSMutableArray alloc] init] autorelease] ;
     int i=0;
     for (ZTCategory *ztCategory in self.listCategory) {
         CategoryView *categoryView=[[CategoryView alloc] 
@@ -134,6 +129,10 @@
         [categoryView setCategory:ztCategory];
         [categoryView.labelTopCategoryName setText:ztCategory.cName];
 //        [categoryView setCategoryInfo:ztCategory];
+        [ztCategory getCategoryImage:^(UIImage *image){
+            if(currentCategoryView.categoryImageView!=nil)
+            [categoryView.categoryImageView setImage:image];
+        } ];
         [categoryView setAlpha:0.4];
         [categoryView setTag:i];
         if (i>0) {
@@ -148,9 +147,6 @@
     }
 
 //    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
-    NSLog(@"%d",[[self.fetchedResultsController sections] count]);
-    for (int i=0; i<[[self.fetchedResultsController sections] count]; i++) {
-            }
     orientation=0;
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:2 inSection:4];
     [self ShowCategoryViewFromSuper:indexPath];
@@ -166,10 +162,10 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES]; 
     [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
-        self.listCategory=[[NSArray alloc] initWithArray:array];
-        if([self.listCategoryView count]==0)
+        self.listCategory=[[[NSArray alloc] initWithArray:array] autorelease];
+        if([self.listCategoryView count]==0){
         [self loadFoodData];
-        NSLog(@"获取成功");
+        }
     } onError:^(NSError *error) {
         NSLog(@"保存数据到数据库出错：%@",error);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更新失败"                              
@@ -184,10 +180,10 @@
    
 }
 - (void)viewDidUnload{
-    [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    [listCategoryView release];
+    [super viewDidUnload];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
@@ -195,46 +191,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (NSFetchedResultsController *)fetchedResultsController{
-    if (__fetchedResultsController != nil) {
-        return __fetchedResultsController;
-    }
-    
-    // Set up the fetched results controller.
-    // Create the fetch request for the entity.
-    NSFetchRequest *fetchRequest = [[[NSFetchRequest alloc] init] autorelease];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Recipe" inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    
-    // Set the batch size to a suitable number.
-    [fetchRequest setFetchBatchSize:100];
-    
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"cID" ascending:YES] autorelease];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
-    
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"cID" cacheName:nil] autorelease];
-    aFetchedResultsController.delegate = self;
-    __fetchedResultsController = aFetchedResultsController;
-    
-	NSError *error = nil;
-	if (![__fetchedResultsController performFetch:&error]) {
-	    /*
-	     Replace this implementation with code to handle the error appropriately.
-         
-	     abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-	     */
-	    NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-	    abort();
-	}
-    
-    return __fetchedResultsController;
-}    
 //判断手势方向
 - (void)judgeOrientation:(CGPoint)currentTouchPosition{
     if (fabsf(startTouchPosition.x - currentTouchPosition.x) >=fabsf(startTouchPosition.y - currentTouchPosition.y) )
@@ -334,13 +290,6 @@
         [self ShowCategoryView:currentCategoryView.tag];
         [currentCategoryView ShowFoodView:currentCategoryView.currentFoodView.tag Animation:YES];
     }
-//    [UIView beginAnimations:@"Mend" context:nil];
-//    [UIView setAnimationDuration:0.6];
-//    [UIView setAnimationDelegate:self];
-//    [UIView setAnimationDelay:1000];
-//    [self.view setUserInteractionEnabled:YES];
-//    [UIView commitAnimations];
- //    [self.view setUserInteractionEnabled:YES];
 }
 
 -(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event{

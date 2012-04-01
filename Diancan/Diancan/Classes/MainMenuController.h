@@ -24,6 +24,4 @@
 @property  BOOL isVerticalMoved;
 @property(nonatomic,retain) NSArray *listCategory;
 @property(nonatomic,retain)  NSMutableArray *listCategoryView;
-@property (nonatomic,retain) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @end

@@ -12,7 +12,7 @@
 
 @implementation CategoryView
 @synthesize listFoodView,previousCategoryView,behindCategoryView,isVerticalMoved,isHorizontalMoved,category;
-@synthesize startMyPoint,currentFoodView,labelTopCategoryName;
+@synthesize startMyPoint,currentFoodView,labelTopCategoryName,categoryImageView;
 -(void)setTitleImage:(BOOL)isTop{
     UIImage *image=nil;
     if (isTop) {
@@ -122,6 +122,8 @@
         labelTopCategoryName.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
         labelTopCategoryName.textColor=[UIColor whiteColor];
         [self addSubview:labelTopCategoryName];
+        categoryImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 5, 320, 275)] ;
+        [self addSubview:categoryImageView];
 //        [self setUserInteractionEnabled:NO];
     }
     return self;
@@ -307,6 +309,7 @@
     [self setStartMyPoint:self.frame.origin];
     [curentView setIsVerticalMoved:YES];
     [UIView commitAnimations];
+    [curentView.categoryImageView setHidden:YES];
     return  curentView;
 }
 -(void)animationDidStart:(CAAnimation *)anim{
@@ -344,6 +347,7 @@
         return;
     }
     [self loadDataByCategory:aCategory];
+
     [self insertSubview:labelTopCategoryName atIndex:([self.subviews count]-1)];
 //    [self insertSubview:labelBottomCategoryName atIndex:([self.subviews count]-1)];
     [self setCategory:aCategory];
