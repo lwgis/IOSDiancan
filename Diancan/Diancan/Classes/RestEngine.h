@@ -17,7 +17,7 @@
 #define SUBMIT_ORDER_URL @"/ChihuoService/rest/orders/"
 #define ORDER_DETAIL_URL(__ID__) [NSString stringWithFormat:@"%@/ChihuoService/rest/orders/%i",REQUEST_HOST, __ID__]
 
-#define IMAGE_URL(__URL__) [NSString stringWithFormat:@"http://192.168.1.103:8080/ChihuoService/MenuImages/%@", __URL__]
+#define IMAGE_URL(__URL__) [NSString stringWithFormat:@"http://192.168.1.106:80/ChihuoService/MenuImages/%@", __URL__]
 
 
         
