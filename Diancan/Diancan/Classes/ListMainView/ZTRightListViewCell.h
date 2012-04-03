@@ -10,12 +10,16 @@
 #import "ZTCategory.h"
 #import "ZTRecipe.h"
 
-@interface ZTRightListViewCell : UIView
+@interface ZTRightListViewCell : UIView{
+    UIView *currentView;
+}
 - (id)initWithFrame:(CGRect)frame recipe:(ZTRecipe *)aRecipe;
 -(void)loadRecipe:(ZTRecipe *)aRecipe;
 @property(nonatomic,retain) ZTRightListViewCell *previousZTRightListViewCell;
 @property(nonatomic,retain) ZTRightListViewCell *behindZTRightListViewCell;
 @property CGPoint startPoint;
 @property(nonatomic,retain) ZTRecipe *recipe;
+@property(nonatomic,retain)UIView *buttomView;
+@property BOOL isExtend;
 @end
 

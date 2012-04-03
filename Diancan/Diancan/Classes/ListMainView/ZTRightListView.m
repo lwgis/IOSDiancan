@@ -18,6 +18,7 @@
     [ApplicationDelegate.restEngine getRecipesByCategory:(NSInteger)[category.cID floatValue]  OnCompletion:^(NSArray *list) {
         for (NSInteger i=0; i<[list count]; i++) {
             ZTRightListViewCell *ztRightListView=[[ZTRightListViewCell alloc] initWithFrame:CGRectMake(0, i*80, 240, 80)];
+            ztRightListView.tag=i;
             [ztRightListView loadRecipe:(ZTRecipe *)[list objectAtIndex:i]];
             if ([self.subviews count]>0) {
                 ZTRightListViewCell *preZTRightListViewCell=(ZTRightListViewCell *)[self.subviews objectAtIndex:(i-1)];
@@ -29,7 +30,7 @@
             ListMainView *listMainView=(ListMainView *)self.superview; 
             listMainView.ztLeftListView.userInteractionEnabled=YES; 
         }
-        [self setContentSize:CGSizeMake(220, [list count]*80+20)];
+        [self setContentSize:CGSizeMake(220, [list count]*80)];
         [self setContentOffset:CGPointMake(0, 0)];
     } onError:^(NSError *error) {
         
