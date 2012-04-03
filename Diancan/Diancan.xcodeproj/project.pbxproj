@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		180EE1D814F7153E007E40AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180EE1D714F7153E007E40AA /* QuartzCore.framework */; };
-		1811FA60151A308100E11027 /* 加号.png in Resources */ = {isa = PBXBuildFile; fileRef = 1811FA5F151A308100E11027 /* 加号.png */; };
 		1822FBC6151D124C004CC4CD /* MyMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1822FBC5151D124C004CC4CD /* MyMenuView.m */; };
+		185A82291529833C008B2B1D /* ZTRightListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A82281529833C008B2B1D /* ZTRightListView.m */; };
+		185A822D1529901C008B2B1D /* ZTRightListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A822C1529901C008B2B1D /* ZTRightListViewCell.m */; };
 		1873728B1521481200969633 /* UpdateRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 187372871521481200969633 /* UpdateRecord.m */; };
 		1873728C1521481200969633 /* UpdateRecord+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 187372891521481200969633 /* UpdateRecord+Search.m */; };
 		1874102B1510F21300AAA72C /* bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 187410241510F21300AAA72C /* bottom.png */; };
@@ -43,8 +44,12 @@
 		187AB35F15213E0E00103EDF /* ZTRecipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB35015213E0E00103EDF /* ZTRecipe.m */; };
 		187AB36015213E0E00103EDF /* Recipe+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB35215213E0E00103EDF /* Recipe+Search.m */; };
 		187AB36115213E0E00103EDF /* RecipeImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB35415213E0E00103EDF /* RecipeImage.m */; };
+		18821D78152B074400773B44 /* 加号.png in Resources */ = {isa = PBXBuildFile; fileRef = 18821D76152B074400773B44 /* 加号.png */; };
+		18821D79152B074400773B44 /* 减号.png in Resources */ = {isa = PBXBuildFile; fileRef = 18821D77152B074400773B44 /* 减号.png */; };
 		18825F2615287FEB0078EE1E /* ZTLeftListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18825F2515287FEB0078EE1E /* ZTLeftListView.m */; };
 		18825F29152893420078EE1E /* ListMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18825F28152893420078EE1E /* ListMainView.m */; };
+		18825F311528ABAF0078EE1E /* ListMainViewCongtroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18825F2F1528ABAF0078EE1E /* ListMainViewCongtroller.m */; };
+		18825F341528ABEB0078EE1E /* ListMainViewCongtroller.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18825F331528ABEB0078EE1E /* ListMainViewCongtroller.xib */; };
 		18BCB17F14FF23B700488BA3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18BCB17E14FF23B700488BA3 /* CoreData.framework */; };
 		18BD3FD5151845560002ED95 /* LargeMyTable.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BD3FD4151845560002ED95 /* LargeMyTable.png */; };
 		18C4CE4E14F5267E007B2742 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE4D14F5267E007B2742 /* UIKit.framework */; };
@@ -74,9 +79,12 @@
 
 /* Begin PBXFileReference section */
 		180EE1D714F7153E007E40AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		1811FA5F151A308100E11027 /* 加号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加号.png"; sourceTree = "<group>"; };
 		1822FBC4151D124B004CC4CD /* MyMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMenuView.h; path = Classes/MyMenuView.h; sourceTree = "<group>"; };
 		1822FBC5151D124C004CC4CD /* MyMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMenuView.m; path = Classes/MyMenuView.m; sourceTree = "<group>"; };
+		185A82271529833C008B2B1D /* ZTRightListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTRightListView.h; path = Classes/ListMainView/ZTRightListView.h; sourceTree = "<group>"; };
+		185A82281529833C008B2B1D /* ZTRightListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTRightListView.m; path = Classes/ListMainView/ZTRightListView.m; sourceTree = "<group>"; };
+		185A822B1529901B008B2B1D /* ZTRightListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTRightListViewCell.h; path = Classes/ListMainView/ZTRightListViewCell.h; sourceTree = "<group>"; };
+		185A822C1529901C008B2B1D /* ZTRightListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTRightListViewCell.m; path = Classes/ListMainView/ZTRightListViewCell.m; sourceTree = "<group>"; };
 		187372861521481200969633 /* UpdateRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateRecord.h; path = model/UpdateRecord.h; sourceTree = "<group>"; };
 		187372871521481200969633 /* UpdateRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateRecord.m; path = model/UpdateRecord.m; sourceTree = "<group>"; };
 		187372881521481200969633 /* UpdateRecord+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UpdateRecord+Search.h"; path = "model/UpdateRecord+Search.h"; sourceTree = "<group>"; };
@@ -130,10 +138,15 @@
 		187AB35215213E0E00103EDF /* Recipe+Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Recipe+Search.m"; path = "model/Recipe+Search.m"; sourceTree = "<group>"; };
 		187AB35315213E0E00103EDF /* RecipeImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeImage.h; path = model/RecipeImage.h; sourceTree = "<group>"; };
 		187AB35415213E0E00103EDF /* RecipeImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeImage.m; path = model/RecipeImage.m; sourceTree = "<group>"; };
+		18821D76152B074400773B44 /* 加号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "加号.png"; path = "Image/itemImage/加号.png"; sourceTree = "<group>"; };
+		18821D77152B074400773B44 /* 减号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "减号.png"; path = "Image/itemImage/减号.png"; sourceTree = "<group>"; };
 		18825F2415287FEB0078EE1E /* ZTLeftListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTLeftListView.h; path = Classes/ListMainView/ZTLeftListView.h; sourceTree = "<group>"; };
 		18825F2515287FEB0078EE1E /* ZTLeftListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTLeftListView.m; path = Classes/ListMainView/ZTLeftListView.m; sourceTree = "<group>"; };
 		18825F27152893420078EE1E /* ListMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListMainView.h; path = Classes/ListMainView/ListMainView.h; sourceTree = "<group>"; };
 		18825F28152893420078EE1E /* ListMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListMainView.m; path = Classes/ListMainView/ListMainView.m; sourceTree = "<group>"; };
+		18825F2E1528ABAF0078EE1E /* ListMainViewCongtroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListMainViewCongtroller.h; path = Classes/ListMainView/ListMainViewCongtroller.h; sourceTree = "<group>"; };
+		18825F2F1528ABAF0078EE1E /* ListMainViewCongtroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListMainViewCongtroller.m; path = Classes/ListMainView/ListMainViewCongtroller.m; sourceTree = "<group>"; };
+		18825F331528ABEB0078EE1E /* ListMainViewCongtroller.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ListMainViewCongtroller.xib; path = UI/ListMainViewCongtroller.xib; sourceTree = "<group>"; };
 		18BCB17E14FF23B700488BA3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		18BD3FD4151845560002ED95 /* LargeMyTable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LargeMyTable.png; path = Image/itemImage/LargeMyTable.png; sourceTree = "<group>"; };
 		18C4CE4914F5267E007B2742 /* Diancan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Diancan.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +219,12 @@
 				18825F2515287FEB0078EE1E /* ZTLeftListView.m */,
 				18825F27152893420078EE1E /* ListMainView.h */,
 				18825F28152893420078EE1E /* ListMainView.m */,
+				18825F2E1528ABAF0078EE1E /* ListMainViewCongtroller.h */,
+				18825F2F1528ABAF0078EE1E /* ListMainViewCongtroller.m */,
+				185A82271529833C008B2B1D /* ZTRightListView.h */,
+				185A82281529833C008B2B1D /* ZTRightListView.m */,
+				185A822B1529901B008B2B1D /* ZTRightListViewCell.h */,
+				185A822C1529901C008B2B1D /* ZTRightListViewCell.m */,
 			);
 			name = ListMainView;
 			sourceTree = "<group>";
@@ -345,7 +364,8 @@
 		18C4CE6514F526B2007B2742 /* itemImage */ = {
 			isa = PBXGroup;
 			children = (
-				1811FA5F151A308100E11027 /* 加号.png */,
+				18821D76152B074400773B44 /* 加号.png */,
+				18821D77152B074400773B44 /* 减号.png */,
 				18BD3FD4151845560002ED95 /* LargeMyTable.png */,
 				187410241510F21300AAA72C /* bottom.png */,
 				187410251510F21300AAA72C /* dian.png */,
@@ -361,6 +381,7 @@
 		18C4CE6614F526CB007B2742 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				18825F331528ABEB0078EE1E /* ListMainViewCongtroller.xib */,
 				1874104F1510F23800AAA72C /* FoodInfoController.xib */,
 				187410501510F23800AAA72C /* MainMenuController.xib */,
 				187410511510F23800AAA72C /* MainWindow.xib */,
@@ -464,7 +485,9 @@
 				187410581510F23800AAA72C /* MyMenuController.xib in Resources */,
 				187410591510F23800AAA72C /* MyServiceController.xib in Resources */,
 				18BD3FD5151845560002ED95 /* LargeMyTable.png in Resources */,
-				1811FA60151A308100E11027 /* 加号.png in Resources */,
+				18825F341528ABEB0078EE1E /* ListMainViewCongtroller.xib in Resources */,
+				18821D78152B074400773B44 /* 加号.png in Resources */,
+				18821D79152B074400773B44 /* 减号.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +553,9 @@
 				A4CFC1F715249010003940C2 /* ZTDesk.m in Sources */,
 				18825F2615287FEB0078EE1E /* ZTLeftListView.m in Sources */,
 				18825F29152893420078EE1E /* ListMainView.m in Sources */,
+				18825F311528ABAF0078EE1E /* ListMainViewCongtroller.m in Sources */,
+				185A82291529833C008B2B1D /* ZTRightListView.m in Sources */,
+				185A822D1529901C008B2B1D /* ZTRightListViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

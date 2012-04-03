@@ -8,18 +8,28 @@
 
 #import "ListMainView.h"
 @implementation ListMainView
-
+@synthesize ztRightListView,ztLeftListView;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        ZTLeftListView *ztLeftListView=[[ZTLeftListView alloc] initWithFrame:CGRectMake(0, 60, 40, 350)];
-        [self addSubview:ztLeftListView];
-        [ztLeftListView release];
-                                        }
+                                   
+    }
     return self;
 }
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        ztLeftListView=[[ZTLeftListView alloc] initWithFrame:CGRectMake(0, 0, 80, 420)];
+        [ztLeftListView loadCategory];
+        [self addSubview:ztLeftListView];
+        ztRightListView=[[ZTRightListView alloc] initWithFrame:CGRectMake(80, 0, 240, 420)];
+        [self addSubview:ztRightListView];
+        [ztLeftListView setZtRightListView:ztRightListView];
+    }
+    return self;
 
+}
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

@@ -21,7 +21,7 @@
 //@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (retain,nonatomic)NSMutableArray *orderList;
 @property (strong, nonatomic) RestEngine *restEngine;
--(void)saveContext;
+//-(void)saveContext;
 //-(void)addFood:(Category *)aCategory;
 //-(void)countPrice;
 -(NSURL *)applicationDocumentsDirectory;

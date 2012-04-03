@@ -14,6 +14,7 @@
 
 @implementation ZTAppDelegate
 
+
 @synthesize window = _window;
 @synthesize rootController;
 @synthesize foodCount;
@@ -106,7 +107,7 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-    [self saveContext];
+//    [self saveContext];
 }
 
 

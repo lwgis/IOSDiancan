@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define REQUEST_HOST @"HTTP://192.168.1.103:8080"
+#define REQUEST_HOST @"HTTP://192.168.1.106:8080"
 #define ALL_CATEGORY_URL [NSString stringWithFormat:@"%@/ChihuoService/rest/categories/",REQUEST_HOST]
 #define RECIPE_BY_CATEGORY_URL(__ID__) [NSString stringWithFormat:@"%@/ChihuoService/rest/categories/%i",REQUEST_HOST, __ID__]
 

@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ZTCategory.h"
-@interface ZTLeftListView : UIView
+#import "ZTRightListView.h"
+@interface ZTLeftListView : UIScrollView
+{
+    NSMutableArray *listButton;
+}
 @property(nonatomic,retain) NSArray *listCategory;
+@property(nonatomic,retain)ZTRightListView *ztRightListView;
 -(void)loadCategory;
 @end

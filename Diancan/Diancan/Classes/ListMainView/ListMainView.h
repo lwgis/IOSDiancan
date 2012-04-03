@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ZTLeftListView.h"
+#import "ZTRightListView.h"
 @interface ListMainView : UIView
-
+@property(nonatomic,retain)ZTLeftListView *ztLeftListView;
+@property(nonatomic,retain)ZTRightListView *ztRightListView;
 @end

@@ -161,23 +161,24 @@
 - (void)viewDidLoad{  
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:YES]; 
-    [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
-        self.listCategory=[[[NSArray alloc] initWithArray:array] autorelease];
-        if([self.listCategoryView count]==0){
-        [self loadFoodData];
-        }
-    } onError:^(NSError *error) {
-        NSLog(@"保存数据到数据库出错：%@",error);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更新失败"                              
-                                                        message:@"更新数据失败"
-                                                       delegate:nil
-                                              cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-    }];
-//    [self loadFoodData];
-   
+   [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
+       self.listCategory=[[[NSArray alloc] initWithArray:array] autorelease];
+       if([self.listCategoryView count]==0){
+       [self loadFoodData];
+       }
+       
+   } onError:^(NSError *error) {
+       NSLog(@"保存数据到数据库出错：%@",error);
+       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更新失败"                              
+                                                       message:@"更新数据失败"
+                                                      delegate:nil
+                                             cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
+                                             otherButtonTitles:nil];
+       [alert show];
+       [alert release];
+   }];
+
+    
 }
 - (void)viewDidUnload{
     // Release any retained subviews of the main view.
