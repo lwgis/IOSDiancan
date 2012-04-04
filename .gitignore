@@ -3,7 +3,6 @@
 *.pyc
 *~.nib/
 build/*
-*Breakpoints.xcbkptlist*
 *.xcuserstate*
 *.xcworkspace*
 *.xcuserdata*
@@ -30,12 +29,12 @@ Thumbs.db
 *.7z
 *.dmg
 *.gz
-*.iso
 *.jar
 *.rar
 *.tar
 *.zip
- 
+xcdebugger/*
+*.iso
 # Logs and databases #
 ######################
 *.log
