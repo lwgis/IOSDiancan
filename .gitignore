@@ -3,7 +3,7 @@
 *.pyc
 *~.nib/
 build/*
-Breakpoints.xcbkptlist
+*Breakpoints.xcbkptlist*
 *.xcuserstate*
 *.xcworkspace*
 *.xcuserdata*
