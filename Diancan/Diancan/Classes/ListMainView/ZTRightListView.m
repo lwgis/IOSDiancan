@@ -10,6 +10,14 @@
 #import "ZTRightListViewCell.h"
 #import "ListMainView.h"
 @implementation ZTRightListView
+-(id)initWithFrame:(CGRect)frame{
+    self=[super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        [self setMultipleTouchEnabled:NO];
+    }
+    return  self;
+}
 -(void)loadRecipeWithCategory:(ZTCategory *)category{
     [self setShowsVerticalScrollIndicator:NO];
     for(ZTRightListViewCell *subview in [self subviews]) {

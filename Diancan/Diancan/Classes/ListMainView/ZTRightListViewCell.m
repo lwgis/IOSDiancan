@@ -14,7 +14,6 @@
     UIImageView *recipeImageView;
     UILabel *recipeNameLable;
     UILabel *recipePriceLable;
-    
 }
 @synthesize recipe,behindZTRightListViewCell,previousZTRightListViewCell,startPoint,buttomView,isExtend;
 - (id)initWithFrame:(CGRect)frame
@@ -22,31 +21,45 @@
     self = [super initWithFrame:frame];
     if (self) {
         isExtend=NO;
-        self.backgroundColor=[UIColor whiteColor];
-        UIImageView *topImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, 2)];
-        UIImage *image=[UIImage imageNamed:@"top.png"];
-        [topImageView setImage:image];
-        [topImageView setAlpha:0.6];
-        [self addSubview:topImageView];
-        recipeImageView=[[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 70, 70)];
+        self.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
+        UIImageView *cellImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width,frame.size.height )];
+        UIImage *image=[UIImage imageNamed:@"LifeViewCell.png"];
+        [cellImageView setImage:image];
+        [cellImageView setAlpha:1];
+        [self addSubview:cellImageView];
+        [cellImageView release];
+//        UIImageView *topImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, 2)];
+//         image=[UIImage imageNamed:@"top.png"];
+//        [topImageView setImage:image];
+//        [topImageView setAlpha:0.6];
+//        [self addSubview:topImageView];
+        recipeImageView=[[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 70, 70)];
         recipeImageView.layer.cornerRadius=5;
         [self addSubview:recipeImageView];
-        recipeNameLable=[[UILabel alloc] initWithFrame:CGRectMake(75, 10, 200, 20)];
+        recipeNameLable=[[UILabel alloc] initWithFrame:CGRectMake(80, 10, 200, 20)];
         recipeNameLable.backgroundColor=[UIColor clearColor];
         [self addSubview:recipeNameLable];
-        recipePriceLable=[[UILabel alloc] initWithFrame:CGRectMake(75, 40, 50, 20)];
+        recipePriceLable=[[UILabel alloc] initWithFrame:CGRectMake(80, 40, 50, 20)];
         recipePriceLable.backgroundColor=[UIColor clearColor];
         [recipePriceLable setTextColor:[UIColor redColor]];
         [self addSubview:recipePriceLable];
-        UIImageView *addImage=[[UIImageView alloc] initWithFrame:CGRectMake(160, 0, 40, 40)];
-        image=[UIImage imageNamed:@"加号.png"];
-        [addImage setImage:image];
-        buttomView=[[UIView alloc] initWithFrame:CGRectMake(0, 80, 240, 40)];
+        UIImageView *backgroudImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, 60)];
+        image=[UIImage imageNamed:@"buttomView.png"];
+        [backgroudImageView setImage:image];
+       UIImageView *addImage=[[UIImageView alloc] initWithFrame:CGRectMake(190, 18, 40, 40)];
+       image=[UIImage imageNamed:@"加号.png"];    
+       [addImage setImage:image];
+        UIImageView *reMoveImage=[[UIImageView alloc] initWithFrame:CGRectMake(100, 18, 40, 40)];
+        image=[UIImage imageNamed:@"减号.png"];    
+        [reMoveImage setImage:image];
+        buttomView=[[UIView alloc] initWithFrame:CGRectMake(0, 80, 240, 60)];
         buttomView.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
-        [buttomView addSubview:addImage];
+        [buttomView addSubview:backgroudImageView];
+        [buttomView addSubview:addImage];    
+        [buttomView addSubview:reMoveImage];
         [self addSubview:buttomView];
         [self.buttomView setHidden:YES];
-        [topImageView release];
+//        [topImageView release];
     }
     return self;
 }
@@ -72,8 +85,22 @@
         [recipeImageView setImage:image];
     }];
 }
+- (void)setEnableTouch:(BOOL)enableTouch {
+    ZTRightListViewCell *pView=self.previousZTRightListViewCell;
+    ZTRightListViewCell *bView=self.behindZTRightListViewCell;
+    while (pView!=nil) {
+        pView.userInteractionEnabled=enableTouch;
+        pView=pView.previousZTRightListViewCell;
+    }
+    while (bView!=nil) {
+        bView.userInteractionEnabled=enableTouch;
+        bView=bView.behindZTRightListViewCell;
+    }
+}
+
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     self.startPoint=self.frame.origin;
+    [self setEnableTouch:NO];
 }
 - (void)moveAlone:(CGFloat) offset {
     if(!isExtend){
@@ -140,7 +167,7 @@
             pView.isExtend=NO;
             ZTRightListView *ztRightListView =(ZTRightListView *)self.superview;
             if(offset!=0)
-            [ztRightListView setContentOffset:CGPointMake(ztRightListView.contentOffset.x, ztRightListView.contentOffset.y+offset-buttomView.frame.size.height)];
+                [ztRightListView setContentOffset:CGPointMake(ztRightListView.contentOffset.x, ztRightListView.contentOffset.y+offset-buttomView.frame.size.height)];
             [UIView commitAnimations];
             currentView= pView.buttomView;
             return;
@@ -195,6 +222,9 @@
             [self moveToDown:offset];
         }
     }
+    else{
+        [self setEnableTouch:YES];
+    }
     
     startPoint=self.frame.origin;
 }
@@ -205,7 +235,10 @@
     isExtend=!isExtend;
     currentView.hidden=YES;
     self.userInteractionEnabled=YES;
+    [self setEnableTouch:YES];
 }
+
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

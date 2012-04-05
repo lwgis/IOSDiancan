@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		180EE1D814F7153E007E40AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180EE1D714F7153E007E40AA /* QuartzCore.framework */; };
+		181382F3152C617B0039FB43 /* buttomView.png in Resources */ = {isa = PBXBuildFile; fileRef = 181382F2152C617B0039FB43 /* buttomView.png */; };
+		181382FA152C8BDA0039FB43 /* LifeViewCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 181382F9152C8BDA0039FB43 /* LifeViewCell.png */; };
+		181382FC152CAC040039FB43 /* leftListHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 181382FB152CAC040039FB43 /* leftListHigh.png */; };
+		181382FE152CCDBA0039FB43 /* 羊皮纸.png in Resources */ = {isa = PBXBuildFile; fileRef = 181382FD152CCDBA0039FB43 /* 羊皮纸.png */; };
 		1822FBC6151D124C004CC4CD /* MyMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1822FBC5151D124C004CC4CD /* MyMenuView.m */; };
 		185A82291529833C008B2B1D /* ZTRightListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A82281529833C008B2B1D /* ZTRightListView.m */; };
 		185A822D1529901C008B2B1D /* ZTRightListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A822C1529901C008B2B1D /* ZTRightListViewCell.m */; };
@@ -79,6 +83,10 @@
 
 /* Begin PBXFileReference section */
 		180EE1D714F7153E007E40AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		181382F2152C617B0039FB43 /* buttomView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttomView.png; path = Image/itemImage/buttomView.png; sourceTree = "<group>"; };
+		181382F9152C8BDA0039FB43 /* LifeViewCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LifeViewCell.png; path = Image/itemImage/LifeViewCell.png; sourceTree = "<group>"; };
+		181382FB152CAC040039FB43 /* leftListHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftListHigh.png; path = Image/itemImage/leftListHigh.png; sourceTree = "<group>"; };
+		181382FD152CCDBA0039FB43 /* 羊皮纸.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "羊皮纸.png"; path = "Image/itemImage/羊皮纸.png"; sourceTree = "<group>"; };
 		1822FBC4151D124B004CC4CD /* MyMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMenuView.h; path = Classes/MyMenuView.h; sourceTree = "<group>"; };
 		1822FBC5151D124C004CC4CD /* MyMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMenuView.m; path = Classes/MyMenuView.m; sourceTree = "<group>"; };
 		185A82271529833C008B2B1D /* ZTRightListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTRightListView.h; path = Classes/ListMainView/ZTRightListView.h; sourceTree = "<group>"; };
@@ -364,6 +372,10 @@
 		18C4CE6514F526B2007B2742 /* itemImage */ = {
 			isa = PBXGroup;
 			children = (
+				181382FD152CCDBA0039FB43 /* 羊皮纸.png */,
+				181382FB152CAC040039FB43 /* leftListHigh.png */,
+				181382F9152C8BDA0039FB43 /* LifeViewCell.png */,
+				181382F2152C617B0039FB43 /* buttomView.png */,
 				18821D76152B074400773B44 /* 加号.png */,
 				18821D77152B074400773B44 /* 减号.png */,
 				18BD3FD4151845560002ED95 /* LargeMyTable.png */,
@@ -488,6 +500,10 @@
 				18825F341528ABEB0078EE1E /* ListMainViewCongtroller.xib in Resources */,
 				18821D78152B074400773B44 /* 加号.png in Resources */,
 				18821D79152B074400773B44 /* 减号.png in Resources */,
+				181382F3152C617B0039FB43 /* buttomView.png in Resources */,
+				181382FA152C8BDA0039FB43 /* LifeViewCell.png in Resources */,
+				181382FC152CAC040039FB43 /* leftListHigh.png in Resources */,
+				181382FE152CCDBA0039FB43 /* 羊皮纸.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
