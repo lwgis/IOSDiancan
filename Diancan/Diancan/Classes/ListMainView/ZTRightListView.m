@@ -17,6 +17,8 @@
         self.delegate=self;
         self.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
         [self setMultipleTouchEnabled:NO];
+//        [self setCanCancelContentTouches:YES];
+//        [self setDelaysContentTouches:NO];
     }
     return  self;
 }
@@ -47,11 +49,24 @@
         
     } ];    
 }
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    for(ZTRightListViewCell *subview in [self subviews]) {
+        [subview setUserInteractionEnabled:YES];
+    }
+
+}
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if (decelerate) {
         for(ZTRightListViewCell *subview in [self subviews]) {
             [subview setUserInteractionEnabled:YES];
         }
     }
+}
+
+-(BOOL)touchesShouldCancelInContentView:(UIView *)view{
+    if ([view isKindOfClass: [UIButton class]]) {
+        return NO;
+    }
+    return YES;
 }
 @end

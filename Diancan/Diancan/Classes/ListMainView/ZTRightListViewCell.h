@@ -13,6 +13,7 @@
 @interface ZTRightListViewCell : UIView{
     ZTRightListViewCell *currentView;
 }
+
 -(void)loadRecipe:(ZTRecipe *)aRecipe;
 @property(nonatomic,retain) ZTRightListViewCell *previousZTRightListViewCell;
 @property(nonatomic,retain) ZTRightListViewCell *behindZTRightListViewCell;

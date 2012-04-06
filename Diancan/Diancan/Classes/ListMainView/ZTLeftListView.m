@@ -20,6 +20,25 @@
     }
     return self;
 }
+-(void)categoryBtnClick:(id)sender{
+    for (UIButton *aButton in listButton) {
+        aButton.backgroundColor=[UIColor colorWithRed:222 green:222 blue:222 alpha:1];
+        [aButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [aButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
+    }
+    UIButton *aButton=(UIButton *)sender;
+    aButton.backgroundColor=[UIColor orangeColor];
+    [aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    ZTCategory *aCategory=(ZTCategory *)[self.listCategory objectAtIndex:aButton.tag];
+    [self.ztRightListView removeFromSuperview];
+    self.ztRightListView=[[[ZTRightListView alloc] initWithFrame:CGRectMake(80, 0, 240, 410)] autorelease];
+    [self.superview addSubview:ztRightListView];
+    [self.ztRightListView loadRecipeWithCategory:aCategory];
+    ListMainView *listMainView=(ListMainView *)self.superview; 
+    listMainView.ztLeftListView.userInteractionEnabled=NO;
+}
+
 -(void)loadCategory{
     [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
         self.listCategory=[[[NSArray alloc] initWithArray:array] autorelease];
@@ -43,8 +62,8 @@
             [self addSubview:categoryButton];
             [listButton addObject:categoryButton];
         }           
-        
-            
+    
+        [self categoryBtnClick:[self.subviews objectAtIndex:0]]; 
     } onError:^(NSError *error) {
         NSLog(@"保存数据到数据库出错：%@",error);
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更新失败"                              
@@ -57,24 +76,7 @@
     }];
 
 }
--(void)categoryBtnClick:(id)sender{
-    for (UIButton *aButton in listButton) {
-        aButton.backgroundColor=[UIColor colorWithRed:222 green:222 blue:222 alpha:1];
-        [aButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [aButton setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-    }
-    UIButton *aButton=(UIButton *)sender;
-    aButton.backgroundColor=[UIColor orangeColor];
-    [aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-    ZTCategory *aCategory=(ZTCategory *)[self.listCategory objectAtIndex:aButton.tag];
-    [self.ztRightListView removeFromSuperview];
-    self.ztRightListView=[[[ZTRightListView alloc] initWithFrame:CGRectMake(80, 0, 240, 410)] autorelease];
-    [self.superview addSubview:ztRightListView];
-    [self.ztRightListView loadRecipeWithCategory:aCategory];
-     ListMainView *listMainView=(ListMainView *)self.superview; 
-    listMainView.ztLeftListView.userInteractionEnabled=NO;
-}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
