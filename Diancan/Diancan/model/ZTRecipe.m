@@ -18,17 +18,14 @@
 @synthesize rPrice;
 @synthesize  count;
 @synthesize rImage=_rImage;
-@synthesize rImageView;
 -(void)getRecipeImage:(getRecipeImageBlock)getRecipeImageBlock{
     if (_rImage!=nil) {
-        [rImageView setImage:_rImage];  
         getRecipeImageBlock(_rImage);
         return ;
     }
     NSString *imageURL = self.rImageURL;
     [ApplicationDelegate.restEngine getImage:imageURL OnCompletion:^(UIImage *image) {
         _rImage=image;
-        [self.rImageView setImage:_rImage];
         getRecipeImageBlock(_rImage);
         //        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         

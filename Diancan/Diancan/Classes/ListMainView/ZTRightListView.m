@@ -9,10 +9,12 @@
 #import "ZTRightListView.h"
 #import "ZTRightListViewCell.h"
 #import "ListMainView.h"
-@implementation ZTRightListView
+@implementation ZTRightListView{
+}
 -(id)initWithFrame:(CGRect)frame{
     self=[super initWithFrame:frame];
     if (self) {
+        self.delegate=self;
         self.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
         [self setMultipleTouchEnabled:NO];
     }
@@ -23,6 +25,7 @@
     for(ZTRightListViewCell *subview in [self subviews]) {
         [subview removeFromSuperview];
     }
+    
     [ApplicationDelegate.restEngine getRecipesByCategory:(NSInteger)[category.cID floatValue]  OnCompletion:^(NSArray *list) {
         for (NSInteger i=0; i<[list count]; i++) {
             ZTRightListViewCell *ztRightListView=[[ZTRightListViewCell alloc] initWithFrame:CGRectMake(0, i*80, 240, 80)];
@@ -35,15 +38,20 @@
             }
             [self addSubview:ztRightListView];
             [ztRightListView release];
-            ListMainView *listMainView=(ListMainView *)self.superview; 
-            listMainView.ztLeftListView.userInteractionEnabled=YES; 
         }
         [self setContentSize:CGSizeMake(220, [list count]*80)];
         [self setContentOffset:CGPointMake(0, 0)];
+        ListMainView *listMainView=(ListMainView *)self.superview; 
+        listMainView.ztLeftListView.userInteractionEnabled=YES; 
     } onError:^(NSError *error) {
         
-    } ];
-    
+    } ];    
 }
-
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    if (decelerate) {
+        for(ZTRightListViewCell *subview in [self subviews]) {
+            [subview setUserInteractionEnabled:YES];
+        }
+    }
+}
 @end

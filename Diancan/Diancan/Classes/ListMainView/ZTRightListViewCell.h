@@ -11,9 +11,8 @@
 #import "ZTRecipe.h"
 
 @interface ZTRightListViewCell : UIView{
-    UIView *currentView;
+    ZTRightListViewCell *currentView;
 }
-- (id)initWithFrame:(CGRect)frame recipe:(ZTRecipe *)aRecipe;
 -(void)loadRecipe:(ZTRecipe *)aRecipe;
 @property(nonatomic,retain) ZTRightListViewCell *previousZTRightListViewCell;
 @property(nonatomic,retain) ZTRightListViewCell *behindZTRightListViewCell;

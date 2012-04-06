@@ -116,7 +116,7 @@
 //    }];
     
     AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
-        NSLog(@"获取图片成功");
+//        NSLog(@"获取图片成功");
         completeBlock(image);
     }];
     

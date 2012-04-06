@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ZTCategory.h"
-@interface ZTRightListView : UIScrollView
+@interface ZTRightListView : UIScrollView<UIScrollViewDelegate>
 -(void)loadRecipeWithCategory:(ZTCategory *)category;
 @end

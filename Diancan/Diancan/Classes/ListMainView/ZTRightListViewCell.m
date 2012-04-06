@@ -9,6 +9,7 @@
 #import "ZTRightListViewCell.h"
 #import <QuartzCore/QuartzCore.h> 
 #import "ZTLeftListView.h"
+#define AMIMATOIN_TIME  0.2
 @implementation ZTRightListViewCell
 {
     UIImageView *recipeImageView;
@@ -16,10 +17,22 @@
     UILabel *recipePriceLable;
 }
 @synthesize recipe,behindZTRightListViewCell,previousZTRightListViewCell,startPoint,buttomView,isExtend;
+-(void)removeFromSuperview{
+    [recipeImageView removeFromSuperview];
+    [recipeImageView release];
+    [recipeNameLable removeFromSuperview];
+    [recipeNameLable release];
+    [recipePriceLable removeFromSuperview];
+    [recipePriceLable release];
+    [buttomView removeFromSuperview];
+    [buttomView release];
+    [super removeFromSuperview];
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.multipleTouchEnabled=NO;
         isExtend=NO;
         self.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
         UIImageView *cellImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width,frame.size.height )];
@@ -33,9 +46,7 @@
 //        [topImageView setImage:image];
 //        [topImageView setAlpha:0.6];
 //        [self addSubview:topImageView];
-        recipeImageView=[[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 70, 70)];
-        recipeImageView.layer.cornerRadius=5;
-        [self addSubview:recipeImageView];
+    
         recipeNameLable=[[UILabel alloc] initWithFrame:CGRectMake(80, 10, 200, 20)];
         recipeNameLable.backgroundColor=[UIColor clearColor];
         [self addSubview:recipeNameLable];
@@ -55,35 +66,37 @@
         buttomView=[[UIView alloc] initWithFrame:CGRectMake(0, 80, 240, 60)];
         buttomView.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
         [buttomView addSubview:backgroudImageView];
+        [backgroudImageView release];
         [buttomView addSubview:addImage];    
+        [addImage release];
         [buttomView addSubview:reMoveImage];
+        [reMoveImage release];
         [self addSubview:buttomView];
         [self.buttomView setHidden:YES];
 //        [topImageView release];
     }
     return self;
 }
-- (id)initWithFrame:(CGRect)frame recipe:(ZTRecipe *)aRecipe
-{
-    id view=[self initWithFrame:frame];
-    self.recipe=aRecipe;
-    [recipeNameLable setText:aRecipe.rName];
-    NSString *price=[NSString stringWithFormat:@"￥%@",aRecipe.rPrice];
-    [recipePriceLable setText:price];
-    [aRecipe getRecipeImage:^(UIImage *image) {
-        [recipeImageView setImage:image];
-    }];
-    return view;
-}
 -(void)loadRecipe:(ZTRecipe *)aRecipe{
+   
     self.recipe=aRecipe;
     [recipeNameLable setText:aRecipe.rName];
     NSString *price=[NSString stringWithFormat:@"￥%@",aRecipe.rPrice];
     [recipePriceLable setText:price];
     [aRecipe getRecipeImage:^(UIImage *image) {
-        if(recipeImageView!=nil)
-        [recipeImageView setImage:image];
+         if(self){
+             [recipeImageView removeFromSuperview];
+             [recipeImageView.image release];
+             [recipeImageView release];
+             if(recipeImageView==nil){
+                 recipeImageView=[[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 70, 70)] ;
+                 recipeImageView.layer.cornerRadius=5;
+                 [recipeImageView setImage:image];
+                 [self addSubview:recipeImageView];
+             }
+         }
     }];
+    
 }
 - (void)setEnableTouch:(BOOL)enableTouch {
     ZTRightListViewCell *pView=self.previousZTRightListViewCell;
@@ -106,7 +119,7 @@
     if(!isExtend){
         self.buttomView.hidden=NO;
         [UIView beginAnimations:@"extend" context:nil];
-        [UIView setAnimationDuration:0.2];
+        [UIView setAnimationDuration:AMIMATOIN_TIME];
         [UIView setAnimationDelegate:self];
         [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,self.frame.size.width, self.frame.size.height+buttomView.frame.size.height)];
         ZTRightListViewCell *bZTRightListViewCell=self.behindZTRightListViewCell;
@@ -121,7 +134,7 @@
     }
     else{
         [UIView beginAnimations:@"extend" context:nil];
-        [UIView setAnimationDuration:0.2];
+        [UIView setAnimationDuration:AMIMATOIN_TIME];
         [UIView setAnimationDelegate:self];
         [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,self.frame.size.width, self.frame.size.height-buttomView.frame.size.height)];
         ZTRightListViewCell *bZTRightListViewCell=self.behindZTRightListViewCell;
@@ -132,9 +145,10 @@
         ZTRightListView *ztRightListView =(ZTRightListView *)self.superview;
         [ztRightListView setContentSize:CGSizeMake(ztRightListView.contentSize.width, ztRightListView.contentSize.height-buttomView.frame.size.height)];
         [ztRightListView setContentOffset:CGPointMake(ztRightListView.contentOffset.x, ztRightListView.contentOffset.y+offset)];
-        [UIView commitAnimations];
-        
+        [UIView commitAnimations];        
     }
+    isExtend=!isExtend;
+
 }
 //获取已经展开的单元格
 -(NSInteger)getExtendView{
@@ -156,9 +170,10 @@
 }
 -(void)moveToUp:(CGFloat)offset{
     self.buttomView.hidden=NO;
+    isExtend=!isExtend;
     [UIView beginAnimations:@"extend" context:nil];
     [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:AMIMATOIN_TIME];
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y-buttomView.frame.size.height,self.frame.size.width, self.frame.size.height+buttomView.frame.size.height)];
     ZTRightListViewCell *pView=self.previousZTRightListViewCell;
     while (pView!=nil) {
@@ -166,10 +181,12 @@
             [pView setFrame:CGRectMake(pView.frame.origin.x, pView.frame.origin.y,pView.frame.size.width, pView.frame.size.height-buttomView.frame.size.height)];
             pView.isExtend=NO;
             ZTRightListView *ztRightListView =(ZTRightListView *)self.superview;
-            if(offset!=0)
+            if(offset<0)
+                [ztRightListView setContentOffset:CGPointMake(ztRightListView.contentOffset.x, ztRightListView.contentOffset.y+offset-buttomView.frame.size.height)];
+            if(offset>0&&(offset-buttomView.frame.size.height)>0)
                 [ztRightListView setContentOffset:CGPointMake(ztRightListView.contentOffset.x, ztRightListView.contentOffset.y+offset-buttomView.frame.size.height)];
             [UIView commitAnimations];
-            currentView= pView.buttomView;
+            currentView= pView;
             return;
         }
         [pView setFrame:CGRectMake(pView.frame.origin.x, pView.frame.origin.y-buttomView.frame.size.height,pView.frame.size.width, pView.frame.size.height)];
@@ -178,9 +195,10 @@
 }
 -(void)moveToDown:(CGFloat)offset{
     self.buttomView.hidden=NO;
+    isExtend=!isExtend;
     [UIView beginAnimations:@"extend" context:nil];
     [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:AMIMATOIN_TIME];
     [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y,self.frame.size.width, self.frame.size.height+buttomView.frame.size.height)];
     ZTRightListViewCell *bView=self.behindZTRightListViewCell;
     while (bView!=nil) {
@@ -190,7 +208,7 @@
             ZTRightListView *ztRightListView =(ZTRightListView *)self.superview;
             [ztRightListView setContentOffset:CGPointMake(ztRightListView.contentOffset.x, ztRightListView.contentOffset.y+offset)];
             [UIView commitAnimations];
-            currentView= bView.buttomView;
+            currentView= bView;
             return;        }
         [bView setFrame:CGRectMake(bView.frame.origin.x, bView.frame.origin.y+buttomView.frame.size.height,bView.frame.size.width, bView.frame.size.height)];
         bView=bView.behindZTRightListViewCell;
@@ -204,7 +222,6 @@
         self.userInteractionEnabled=NO;
         ZTRightListView *ztRightListView =(ZTRightListView *)self.superview;
         CGFloat offset=0;
-        NSLog(@"%f",ztRightListView.contentOffset.y+310-self.frame.origin.y);
         if (self.frame.origin.y<ztRightListView.contentOffset.y) {
             offset=self.frame.origin.y-ztRightListView.contentOffset.y;
         }
@@ -229,15 +246,20 @@
     startPoint=self.frame.origin;
 }
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    if (isExtend){
-        self.buttomView.hidden=YES;
+    if (flag) {
+        NSLog(@"%d%@",self.tag,isExtend?@"yes":@"no");
+        if (!isExtend){
+            self.buttomView.hidden=YES;
+        }
+        if (currentView!=nil&&!currentView.isExtend) {
+            currentView.buttomView.hidden=YES;
+        }
+        self.userInteractionEnabled=YES;
+        [self setEnableTouch:YES];
+        currentView=nil;
     }
-    isExtend=!isExtend;
-    currentView.hidden=YES;
-    self.userInteractionEnabled=YES;
-    [self setEnableTouch:YES];
+ 
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

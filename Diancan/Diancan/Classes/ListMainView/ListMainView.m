@@ -23,7 +23,7 @@
         ztLeftListView=[[ZTLeftListView alloc] initWithFrame:CGRectMake(0, 0, 80, 420)];
         [ztLeftListView loadCategory];
         [self addSubview:ztLeftListView];
-        ztRightListView=[[ZTRightListView alloc] initWithFrame:CGRectMake(80, 0, 240, 410)];
+        ztRightListView=[[[ZTRightListView alloc] initWithFrame:CGRectMake(80, 0, 240, 410)] autorelease];
         [self addSubview:ztRightListView];
         [ztLeftListView setZtRightListView:ztRightListView];
     }

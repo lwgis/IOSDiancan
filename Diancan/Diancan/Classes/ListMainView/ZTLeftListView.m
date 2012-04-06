@@ -42,7 +42,6 @@
             [categoryButton addTarget:self action:@selector(categoryBtnClick:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:categoryButton];
             [listButton addObject:categoryButton];
-            [categoryButton release];
         }           
         
             
@@ -69,6 +68,9 @@
     [aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     ZTCategory *aCategory=(ZTCategory *)[self.listCategory objectAtIndex:aButton.tag];
+    [self.ztRightListView removeFromSuperview];
+    self.ztRightListView=[[[ZTRightListView alloc] initWithFrame:CGRectMake(80, 0, 240, 410)] autorelease];
+    [self.superview addSubview:ztRightListView];
     [self.ztRightListView loadRecipeWithCategory:aCategory];
      ListMainView *listMainView=(ListMainView *)self.superview; 
     listMainView.ztLeftListView.userInteractionEnabled=NO;
