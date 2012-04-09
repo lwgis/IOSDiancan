@@ -9,7 +9,7 @@
 #import "FoodView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CategoryView.h"
-
+#import "MainMenuController.h"
 @implementation FoodView
 @synthesize startPoint,recipe;
 - (id)initWithFrame:(CGRect)frame
@@ -81,7 +81,7 @@
         NSString *price=[NSString stringWithFormat:@"￥%@",aRecipe.rPrice];
         [labelPrice setText:price];
     }
-    [aRecipe setRImageView:foodImageView];
+//    [aRecipe setRImageView:foodImageView];
         [activityIndcatorView stopAnimating];
         [foodImageView setImage:image];
         [self.superview insertSubview:self atIndex:0];
@@ -162,13 +162,18 @@
     CFRelease(thePath);
     [subview release];
     self.recipe.count++;
+    id controll=[self nextResponder];
+    while (![controll isKindOfClass:[MainMenuController class]]) {
+        controll=[controll nextResponder];
+    }
+    MainMenuController *mc=controll;
+    [mc.navigationController popViewControllerAnimated:YES];
+
     //    [NSThread sleepForTimeInterval:1];   
     
 }
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
-    ZTAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    appDelegate.foodCount++;
 //    int indexICareAbout = 1; 
 //    NSString *badgeValue = [NSString stringWithFormat:@"%d",appDelegate.foodCount];  
 //    [[[[appDelegate.rootController viewControllers] objectAtIndex: indexICareAbout] tabBarItem] setBadgeValue:badgeValue];
@@ -176,5 +181,16 @@
 //    [appDelegate addFood:self.recipe.category];
 //    [appDelegate countPrice];
     
+}
+-(void)removeFromSuperview{
+    [foodImageView removeFromSuperview];
+    [foodImageView release];
+    [labelFoodName removeFromSuperview];
+    [labelFoodName release];
+    [labelFoodNum removeFromSuperview];
+    [labelFoodNum release];
+    [labelPrice removeFromSuperview];
+    [labelPrice release];
+    [super removeFromSuperview];
 }
 @end

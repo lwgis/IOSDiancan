@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "RestEngine.h"
+#import "ZTOrder.h"
 #define ApplicationDelegate ((ZTAppDelegate *)[UIApplication sharedApplication].delegate)
 
 @interface ZTAppDelegate : UIResponder <UIApplicationDelegate>
@@ -21,6 +22,8 @@
 //@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (retain,nonatomic)NSMutableArray *orderList;
 @property (strong, nonatomic) RestEngine *restEngine;
+@property (retain,nonatomic)ZTOrder *order;
+
 //-(void)saveContext;
 //-(void)addFood:(Category *)aCategory;
 //-(void)countPrice;

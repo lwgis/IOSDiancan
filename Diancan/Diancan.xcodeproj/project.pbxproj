@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		18013499152F25360018026D /* LeftViewCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 18013498152F25360018026D /* LeftViewCell.png */; };
+		18071D3715302912008AE3B7 /* duigou.png in Resources */ = {isa = PBXBuildFile; fileRef = 18071D3615302912008AE3B7 /* duigou.png */; };
 		180EE1D814F7153E007E40AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180EE1D714F7153E007E40AA /* QuartzCore.framework */; };
 		181382F3152C617B0039FB43 /* buttomView.png in Resources */ = {isa = PBXBuildFile; fileRef = 181382F2152C617B0039FB43 /* buttomView.png */; };
 		181382FC152CAC040039FB43 /* leftListHigh.png in Resources */ = {isa = PBXBuildFile; fileRef = 181382FB152CAC040039FB43 /* leftListHigh.png */; };
@@ -61,6 +62,7 @@
 		18C4CE5214F5267E007B2742 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE5114F5267E007B2742 /* CoreGraphics.framework */; };
 		18C4CE5814F5267E007B2742 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18C4CE5614F5267E007B2742 /* InfoPlist.strings */; };
 		18C4CE9214F54B07007B2742 /* sortednames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18C4CE9114F54B07007B2742 /* sortednames.plist */; };
+		18C92B991530651500C04ADB /* ZTOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C92B981530651500C04ADB /* ZTOrder.m */; };
 		A44D83FF15209DC900296CDC /* RestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D83FE15209DC900296CDC /* RestEngine.m */; };
 		A475B34C1521AB1A00A8EAD8 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A475B3471521AB1A00A8EAD8 /* Category.m */; };
 		A475B34D1521AB1A00A8EAD8 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = A475B3491521AB1A00A8EAD8 /* Recipe.m */; };
@@ -83,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		18013498152F25360018026D /* LeftViewCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LeftViewCell.png; path = Image/itemImage/LeftViewCell.png; sourceTree = "<group>"; };
+		18071D3615302912008AE3B7 /* duigou.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = duigou.png; path = Image/itemImage/duigou.png; sourceTree = "<group>"; };
 		180EE1D714F7153E007E40AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		181382F2152C617B0039FB43 /* buttomView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = buttomView.png; path = Image/itemImage/buttomView.png; sourceTree = "<group>"; };
 		181382FB152CAC040039FB43 /* leftListHigh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leftListHigh.png; path = Image/itemImage/leftListHigh.png; sourceTree = "<group>"; };
@@ -165,6 +168,8 @@
 		18C4CE5714F5267E007B2742 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18C4CE5B14F5267E007B2742 /* Diancan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diancan-Prefix.pch"; sourceTree = "<group>"; };
 		18C4CE9114F54B07007B2742 /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
+		18C92B971530651500C04ADB /* ZTOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTOrder.h; path = model/ZTOrder.h; sourceTree = "<group>"; };
+		18C92B981530651500C04ADB /* ZTOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTOrder.m; path = model/ZTOrder.m; sourceTree = "<group>"; };
 		A44D83FD15209DC900296CDC /* RestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestEngine.h; path = Classes/RestEngine.h; sourceTree = "<group>"; };
 		A44D83FE15209DC900296CDC /* RestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestEngine.m; path = Classes/RestEngine.m; sourceTree = "<group>"; };
 		A475B3461521AB1900A8EAD8 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Category.h; path = model/Category.h; sourceTree = "<group>"; };
@@ -274,6 +279,8 @@
 				A4CFC1F615249010003940C2 /* ZTDesk.m */,
 				187AB35315213E0E00103EDF /* RecipeImage.h */,
 				187AB35415213E0E00103EDF /* RecipeImage.m */,
+				18C92B971530651500C04ADB /* ZTOrder.h */,
+				18C92B981530651500C04ADB /* ZTOrder.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -372,6 +379,7 @@
 		18C4CE6514F526B2007B2742 /* itemImage */ = {
 			isa = PBXGroup;
 			children = (
+				18071D3615302912008AE3B7 /* duigou.png */,
 				18013498152F25360018026D /* LeftViewCell.png */,
 				181382FD152CCDBA0039FB43 /* 羊皮纸.png */,
 				181382FB152CAC040039FB43 /* leftListHigh.png */,
@@ -504,6 +512,7 @@
 				181382FC152CAC040039FB43 /* leftListHigh.png in Resources */,
 				181382FE152CCDBA0039FB43 /* 羊皮纸.png in Resources */,
 				18013499152F25360018026D /* LeftViewCell.png in Resources */,
+				18071D3715302912008AE3B7 /* duigou.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +581,7 @@
 				18825F311528ABAF0078EE1E /* ListMainViewCongtroller.m in Sources */,
 				185A82291529833C008B2B1D /* ZTRightListView.m in Sources */,
 				185A822D1529901C008B2B1D /* ZTRightListViewCell.m in Sources */,
+				18C92B991530651500C04ADB /* ZTOrder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +604,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -618,6 +629,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

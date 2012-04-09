@@ -19,6 +19,7 @@
 @synthesize rootController;
 @synthesize foodCount;
 @synthesize orderList=_orderList;
+@synthesize order;
 //@synthesize managedObjectContext=__managedObjectContext;
 //@synthesize managedObjectModel=__managedObjectModel;
 //@synthesize persistentStoreCoordinator=__persistentStoreCoordinator;
@@ -67,6 +68,8 @@
 //                                                 name:kMKNetworkEngineOperationCountChanged
 //                                               object:nil];
 //    
+    order=[[ZTOrder alloc] init];
+    order.viewController=[[rootController viewControllers] objectAtIndex:1];
     return YES;
 }
 

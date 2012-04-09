@@ -9,27 +9,30 @@
 #import "ZTRightListViewCell.h"
 #import <QuartzCore/QuartzCore.h> 
 #import "ZTLeftListView.h"
+#import "MainMenuController.h"
+#import "ListMainViewCongtroller.h"
+#import "ZTRightListView.h"
 #define AMIMATOIN_TIME  0.2
 @interface ZTRightListViewCell (private)//(在@implementation上面)
 - (void)repiceImageAnimation;//私有方法(对象实例方法)
 @end
 @implementation ZTRightListViewCell
 {
-    UIImageView *recipeImageView;
+    UIButton *recipeImageView;
     UILabel *recipeNameLable;
     UILabel *recipePriceLable;
     UIButton *addImage;
     UIButton *reMoveImage;
     UILabel *countLabel;
-    NSInteger repiceCount;
+    UIImageView *checkOrderImageView;
+    NSInteger _repiceCount;
 }
 
 @synthesize recipe,behindZTRightListViewCell,previousZTRightListViewCell,startPoint,buttomView,isExtend;
 -(void)removeFromSuperview{
-    [recipeImageView setImage:nil];
-    [self.recipe release];
+    [recipeImageView setImage:nil forState:UIControlStateNormal];
     [recipeImageView removeFromSuperview];
-    [recipeImageView release];
+//    [recipeImageView release];
     [recipeNameLable removeFromSuperview];
     [recipeNameLable release];
     [recipePriceLable removeFromSuperview];
@@ -40,6 +43,8 @@
     [countLabel release];
     [buttomView removeFromSuperview];
     [buttomView release];
+    [checkOrderImageView removeFromSuperview];
+    [checkOrderImageView release];
     [super removeFromSuperview];
 }
 - (id)initWithFrame:(CGRect)frame
@@ -48,12 +53,16 @@
     if (self) {
         self.multipleTouchEnabled=NO;
         isExtend=NO;
-        repiceCount=0;
+        _repiceCount=0;
         self.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
         UIImageView *cellImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width,frame.size.height )];
         UIImage *image=[UIImage imageNamed:@"LeftViewCell.png"];
         [cellImageView setImage:image];
         [cellImageView setAlpha:1];
+        checkOrderImageView=[[UIImageView alloc] initWithFrame:CGRectMake(190, 40, 40, 40)];
+        image=[UIImage imageNamed:@"duigou.png"];
+        [checkOrderImageView setImage:image];
+        [cellImageView addSubview:checkOrderImageView];
         [self addSubview:cellImageView];
         [cellImageView release];    
         recipeNameLable=[[UILabel alloc] initWithFrame:CGRectMake(80, 10, 200, 20)];
@@ -63,7 +72,7 @@
         recipePriceLable.backgroundColor=[UIColor clearColor];
         [recipePriceLable setTextColor:[UIColor redColor]];
         [self addSubview:recipePriceLable];
-        UIImageView *backgroudImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, 60)];
+                UIImageView *backgroudImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, 60)];
         image=[UIImage imageNamed:@"buttomView.png"];
         [backgroudImageView setImage:image];
         addImage=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -89,22 +98,26 @@
         [buttomView addSubview:reMoveImage];
         [buttomView addSubview:countLabel];
         [self addSubview:buttomView];
-        [self.buttomView setHidden:YES];
+        buttomView.hidden=YES;
+        checkOrderImageView.hidden=YES;
     }
     return self;    
 }
 -(void)addRepiceClick{
+    [ApplicationDelegate.order addRecipe:self.recipe];
     [self repiceImageAnimation];
-    repiceCount++;
-}
+    _repiceCount++;
+    }
 -(void)removeRepiceClick{
-    if (repiceCount==0)return;
-    repiceCount--;
-    if (repiceCount<=0) {
+    if (_repiceCount==0)return;
+    [ApplicationDelegate.order removeRecipe:self.recipe];
+    _repiceCount--;
+    if (_repiceCount<=0) {
         [countLabel setText:nil];
+        checkOrderImageView.hidden=YES;
         return;
     }
-    [countLabel setText:[NSString stringWithFormat:@"%d 份",repiceCount]];
+    [countLabel setText:[NSString stringWithFormat:@"%d 份",_repiceCount]];
 }
 -(void)loadRecipe:(ZTRecipe *)aRecipe{
    
@@ -115,17 +128,35 @@
     [aRecipe getRecipeImage:^(UIImage *image) {
          if(self){
              [recipeImageView removeFromSuperview];
-             [recipeImageView.image release];
              [recipeImageView release];
              if(recipeImageView==nil){
-                 recipeImageView=[[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 70, 70)] ;
+//                 recipeImageView=[[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 70, 70)] ;
+//                 recipeImageView.layer.cornerRadius=5;
+//                 [recipeImageView setImage:image];
+                 recipeImageView=[UIButton buttonWithType:UIButtonTypeCustom];
+                 [recipeImageView setFrame:CGRectMake(10, 5, 70, 70)] ;
+                 [recipeImageView addTarget:self action:@selector(recipeImageClick) forControlEvents:UIControlEventTouchUpInside];
                  recipeImageView.layer.cornerRadius=5;
-                 [recipeImageView setImage:image];
+                 [recipeImageView setImage:image forState:UIControlStateNormal];
                  [self addSubview:recipeImageView];
              }
          }
     }];
     
+}
+-(void)recipeImageClick{
+    MainMenuController *mainMenuController=[[MainMenuController alloc] initWithNibName:@"MainMenuController" bundle:nil];
+    id controll=[self nextResponder];
+    while (![controll isKindOfClass:[ListMainViewCongtroller class]]) {
+        controll=[controll nextResponder];
+    }
+    ListMainViewCongtroller *lc=controll;
+    NSInteger categoryIndex=((ZTRightListView *)self.superview).categoryIndex ;
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:self.tag inSection:categoryIndex];
+    [mainMenuController setIndexPath:indexPath];
+    [lc.navigationController pushViewController:mainMenuController animated:YES];
+    [mainMenuController release];
+
 }
 - (void)setEnableTouch:(BOOL)enableTouch {
     ZTRightListViewCell *pView=self.previousZTRightListViewCell;
@@ -275,6 +306,7 @@
     
     startPoint=self.frame.origin;
 }
+
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     if (flag) {
         if (!isExtend){
@@ -290,8 +322,17 @@
     if ([anim isKindOfClass:[CAKeyframeAnimation class]]&&[self.subviews count]>5) {
         UIImageView *aImageView=[self.subviews objectAtIndex:5];
         [aImageView removeFromSuperview];
-         [countLabel setText:[NSString stringWithFormat:@"%d 份",repiceCount]];
+         [countLabel setText:[NSString stringWithFormat:@"%d 份",_repiceCount]];
+        checkOrderImageView.hidden=NO;
     }
+}
+-(void)setRecipeCount:(NSInteger)count{
+    if (count==0) {
+        return;
+    }
+    _repiceCount=count;
+    [countLabel setText:[NSString stringWithFormat:@"%d 份",_repiceCount]];
+    checkOrderImageView.hidden=NO;
 }
 -(void)repiceImageAnimation
 {
@@ -320,7 +361,6 @@
     CFRelease(thePath);
     [repiceAnimation release];
     }
-
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

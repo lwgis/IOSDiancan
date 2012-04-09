@@ -15,6 +15,7 @@
 }
 
 -(void)loadRecipe:(ZTRecipe *)aRecipe;
+-(void)setRecipeCount:(NSInteger) count;
 @property(nonatomic,retain) ZTRightListViewCell *previousZTRightListViewCell;
 @property(nonatomic,retain) ZTRightListViewCell *behindZTRightListViewCell;
 @property CGPoint startPoint;

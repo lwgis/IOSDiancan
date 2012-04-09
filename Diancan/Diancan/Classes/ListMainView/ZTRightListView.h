@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ZTCategory.h"
 @interface ZTRightListView : UIScrollView<UIScrollViewDelegate>
+@property NSInteger categoryIndex;
 -(void)loadRecipeWithCategory:(ZTCategory *)category;
 @end

@@ -24,4 +24,6 @@
 @property  BOOL isVerticalMoved;
 @property(nonatomic,retain) NSArray *listCategory;
 @property(nonatomic,retain)  NSMutableArray *listCategoryView;
+@property(nonatomic,retain)NSIndexPath *indexPath;
+-(void)ShowCategoryViewFromSuper:(NSIndexPath *)index;
 @end

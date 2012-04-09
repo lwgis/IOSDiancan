@@ -122,7 +122,6 @@
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     ZTAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    appDelegate.foodCount++;
     int indexICareAbout = 1; 
     NSString *badgeValue = [NSString stringWithFormat:@"%d",appDelegate.foodCount];  
     [[[[[self tabBarController] viewControllers] objectAtIndex: indexICareAbout] tabBarItem] setBadgeValue:badgeValue];

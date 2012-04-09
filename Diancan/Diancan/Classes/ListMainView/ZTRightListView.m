@@ -11,6 +11,7 @@
 #import "ListMainView.h"
 @implementation ZTRightListView{
 }
+@synthesize categoryIndex;
 -(id)initWithFrame:(CGRect)frame{
     self=[super initWithFrame:frame];
     if (self) {
@@ -32,7 +33,10 @@
         for (NSInteger i=0; i<[list count]; i++) {
             ZTRightListViewCell *ztRightListView=[[ZTRightListViewCell alloc] initWithFrame:CGRectMake(0, i*80, 240, 80)];
             ztRightListView.tag=i;
-            [ztRightListView loadRecipe:(ZTRecipe *)[list objectAtIndex:i]];
+            ZTRecipe *aRecipe=(ZTRecipe *)[list objectAtIndex:i];
+            [ztRightListView loadRecipe:aRecipe];
+            NSInteger count=[ApplicationDelegate.order getRecipeCount:aRecipe];  
+            [ztRightListView setRecipeCount:count];        
             if ([self.subviews count]>0) {
                 ZTRightListViewCell *preZTRightListViewCell=(ZTRightListViewCell *)[self.subviews objectAtIndex:(i-1)];
                 preZTRightListViewCell.behindZTRightListViewCell=ztRightListView;

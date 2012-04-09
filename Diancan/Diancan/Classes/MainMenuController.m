@@ -15,7 +15,7 @@
 #import "FoodView.h"
 #import "ZTCategory.h"
 @implementation MainMenuController
-@synthesize listCategoryView,isVerticalMoved,listCategory;
+@synthesize listCategoryView,isVerticalMoved,listCategory,indexPath;
 //显示指定索引的View
 -(void)ShowCategoryView:(NSInteger)index{
     if([listCategoryView count]==0)return;
@@ -148,8 +148,8 @@
 
 //    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:0];
     orientation=0;
-    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:2 inSection:4];
-    [self ShowCategoryViewFromSuper:indexPath];
+//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:2 inSection:4];
+//    [self ShowCategoryViewFromSuper:indexPath];
     labelTopCategoryName=[[[UILabel alloc] initWithFrame:CGRectMake(120, 0, 80, 20)] autorelease];
     labelTopCategoryName.textAlignment = UITextAlignmentCenter;
     labelTopCategoryName.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
@@ -160,11 +160,12 @@
 
 - (void)viewDidLoad{  
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES]; 
+//    [self.navigationController setNavigationBarHidden:YES]; 
    [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
        self.listCategory=[[[NSArray alloc] initWithArray:array] autorelease];
        if([self.listCategoryView count]==0){
        [self loadFoodData];
+        [self ShowCategoryViewFromSuper:indexPath];
        }
        
    } onError:^(NSError *error) {

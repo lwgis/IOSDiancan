@@ -33,6 +33,7 @@
     ZTCategory *aCategory=(ZTCategory *)[self.listCategory objectAtIndex:aButton.tag];
     [self.ztRightListView removeFromSuperview];
     self.ztRightListView=[[[ZTRightListView alloc] initWithFrame:CGRectMake(80, 0, 240, 410)] autorelease];
+    [self.ztRightListView setCategoryIndex:aButton.tag];
     [self.superview addSubview:ztRightListView];
     [self.ztRightListView loadRecipeWithCategory:aCategory];
     ListMainView *listMainView=(ListMainView *)self.superview; 
