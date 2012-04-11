@@ -16,7 +16,6 @@
 @synthesize rImageURL;
 @synthesize rName;
 @synthesize rPrice;
-@synthesize  count;
 @synthesize rImage=_rImage;
 -(void)getRecipeImage:(getRecipeImageBlock)getRecipeImageBlock{
     if (_rImage!=nil) {

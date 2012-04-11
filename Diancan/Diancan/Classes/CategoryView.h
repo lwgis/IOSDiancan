@@ -10,22 +10,19 @@
 #import "FoodView.h"
 #import "ZTCategory.h"
 @interface CategoryView : UIView{
-
-    UIImageView *imageView;
-    CategoryView *curentView;
     NSInteger showIndex;
 }
 @property(nonatomic,retain)UIImageView *categoryImageView;
 
 @property(nonatomic,retain)UILabel *labelTopCategoryName;
-@property(nonatomic,retain) ZTCategory *category;
+@property(nonatomic,assign) ZTCategory *category;
 @property BOOL isVerticalMoved;
 @property BOOL isHorizontalMoved;
 @property CGPoint startMyPoint;
 @property(nonatomic,retain)NSMutableArray *listFoodView;
-@property(nonatomic,retain) CategoryView *previousCategoryView;
-@property(nonatomic,retain) CategoryView *behindCategoryView;
-@property(nonatomic,retain) FoodView *currentFoodView;
+@property(nonatomic,assign) CategoryView *previousCategoryView;
+@property(nonatomic,assign) CategoryView *behindCategoryView;
+@property(nonatomic,assign) FoodView *currentFoodView;
 -(CategoryView *)verticalMoverView:(CGFloat)distance;
 -(CategoryView *)verticalMoverNext:(CGFloat)distance;
 -(void)horizontalMoveView:(CGFloat)distance;

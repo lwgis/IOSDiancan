@@ -48,7 +48,7 @@
         [self setContentSize:CGSizeMake(220, [list count]*80)];
         [self setContentOffset:CGPointMake(0, 0)];
         ListMainView *listMainView=(ListMainView *)self.superview; 
-        listMainView.ztLeftListView.userInteractionEnabled=YES; 
+        listMainView.ztLeftListView.userInteractionEnabled=YES;
     } onError:^(NSError *error) {
         
     } ];    
@@ -73,4 +73,5 @@
     }
     return YES;
 }
+
 @end

@@ -10,8 +10,18 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CategoryView.h"
 #import "MainMenuController.h"
+@interface FoodView ()
+@property(nonatomic,assign)UIImageView *foodImageView;
+@property(nonatomic,assign)UILabel *labelPrice;
+@property(nonatomic,assign)UILabel *labelFoodName;
+@property(nonatomic,assign)UILabel *labelFoodNum;
+@property(nonatomic,assign)UIActivityIndicatorView *activityIndcatorView;
+@property(nonatomic,assign)UILabel *labelCount;
+@property(nonatomic,assign)UIImageView *countImageView;
+@end
 @implementation FoodView
 @synthesize startPoint,recipe;
+@synthesize foodImageView,labelPrice,labelFoodName,labelFoodNum,activityIndcatorView,labelCount,countImageView;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -36,12 +46,14 @@
 - (void)SetFoodNum
 {
     if (labelFoodNum==nil) {
-        labelFoodNum=[[[UILabel alloc] initWithFrame:CGRectMake(45, 255, 230, 15)] autorelease];
-        labelFoodNum.backgroundColor=[UIColor clearColor];
-        [labelFoodNum setFont:[UIFont fontWithName:labelFoodNum.font.fontName size:12]];
-        labelFoodNum.textColor=[UIColor blackColor];
-        labelFoodNum.textAlignment=UITextAlignmentCenter;
-        [self addSubview:labelFoodNum];
+        UILabel *aLabel=[[UILabel alloc] initWithFrame:CGRectMake(45, 255, 230, 15)];
+        aLabel.backgroundColor=[UIColor clearColor];
+        [aLabel setFont:[UIFont fontWithName:aLabel.font.fontName size:12]];
+        aLabel.textColor=[UIColor blackColor];
+        aLabel.textAlignment=UITextAlignmentCenter;
+        [self setLabelFoodNum:aLabel];
+        [self addSubview:aLabel];
+        [aLabel release];
     }
     CategoryView *aCategoryView=(CategoryView*)self.superview;
     NSString *foodNum=[NSString stringWithFormat:@"%d/%d",self.tag+1,[aCategoryView.listFoodView count]];
@@ -60,60 +72,107 @@
 {
     [self setRecipe:aRecipe];
     if (activityIndcatorView==nil) {
-        activityIndcatorView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-        activityIndcatorView.color=[UIColor orangeColor];
-        [activityIndcatorView setFrame:CGRectMake(0, 0, 320, 275)];
-        [self addSubview:activityIndcatorView];
+        UIActivityIndicatorView *aiView=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        aiView.color=[UIColor orangeColor];
+        [aiView setFrame:CGRectMake(0, 0, 320, 275)];
+        [self setActivityIndcatorView:aiView];
+        [self addSubview:aiView];
+        [aiView release];
         [activityIndcatorView startAnimating];
     }
     [aRecipe getRecipeImage:^(UIImage *image) {
 
     if (foodImageView==nil) {
-        foodImageView=[[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 230)] autorelease];
+        UIImageView *aImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 230)];
+        [aImageView setImage:image];
+        [self setFoodImageView:aImageView];
+        [self addSubview:aImageView];
+        [aImageView release];
     }
+        if (labelCount==nil) {
+            UIImage *image=[UIImage imageNamed:@"recipeCount.png"];
+            UIImageView *anImageView=[[UIImageView alloc] initWithImage:image];
+            [anImageView setFrame:CGRectMake(282, 0, 35, 35)];
+            UILabel *aLabel=[[UILabel alloc] initWithFrame:CGRectMake(11, 4, 35, 35)];
+            aLabel.backgroundColor=[UIColor clearColor];
+            [aLabel setFont:[UIFont fontWithName:aLabel.font.fontName size:22]];
+            aLabel.textAlignment=UITextAlignmentCenter;
+            aLabel.textColor=[UIColor whiteColor];
+            [self setLabelCount:aLabel];
+            [anImageView addSubview:aLabel];
+            [self setCountImageView:anImageView];
+            [self insertSubview:anImageView aboveSubview:self.foodImageView];
+            [aLabel release];
+            [anImageView release];
+            [self setFoodCount:[ApplicationDelegate.order getRecipeCount:self.recipe]];
+        }
 
     if (labelPrice==nil) {
-        labelPrice=[[[UILabel alloc] initWithFrame:CGRectMake(240, 235, 80, 30)] autorelease];
-        labelPrice.backgroundColor=[UIColor clearColor];
-        [labelPrice setFont:[UIFont fontWithName:labelPrice.font.fontName size:22]];
-        labelPrice.textAlignment=UITextAlignmentRight;
-        labelPrice.textColor=[UIColor redColor];
+        UILabel *aLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 200, 0, 30)];
+        aLabel.backgroundColor=[UIColor whiteColor];
+        aLabel.layer.cornerRadius=10;
+        [aLabel setAlpha:0.7];
+        [aLabel setFont:[UIFont fontWithName:aLabel.font.fontName size:22]];
+        aLabel.textAlignment=UITextAlignmentCenter;
+        aLabel.textColor=[UIColor redColor];
         NSString *price=[NSString stringWithFormat:@"￥%@",aRecipe.rPrice];
-        [labelPrice setText:price];
+        [aLabel setText:price];
+        [aLabel sizeToFit];
+        [self setLabelPrice:aLabel];
+        [self addSubview:aLabel];
+        [self insertSubview:aLabel atIndex:([self.subviews count]-1)];
+        [aLabel release];
     }
-//    [aRecipe setRImageView:foodImageView];
         [activityIndcatorView stopAnimating];
-        [foodImageView setImage:image];
         [self.superview insertSubview:self atIndex:0];
         [self setAlpha:0.1];
         [UIView beginAnimations:@"alpha" context:nil];
         [UIView setAnimationDuration:0.4];
         [self setAlpha:1];
         [UIView commitAnimations];
-
-
-    
-
-    [self addSubview:foodImageView];
-    [self addSubview:labelPrice];
-    UIButton *btnAddFood=[[[UIButton alloc] initWithFrame:CGRectMake(0, 230, 45, 45)] autorelease];
+    UIButton *btnAddFood=[[UIButton alloc] initWithFrame:CGRectMake(275, 230, 45, 45)];
     UIImage *imageAdd=[UIImage imageNamed:@"加号.png"];
     [btnAddFood setImage: imageAdd forState:UIControlStateNormal];
     [btnAddFood  addTarget:self action:@selector(clickBtnAddFood) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btnAddFood];
+        [btnAddFood release];
+        UIButton *btnRemoveFood=[[UIButton alloc] initWithFrame:CGRectMake(0, 230, 45, 45)];
+        UIImage *imageRemove=[UIImage imageNamed:@"减号.png"];
+        [btnRemoveFood setImage: imageRemove forState:UIControlStateNormal];
+        [btnRemoveFood  addTarget:self action:@selector(clickBtnAddFood) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btnRemoveFood];
+        [btnRemoveFood release];
     if (labelFoodName==nil) {
-        labelFoodName=[[[UILabel alloc] initWithFrame:CGRectMake(45, 230, 230, 25)] autorelease];
-        labelFoodName.backgroundColor=[UIColor clearColor];
-        [labelFoodName setFont:[UIFont fontWithName:labelFoodName.font.fontName size:22]];
-        labelFoodName.textColor=[UIColor blackColor];
-        labelFoodName.textAlignment=UITextAlignmentCenter;
-        [labelFoodName setText:recipe.rName];
-//        [self addSubview:labelFoodName];
-        [self insertSubview:labelFoodName atIndex:([self.subviews count]-1)];
+        UILabel *aLabel=[[UILabel alloc] initWithFrame:CGRectMake(45, 230, 230, 25)];
+        aLabel.backgroundColor=[UIColor clearColor];
+        [aLabel setFont:[UIFont fontWithName:aLabel.font.fontName size:22]];
+        aLabel.textColor=[UIColor blackColor];
+        aLabel.textAlignment=UITextAlignmentCenter;
+        [aLabel setText:recipe.rName];
+        [self setLabelFoodName:aLabel];
+        [self insertSubview:aLabel atIndex:([self.subviews count]-1)];
+        [aLabel release];
     }
     [self SetFoodNum];
+        UIButton *backBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+        [backBtn setFrame:CGRectMake(0, 0, 35, 25)];
+        [backBtn setAlpha:0.6];
+        backBtn.backgroundColor=[UIColor clearColor];
+        UIImage *anImage=[UIImage imageNamed:@"back"];
+        [backBtn setImage:anImage forState:UIControlStateNormal];
+        [backBtn addTarget:self action:@selector(backClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:backBtn];
     }];
     
+}
+-(void)backClick{
+      id controll=[self nextResponder];
+      while (![controll isKindOfClass:[MainMenuController class]]) {
+          controll=[controll nextResponder];
+      }
+      MainMenuController *mc=controll;
+      [mc.navigationController popViewControllerAnimated:YES];
+
 }
 -(void)clickBtnAddFood
 {
@@ -125,6 +184,7 @@
     
     //设定图片名称,myPic.png已经存在，拖放添加图片文件到image项目文件夹中
    [subview setImage:self.recipe.rImage];    
+    [subview setTag:10000];
     //    //启用动画移动
     //    [UIImageView beginAnimations:nil context:NULL];    
     //    //移动时间2秒
@@ -161,16 +221,12 @@
     [subview.layer addAnimation:theAnimation forKey:@"animateLayer"]; // 添加动画。
     CFRelease(thePath);
     [subview release];
-    self.recipe.count++;
-    id controll=[self nextResponder];
-    while (![controll isKindOfClass:[MainMenuController class]]) {
-        controll=[controll nextResponder];
-    }
-    MainMenuController *mc=controll;
-    [mc.navigationController popViewControllerAnimated:YES];
 
-    //    [NSThread sleepForTimeInterval:1];   
     
+}
+-(void)dealloc{
+    [recipe release];
+    [super dealloc];
 }
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
@@ -181,16 +237,28 @@
 //    [appDelegate addFood:self.recipe.category];
 //    [appDelegate countPrice];
     
+    if ([anim isKindOfClass:[CAKeyframeAnimation class]]&&[self.superview.superview.subviews count]>6) {
+        [ApplicationDelegate.order addRecipe:self.recipe];
+        [self setFoodCount:[ApplicationDelegate.order getRecipeCount:self.recipe]];
+        UIImageView *aImageView=[self.superview.superview.subviews objectAtIndex:6];
+        [aImageView removeFromSuperview];
+    }
+
+    NSLog(@"%d",[self.superview.superview.subviews count]);
 }
--(void)removeFromSuperview{
-    [foodImageView removeFromSuperview];
-    [foodImageView release];
-    [labelFoodName removeFromSuperview];
-    [labelFoodName release];
-    [labelFoodNum removeFromSuperview];
-    [labelFoodNum release];
-    [labelPrice removeFromSuperview];
-    [labelPrice release];
-    [super removeFromSuperview];
+-(void)setFoodCount:(NSInteger)foodCount{    
+    NSString *count=[NSString stringWithFormat:@"%d",foodCount];
+    if (foodCount==0) {
+        count=nil;
+        [self.countImageView setHidden:YES];
+        [self.labelCount setText:count];
+        return;
+    }
+    [self.countImageView setHidden:NO];
+    if (foodCount>9) {
+        [self.labelCount setFrame:CGRectMake(6, 4, 35, 35)];
+    }
+    [self.labelCount setText:count];
+    [self.labelCount sizeToFit];
 }
 @end

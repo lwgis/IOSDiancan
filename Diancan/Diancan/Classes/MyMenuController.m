@@ -54,6 +54,7 @@
      else{
          [self.editButtonItem setTitle:@"编辑"];
      }
+     [ApplicationDelegate.order order];
  }
 - (void)viewDidUnload
 {

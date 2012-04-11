@@ -7,7 +7,10 @@
 //
 
 #import "ListMainViewCongtroller.h"
-
+#import "ListMainView.h"
+#import "ZTLeftListView.h"
+#import "ZTRightListView.h"
+#import "ZTRightListViewCell.h"
 @implementation ListMainViewCongtroller
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,5 +52,18 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    ListMainView *listMainView=(ListMainView *)self.view;
+    ZTLeftListView *ztLview=listMainView.ztLeftListView;
+    if(ztLview==nil)return;
+    ZTRightListView *ztRview=ztLview.ztRightListView;
+    if(ztRview==nil)return;
+    for (UIView *view in ztRview.subviews) {
+        if ([view isKindOfClass:[ZTRightListViewCell class]]) {
+            ZTRightListViewCell *ztCell=(ZTRightListViewCell *)view;
+            NSInteger count=[ApplicationDelegate.order getRecipeCount:ztCell.recipe];  
+            [ztCell setRecipeCount:count];  
+        }
+    }
+}
 @end

@@ -13,7 +13,7 @@
 #import "ListMainViewCongtroller.h"
 #import "ZTRightListView.h"
 #define AMIMATOIN_TIME  0.2
-@interface ZTRightListViewCell (private)//(在@implementation上面)
+@interface ZTRightListViewCell ()//(在@implementation上面)
 - (void)repiceImageAnimation;//私有方法(对象实例方法)
 @end
 @implementation ZTRightListViewCell
@@ -155,6 +155,7 @@
     NSIndexPath *indexPath=[NSIndexPath indexPathForRow:self.tag inSection:categoryIndex];
     [mainMenuController setIndexPath:indexPath];
     [lc.navigationController pushViewController:mainMenuController animated:YES];
+    NSLog(@"%d",[lc.tabBarController.viewControllers count]);
     [mainMenuController release];
 
 }

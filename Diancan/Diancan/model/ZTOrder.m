@@ -14,6 +14,16 @@
 }
 @synthesize viewController;
 -(void)order{
+    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
+    [body setValue:@"11" forKey:@"tid"];
+    [body setValue:@"4" forKey:@"number"];
+    [body setValue:recipes forKey:@"recipes"];
+    
+    [ApplicationDelegate.restEngine submitOrder:body OnCompletion:^(NSString *orderURL) {
+        NSLog(@"提交订单成功:%@",orderURL);
+    } onError:^(NSError *error) {
+        NSLog(@"error:%@",error);
+    }];
 }
 -(void)addRecipe:(ZTRecipe *)recipe{
     if (recipes==nil) {
@@ -27,7 +37,6 @@
             NSString *countString=(NSString *)[aDic valueForKey:@"count"];
             NSInteger count=[countString integerValue];
             count++;
-            NSLog(@"diange%d",count);
             [aDic setValue:[NSString stringWithFormat:@"%d",count] forKey:@"count"];
             return;
         }
@@ -37,7 +46,6 @@
     [dic setValue:@"1" forKey:@"count"];
     [recipes addObject:dic];
     [dic release];
-    NSLog(@"zonggong%d",[recipes count]);
 }
 -(void)removeRecipe:(ZTRecipe *)recipe{
     NSInteger allCount=allRecipeCount-1;

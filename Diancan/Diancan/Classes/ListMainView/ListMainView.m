@@ -38,5 +38,9 @@
     // Drawing code
 }
 */
-
+-(void)dealloc{
+    [ztLeftListView release];
+    [ztRightListView release];
+    [super dealloc];
+}
 @end

@@ -13,13 +13,7 @@
 #import "ZTUIView.h"
 @interface MainMenuController :UIViewController<NSFetchedResultsControllerDelegate>
 {
-    CGPoint startTouchPosition;
-    NSInteger  orientation;
-    NSMutableArray *listCategoryView;
-    CategoryView *currentCategoryView;
-    CategoryView *touchCategoryView;
-    UILabel *labelTopCategoryName;
-    CGFloat distance;
+ 
 }
 @property  BOOL isVerticalMoved;
 @property(nonatomic,retain) NSArray *listCategory;

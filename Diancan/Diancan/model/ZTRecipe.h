@@ -16,7 +16,6 @@ typedef void(^getRecipeImageBlock)(UIImage *image);
 @property (nonatomic, retain) NSString * rImageURL;
 @property (nonatomic, retain) NSString * rName;
 @property (nonatomic, retain) NSNumber * rPrice;
-@property NSInteger count;
 @property (nonatomic,retain)UIImage *rImage;
 -(void)getRecipeImage:(getRecipeImageBlock) getRecipeImageBlock;
 @end

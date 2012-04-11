@@ -127,6 +127,8 @@
     NSURL *url = [NSURL URLWithString:REQUEST_HOST];
     AFHTTPClient *httpClient = [[[AFHTTPClient alloc] initWithBaseURL:url] autorelease];
     
+    NSLog(@"%@",order);
+    
     httpClient.parameterEncoding = AFJSONParameterEncoding;
 
     [httpClient postPath:SUBMIT_ORDER_URL parameters:order

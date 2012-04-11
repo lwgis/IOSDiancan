@@ -14,8 +14,18 @@
 #import "ZTRecipe.h"
 #import "FoodView.h"
 #import "ZTCategory.h"
+@interface MainMenuController ()
+//@property(nonatomic,assign) NSMutableArray *listCategoryView;
+@property  NSInteger  orientation;
+@property CGFloat distance;  
+@property CGPoint startTouchPosition;
+@property(nonatomic,assign) CategoryView *currentCategoryView;
+@property(nonatomic,assign) CategoryView *touchCategoryView;
+@property(nonatomic,assign) UILabel *labelTopCategoryName;
+@end
 @implementation MainMenuController
 @synthesize listCategoryView,isVerticalMoved,listCategory,indexPath;
+@synthesize currentCategoryView,touchCategoryView,labelTopCategoryName,startTouchPosition,orientation,distance;
 //显示指定索引的View
 -(void)ShowCategoryView:(NSInteger)index{
     if([listCategoryView count]==0)return;
@@ -86,6 +96,7 @@
 //        [currentCategoryView.previousCategoryView setCategoryInfo:currentCategoryView.previousCategoryView.category];
 //    if(currentCategoryView.behindCategoryView!=nil)
 //        [currentCategoryView.behindCategoryView setCategoryInfo:currentCategoryView.behindCategoryView.category];
+    
     [currentCategoryView setCategoryInfo:currentCategoryView.category];
     [aCategoryView ShowFoodView:index.row Animation:YES];
     if(currentCategoryView.categoryImageView.superview!=nil){
@@ -120,18 +131,20 @@
 #pragma mark - View lifecycle
 
 - (void)loadFoodData {
-    self.listCategoryView=[[[NSMutableArray alloc] init] autorelease] ;
-    int i=0;
+    NSMutableArray *nuArray=[[NSMutableArray alloc] init];
+     [self setListCategoryView:nuArray];
+    [nuArray release];
+    NSInteger i=0;
     for (ZTCategory *ztCategory in self.listCategory) {
         CategoryView *categoryView=[[CategoryView alloc] 
                                     initWithFrame:CGRectMake(0, 140*i-60, 320, 280)] ;
         categoryView.backgroundColor=[UIColor whiteColor];
         [categoryView setCategory:ztCategory];
         [categoryView.labelTopCategoryName setText:ztCategory.cName];
-//        [categoryView setCategoryInfo:ztCategory];
         [ztCategory getCategoryImage:^(UIImage *image){
             if(currentCategoryView.categoryImageView!=nil)
             [categoryView.categoryImageView setImage:image];
+            [self setTopLabel];
         } ];
         [categoryView setAlpha:0.4];
         [categoryView setTag:i];
@@ -150,11 +163,13 @@
     orientation=0;
 //    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:2 inSection:4];
 //    [self ShowCategoryViewFromSuper:indexPath];
-    labelTopCategoryName=[[[UILabel alloc] initWithFrame:CGRectMake(120, 0, 80, 20)] autorelease];
-    labelTopCategoryName.textAlignment = UITextAlignmentCenter;
-    labelTopCategoryName.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-    labelTopCategoryName.textColor=[UIColor whiteColor];
-    [self.view addSubview:labelTopCategoryName];
+    UILabel *aLabel=[[UILabel alloc] initWithFrame:CGRectMake(120, 0, 80, 20)];
+    aLabel.textAlignment = UITextAlignmentCenter;
+    aLabel.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    aLabel.textColor=[UIColor whiteColor];
+    [self setLabelTopCategoryName:aLabel];
+    [self.view addSubview:aLabel];
+    [aLabel release];
     [self setTopLabel];
 }
 
@@ -162,7 +177,7 @@
     [super viewDidLoad];
 //    [self.navigationController setNavigationBarHidden:YES]; 
    [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
-       self.listCategory=[[[NSArray alloc] initWithArray:array] autorelease];
+       [self setListCategory:array];
        if([self.listCategoryView count]==0){
        [self loadFoodData];
         [self ShowCategoryViewFromSuper:indexPath];
@@ -184,10 +199,21 @@
 - (void)viewDidUnload{
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    [super viewDidUnload];
+        [super viewDidUnload];
 
 }
+-(void)dealloc{
+//   for (CategoryView *ac in listCategoryView) {
+//       [ac removeFromSuperview];
+//       [ac release];
+//   }
+//    [listCategoryView removeAllObjects];
+    [listCategoryView release];    
+    [listCategory release];
+    [indexPath release];
+    [super dealloc];
 
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);

@@ -9,10 +9,14 @@
 #import "CategoryView.h"
 #import "MainMenuController.h"
 #import "Category+Search.h"
-
+@interface CategoryView ()
+@property(nonatomic,assign) UIImageView *imageView;
+@property(nonatomic,assign) CategoryView *curentView;
+@end
 @implementation CategoryView
 @synthesize listFoodView,previousCategoryView,behindCategoryView,isVerticalMoved,isHorizontalMoved,category;
 @synthesize startMyPoint,currentFoodView,labelTopCategoryName,categoryImageView;
+@synthesize imageView,curentView;
 -(void)setTitleImage:(BOOL)isTop{
     UIImage *image=nil;
     if (isTop) {
@@ -72,6 +76,7 @@
 -(void)loadData:(NSArray *)recipeArray{
     NSMutableArray *nsAarry=[[NSMutableArray alloc] init];
     [self setListFoodView:nsAarry];
+    [nsAarry release];
     NSInteger i=0;
     NSInteger tag=0;
 
@@ -86,7 +91,6 @@
         tag++;
         [foodView release];
     }
-    [nsAarry release];
 }
 //通过category加载菜单
 
@@ -110,20 +114,25 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
-        [imageView setAlpha:0.6];
-        [self addSubview:imageView];
+        UIImageView *aImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 5)];
+        [aImageView setAlpha:0.6];
+        [self setImageView:aImageView];
+        [self addSubview:aImageView];
+        [aImageView release];
         [self setTitleImage:NO];
         [self setStartMyPoint:self.frame.origin];
         isVerticalMoved=NO;
         isHorizontalMoved=NO;
-        labelTopCategoryName=[[[UILabel alloc] initWithFrame:CGRectMake(120, 5, 80, 20)] autorelease];
-        labelTopCategoryName.textAlignment = UITextAlignmentCenter;
-        labelTopCategoryName.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
-        labelTopCategoryName.textColor=[UIColor whiteColor];
-        [self addSubview:labelTopCategoryName];
         categoryImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 5, 320, 275)] ;
         [self addSubview:categoryImageView];
+        UILabel *aLabel=[[UILabel alloc] initWithFrame:CGRectMake(120, 5, 80, 20)];
+        aLabel.textAlignment = UITextAlignmentCenter;
+        aLabel.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        aLabel.textColor=[UIColor whiteColor];
+        [self setLabelTopCategoryName:aLabel];
+        [self addSubview:aLabel];
+        [aLabel release];
+       
 //        [self setUserInteractionEnabled:NO];
     }
     return self;
@@ -350,6 +359,13 @@
 
     [self insertSubview:labelTopCategoryName atIndex:([self.subviews count]-1)];
 //    [self insertSubview:labelBottomCategoryName atIndex:([self.subviews count]-1)];
+    if(aCategory!=nil)
     [self setCategory:aCategory];
+}
+-(void)dealloc{
+    [listFoodView release];
+    [categoryImageView release];
+    [labelTopCategoryName release];
+    [super dealloc];
 }
 @end
