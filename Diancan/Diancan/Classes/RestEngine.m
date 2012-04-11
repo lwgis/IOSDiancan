@@ -127,11 +127,28 @@
     NSURL *url = [NSURL URLWithString:REQUEST_HOST];
     AFHTTPClient *httpClient = [[[AFHTTPClient alloc] initWithBaseURL:url] autorelease];
     
-    NSLog(@"%@",order);
+//    NSLog(@"%@",order);
+    
+    NSMutableArray *recipes = [NSMutableArray array];
+    NSArray *array = [order valueForKey:@"recipes"];
+    for (NSDictionary *d in array) {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        ZTRecipe *r = [d valueForKey:@"recipe"];
+        [dic setValue:r.rID forKey:@"rid"];
+        [dic setValue:[d valueForKey:@"count"] forKey:@"count"];
+        [recipes addObject:dic];
+    }
+    
+    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
+    [body setValue:[order valueForKey:@"tid"] forKey:@"tid"];
+    [body setValue:[order valueForKey:@"number"] forKey:@"number"];
+    [body setValue:recipes forKey:@"recipes"];
+    
+//    NSLog(@"%@",body);
     
     httpClient.parameterEncoding = AFJSONParameterEncoding;
 
-    [httpClient postPath:SUBMIT_ORDER_URL parameters:order
+    [httpClient postPath:SUBMIT_ORDER_URL parameters:body
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      NSInteger statusCode = operation.response.statusCode;
                      assert(statusCode == 201);
