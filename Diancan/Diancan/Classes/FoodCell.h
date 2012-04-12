@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "ZTRecipe.h"
-@interface FoodCell : UITableViewCell
-{
-@private UILabel *countLabel;
-}
--(void)addFoodCount;
--(void) setCountLabelText:(NSString *)count;
-@property int foodCount;
-@property(nonatomic,retain) ZTRecipe *ztmenu;
+@interface FoodCell : UIImageView
+
 @end

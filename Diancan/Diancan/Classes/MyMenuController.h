@@ -8,6 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyMenuController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-
+@interface MyMenuController : UIViewController<UIScrollViewDelegate>
 @end
