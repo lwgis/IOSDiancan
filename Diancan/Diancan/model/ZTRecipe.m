@@ -11,6 +11,7 @@
 @implementation ZTRecipe
 
 @synthesize cID;
+@synthesize cName;
 @synthesize rDescription;
 @synthesize rID;
 @synthesize rImageURL;

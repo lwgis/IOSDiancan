@@ -70,6 +70,7 @@
     NSInteger cid = 45;
     [ApplicationDelegate.restEngine getRecipesByCategory:cid OnCompletion:^(NSArray *list) {
         NSLog(@"种类菜单获取成功");
+//        NSLog(@"%@",list);
     } onError:^(NSError *error) {
         NSLog(@"获取失败");
     }];
