@@ -139,7 +139,7 @@
         UIButton *btnRemoveFood=[[UIButton alloc] initWithFrame:CGRectMake(0, 230, 45, 45)];
         UIImage *imageRemove=[UIImage imageNamed:@"减号.png"];
         [btnRemoveFood setImage: imageRemove forState:UIControlStateNormal];
-        [btnRemoveFood  addTarget:self action:@selector(clickBtnAddFood) forControlEvents:UIControlEventTouchUpInside];
+        [btnRemoveFood  addTarget:self action:@selector(clickBtnRemoveFood) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btnRemoveFood];
         [btnRemoveFood release];
     if (labelFoodName==nil) {
@@ -165,6 +165,10 @@
     }];
     
 }
+-(void)clickBtnRemoveFood{
+    [ApplicationDelegate.order removeRecipe:self.recipe];
+    [self setFoodCount:[ApplicationDelegate.order getRecipeCount:self.recipe]];
+}
 -(void)backClick{
       id controll=[self nextResponder];
       while (![controll isKindOfClass:[MainMenuController class]]) {
@@ -178,7 +182,7 @@
 {
     
     //定义图片的位置和尺寸,位置:x=268.0f, y=115.0f ,尺寸:x=20.0f, y=20.0f
-    
+    [ApplicationDelegate.order addRecipe:self.recipe];
     UIImageView *subview = [[UIImageView alloc] initWithFrame:                            
                             CGRectMake(1110.0f, 100.0f, 30.0f, 30.0f)];   
     
@@ -238,7 +242,6 @@
 //    [appDelegate countPrice];
     
     if ([anim isKindOfClass:[CAKeyframeAnimation class]]&&[self.superview.superview.subviews count]>6) {
-        [ApplicationDelegate.order addRecipe:self.recipe];
         [self setFoodCount:[ApplicationDelegate.order getRecipeCount:self.recipe]];
         UIImageView *aImageView=[self.superview.superview.subviews objectAtIndex:6];
         [aImageView removeFromSuperview];

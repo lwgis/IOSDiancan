@@ -45,6 +45,7 @@
     [buttomView release];
     [checkOrderImageView removeFromSuperview];
     [checkOrderImageView release];
+    [recipe release];
     [super removeFromSuperview];
 }
 - (id)initWithFrame:(CGRect)frame

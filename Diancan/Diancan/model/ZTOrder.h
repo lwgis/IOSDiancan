@@ -15,6 +15,7 @@
 -(NSInteger)getRecipeCount:(ZTRecipe *)recipe;
 -(void)order;
 -(void)release;
+-(NSMutableArray *)getRecipes;
 @property(retain,nonatomic)UIViewController *viewController;
 
 @end

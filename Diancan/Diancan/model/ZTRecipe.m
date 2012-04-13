@@ -24,7 +24,8 @@
     }
     NSString *imageURL = self.rImageURL;
     [ApplicationDelegate.restEngine getImage:imageURL OnCompletion:^(UIImage *image) {
-        _rImage=image;
+        [self setRImage:image];
+//        _rImage=image;
         getRecipeImageBlock(_rImage);
         //        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         

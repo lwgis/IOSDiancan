@@ -36,21 +36,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    orderView=(UIScrollView *)self.view;
-    [self.orderView setBackgroundColor:[UIColor groupTableViewBackgroundColor]];
+    NSLog(@"%d",[self.view.subviews count]);
+    [self.navigationController setNavigationBarHidden:YES]; 
+    orderView=(UIScrollView *)[self.view.subviews objectAtIndex:1];
+    [self.orderView setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1]];
+    [((UIView *)[self.view.subviews objectAtIndex:0]) setFrame:CGRectMake(0, 0, 80, 80)];
+    ((UIView *)[self.view.subviews objectAtIndex:0]).backgroundColor=[UIColor redColor];
+    ((UIView *)[self.view.subviews objectAtIndex:1]).backgroundColor=[UIColor redColor];
+
     
-    [self.orderView setContentSize:CGSizeMake(320, 960)];
-    for (NSInteger i=0; i<20; i++) {
-        FoodCell *foodCell=[[FoodCell alloc] initWithFrame:CGRectMake(20, i*70+20, 200, 50)];
-        [self.view addSubview:foodCell];
-        [foodCell release];
-    }
+//    [self.orderView setContentSize:CGSizeMake(320, 960)];
+//    for (NSInteger i=0; i<20; i++) {
+//        FoodCell *foodCell=[[FoodCell alloc] initWithFrame:CGRectMake(10, i*80+10, 310, 80)];
+//        [self.view addSubview:foodCell];
+//        [foodCell release];
+//    }
     
 //    ((UITableView *)self.view).separatorStyle = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
-
+-(void)viewWillAppear:(BOOL)animated{
+    for (UIView *aView in orderView.subviews){
+        if([aView isKindOfClass:[FoodCell class]]){
+        [aView removeFromSuperview];
+        [aView release];
+        }
+    }
+    NSMutableArray *recipes=[ApplicationDelegate.order getRecipes];
+    NSInteger i=0;
+    for (NSMutableDictionary *aDic in recipes) {
+        ZTRecipe *aRecipe=(ZTRecipe *) [aDic valueForKey:@"recipe"];
+        NSString *countString=(NSString *)[aDic valueForKey:@"count"];
+        NSInteger rCount=[countString integerValue];
+        FoodCell *foodCell=[[FoodCell alloc] initWithFrame:CGRectMake(10, i*60+15, 310, 60)];
+        [foodCell loadRecipeData:aRecipe count:rCount];
+        [self.view addSubview:foodCell];
+        [foodCell release];
+        i++;
+    }
+//    [self.orderView setContentSize:CGSizeMake(320, i*60+15)];
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -62,8 +88,7 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortraitUpsideDown);
 }
--(void)viewWillAppear:(BOOL)animated{
-}
+
 
 
 

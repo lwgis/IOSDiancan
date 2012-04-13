@@ -87,4 +87,8 @@
     [recipes removeAllObjects];
     [recipes release];
 }
+-(NSMutableArray *)getRecipes{
+    return recipes;
+}
+
 @end
