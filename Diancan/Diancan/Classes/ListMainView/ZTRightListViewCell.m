@@ -14,7 +14,7 @@
 #import "ZTRightListView.h"
 #define AMIMATOIN_TIME  0.2
 @interface ZTRightListViewCell ()//(在@implementation上面)
-- (void)repiceImageAnimation;//私有方法(对象实例方法)
+- (void)recipeImageAnimation;//私有方法(对象实例方法)
 @end
 @implementation ZTRightListViewCell
 {
@@ -25,7 +25,7 @@
     UIButton *reMoveImage;
     UILabel *countLabel;
     UIImageView *checkOrderImageView;
-    NSInteger _repiceCount;
+    NSInteger _recipeCount;
 }
 
 @synthesize recipe,behindZTRightListViewCell,previousZTRightListViewCell,startPoint,buttomView,isExtend;
@@ -54,7 +54,7 @@
     if (self) {
         self.multipleTouchEnabled=NO;
         isExtend=NO;
-        _repiceCount=0;
+        _recipeCount=0;
         self.backgroundColor=[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
         UIImageView *cellImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width,frame.size.height )];
         UIImage *image=[UIImage imageNamed:@"LeftViewCell.png"];
@@ -77,7 +77,7 @@
         image=[UIImage imageNamed:@"buttomView.png"];
         [backgroudImageView setImage:image];
         addImage=[UIButton buttonWithType:UIButtonTypeCustom];
-        [addImage addTarget:self action:@selector(addRepiceClick) forControlEvents:UIControlEventTouchUpInside];
+        [addImage addTarget:self action:@selector(addrecipeClick) forControlEvents:UIControlEventTouchUpInside];
         addImage.backgroundColor=[UIColor clearColor];
         [addImage setFrame:CGRectMake(190, 18, 40, 40)];           
         image=[UIImage imageNamed:@"加号.png"];    
@@ -87,7 +87,7 @@
         [countLabel setTextColor:[UIColor redColor]];
         [countLabel setTextAlignment:UITextAlignmentCenter];
         reMoveImage=[UIButton buttonWithType:UIButtonTypeCustom];
-        [reMoveImage addTarget:self action:@selector(removeRepiceClick) forControlEvents:UIControlEventTouchUpInside];
+        [reMoveImage addTarget:self action:@selector(removerecipeClick) forControlEvents:UIControlEventTouchUpInside];
         [reMoveImage setFrame:CGRectMake(80, 18, 40, 40)];
         image=[UIImage imageNamed:@"减号.png"];    
         [reMoveImage setImage:image forState:UIControlStateNormal];
@@ -104,21 +104,21 @@
     }
     return self;    
 }
--(void)addRepiceClick{
+-(void)addrecipeClick{
     [ApplicationDelegate.order addRecipe:self.recipe];
-    [self repiceImageAnimation];
-    _repiceCount++;
+    [self recipeImageAnimation];
+    _recipeCount++;
     }
--(void)removeRepiceClick{
-    if (_repiceCount==0)return;
+-(void)removerecipeClick{
+    if (_recipeCount==0)return;
     [ApplicationDelegate.order removeRecipe:self.recipe];
-    _repiceCount--;
-    if (_repiceCount<=0) {
+    _recipeCount--;
+    if (_recipeCount<=0) {
         [countLabel setText:nil];
         checkOrderImageView.hidden=YES;
         return;
     }
-    [countLabel setText:[NSString stringWithFormat:@"%d 份",_repiceCount]];
+    [countLabel setText:[NSString stringWithFormat:@"%d 份",_recipeCount]];
 }
 -(void)loadRecipe:(ZTRecipe *)aRecipe{
    
@@ -324,7 +324,7 @@
     if ([anim isKindOfClass:[CAKeyframeAnimation class]]&&[self.subviews count]>5) {
         UIImageView *aImageView=[self.subviews objectAtIndex:5];
         [aImageView removeFromSuperview];
-         [countLabel setText:[NSString stringWithFormat:@"%d 份",_repiceCount]];
+         [countLabel setText:[NSString stringWithFormat:@"%d 份",_recipeCount]];
         checkOrderImageView.hidden=NO;
     }
 }
@@ -332,18 +332,18 @@
     if (count==0) {
         return;
     }
-    _repiceCount=count;
-    [countLabel setText:[NSString stringWithFormat:@"%d 份",_repiceCount]];
+    _recipeCount=count;
+    [countLabel setText:[NSString stringWithFormat:@"%d 份",_recipeCount]];
     checkOrderImageView.hidden=NO;
 }
--(void)repiceImageAnimation
+-(void)recipeImageAnimation
 {
 //    //定义图片的位置和尺寸,位置:x=268.0f, y=115.0f ,尺寸:x=20.0f, y=20.0f
 //    
-    UIImageView *repiceAnimation= [[UIImageView alloc] initWithFrame:                            
+    UIImageView *recipeAnimation= [[UIImageView alloc] initWithFrame:                            
                             CGRectMake(-100, -100, 30.0f, 30.0f)];   
-         [repiceAnimation setImage:self.recipe.rImage];     
-    [self addSubview:repiceAnimation];
+         [recipeAnimation setImage:self.recipe.rImage];     
+    [self addSubview:recipeAnimation];
     CGMutablePathRef thePath =  CGPathCreateMutable();
     CGPathMoveToPoint(thePath, NULL, 25, 60);
     CGPathAddLineToPoint(thePath, NULL, 40, 30);
@@ -359,9 +359,9 @@
     theAnimation.autoreverses=NO;
     theAnimation.cumulative=YES;
     theAnimation.delegate=self;
-    [repiceAnimation.layer addAnimation:theAnimation forKey:@"animateLayer"]; // 添加动画。
+    [recipeAnimation.layer addAnimation:theAnimation forKey:@"animateLayer"]; // 添加动画。
     CFRelease(thePath);
-    [repiceAnimation release];
+    [recipeAnimation release];
     }
 /*
 // Only override drawRect: if you perform custom drawing.

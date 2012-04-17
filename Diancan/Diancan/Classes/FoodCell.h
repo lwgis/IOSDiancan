@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZTRecipe.h"
-@interface FoodCell : UIImageView
+@interface FoodCell : UIView
 @property(nonatomic,assign)FoodCell *nextFoodCell;
 @property(nonatomic,assign)ZTRecipe *recipe;
 -(void)loadRecipeData:(ZTRecipe *)aRecipe count:(NSInteger)count;

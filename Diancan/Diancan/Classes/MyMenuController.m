@@ -38,12 +38,11 @@
     [super viewDidLoad];
     NSLog(@"%d",[self.view.subviews count]);
     [self.navigationController setNavigationBarHidden:YES]; 
-    orderView=(UIScrollView *)[self.view.subviews objectAtIndex:1];
+    UIScrollView *scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 410)];
+    orderView=scrollView;
+    [self.view addSubview:scrollView];
+    [scrollView release];
     [self.orderView setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1]];
-    [((UIView *)[self.view.subviews objectAtIndex:0]) setFrame:CGRectMake(0, 0, 80, 80)];
-    ((UIView *)[self.view.subviews objectAtIndex:0]).backgroundColor=[UIColor redColor];
-    ((UIView *)[self.view.subviews objectAtIndex:1]).backgroundColor=[UIColor redColor];
-
     
 //    [self.orderView setContentSize:CGSizeMake(320, 960)];
 //    for (NSInteger i=0; i<20; i++) {
@@ -71,11 +70,15 @@
         NSInteger rCount=[countString integerValue];
         FoodCell *foodCell=[[FoodCell alloc] initWithFrame:CGRectMake(10, i*60+15, 310, 60)];
         [foodCell loadRecipeData:aRecipe count:rCount];
-        [self.view addSubview:foodCell];
+        if (i>0) {
+            FoodCell *bFoodCell=(FoodCell *)[self.orderView.subviews objectAtIndex:i-1];
+            [ bFoodCell setNextFoodCell:foodCell];
+        }
+        [self.orderView addSubview:foodCell];
         [foodCell release];
         i++;
     }
-//    [self.orderView setContentSize:CGSizeMake(320, i*60+15)];
+    [self.orderView setContentSize:CGSizeMake(320, i*60+15)];
 }
 - (void)viewDidUnload
 {
