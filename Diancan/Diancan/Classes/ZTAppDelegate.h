@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "RestEngine.h"
 #import "ZTOrder.h"
 #define ApplicationDelegate ((ZTAppDelegate *)[UIApplication sharedApplication].delegate)
 
@@ -17,14 +16,9 @@
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *rootController;
 @property int foodCount;
-//@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-//@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-//@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (retain,nonatomic)NSMutableArray *orderList;
-@property (strong, nonatomic) RestEngine *restEngine;
 @property (retain,nonatomic)ZTOrder *order;
 
-//-(void)saveContext;
 //-(void)addFood:(Category *)aCategory;
 //-(void)countPrice;
 -(NSURL *)applicationDocumentsDirectory;

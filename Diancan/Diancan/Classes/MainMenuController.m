@@ -176,7 +176,7 @@
 - (void)viewDidLoad{  
     [super viewDidLoad];
 //    [self.navigationController setNavigationBarHidden:YES]; 
-   [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
+   [[RestEngine sharedEngine] getAllCategoriesOnCompletion:^(NSArray *array) {
        [self setListCategory:array];
        if([self.listCategoryView count]==0){
        [self loadFoodData];

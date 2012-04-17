@@ -21,7 +21,7 @@
         return ;
     }
     NSString *imageURL = self.cImageURL;
-    [ApplicationDelegate.restEngine getImage:imageURL OnCompletion:^(UIImage *image) {
+    [[RestEngine sharedEngine] getImage:imageURL OnCompletion:^(UIImage *image) {
         _cImage=image;
         getCategoryImageBlock(_cImage);
         //        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
