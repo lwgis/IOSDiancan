@@ -1,3 +1,4 @@
+.DS_Store
 *.perspective
 *.perspectivev3
 *.pyc
@@ -6,7 +7,6 @@ build/*
 *.xcuserstate*
 *.xcworkspace*
 *.xcuserdata*
-*.DS_Store
 # Textmate -
 ############
 *.tm_build_errors
@@ -17,7 +17,6 @@ build/*
  
 # OS generated files #
 ######################
-.DS_Store?
 ehthumbs.db
 Icon?
 Thumbs.db
