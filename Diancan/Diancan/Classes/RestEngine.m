@@ -100,8 +100,8 @@
             [recipe setRPrice:[NSNumber numberWithDouble:[[dic objectForKey:@"price"] doubleValue]]];
             [recipe setRImageURL:[dic objectForKey:@"image"]];
             [recipe setCID:[NSNumber numberWithInteger:[[dic objectForKey:@"cid"] integerValue]]];
-            [recipe setCName:[dic objectForKey:@"image"]];
-            [recipe setRDescription:[dic objectForKey:@"cname"]];
+            [recipe setCName:[dic objectForKey:@"cname"]];
+            [recipe setRDescription:[dic objectForKey:@"description"]];
             [array addObject:recipe];
             [recipe release];
         }
