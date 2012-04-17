@@ -31,10 +31,10 @@
     return engine;
 }
 
-+ (id)allocWithZone:(NSZone *)zone
-{
-    return [self sharedEngine];
-}
+//+ (id)allocWithZone:(NSZone *)zone
+//{
+//    return [self sharedEngine];
+//}
 
 - (id)init
 {
