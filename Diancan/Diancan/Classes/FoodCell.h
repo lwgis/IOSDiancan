@@ -10,6 +10,7 @@
 #import "ZTRecipe.h"
 @interface FoodCell : UIView
 @property(nonatomic,assign)FoodCell *nextFoodCell;
+@property(nonatomic,assign)FoodCell *preFoodCell;
 @property(nonatomic,assign)ZTRecipe *recipe;
 -(void)loadRecipeData:(ZTRecipe *)aRecipe count:(NSInteger)count;
 @end

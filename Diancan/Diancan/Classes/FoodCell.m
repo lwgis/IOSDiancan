@@ -19,7 +19,7 @@
 @implementation FoodCell{
     NSInteger _recipeCount;
 }
-@synthesize nextFoodCell,recipeImageView,recipeNameLable,recipePriceLable,recipeCountLable,addrecipeButton,removerecipeButton,recipe;
+@synthesize nextFoodCell,preFoodCell,recipeImageView,recipeNameLable,recipePriceLable,recipeCountLable,addrecipeButton,removerecipeButton,recipe;
 -(id)initWithFrame:(CGRect)frame{
     self=[super initWithFrame:frame];
     if (self) {
@@ -37,7 +37,7 @@
         [self addSubview:recipePriceLable];
         removerecipeButton=[UIButton buttonWithType:UIButtonTypeCustom];
         [removerecipeButton addTarget:self action:@selector(removerecipeClick) forControlEvents:UIControlEventTouchUpInside];
-        [removerecipeButton setFrame:CGRectMake(170, 20, 30, 30)];
+        [removerecipeButton setFrame:CGRectMake(170, 20, 35, 30)];
         removerecipeButton.backgroundColor=[UIColor clearColor];
         [removerecipeButton setImage:[UIImage imageNamed:@"remove.png"] forState:UIControlStateNormal];
         [self addSubview:removerecipeButton];
@@ -48,7 +48,7 @@
         addrecipeButton=[UIButton buttonWithType:UIButtonTypeCustom];
         [addrecipeButton addTarget:self action:@selector(addrecipeClick) forControlEvents:UIControlEventTouchUpInside];
         addrecipeButton.layer.cornerRadius=0.5;
-        [addrecipeButton setFrame:CGRectMake(255, 20, 30, 30)];
+        [addrecipeButton setFrame:CGRectMake(250, 20, 35, 30)];
         addrecipeButton.backgroundColor=[UIColor clearColor];
         [addrecipeButton setImage:[UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
         [self addSubview:addrecipeButton];
@@ -62,8 +62,8 @@
 }
 -(void)removerecipeClick{
     if (_recipeCount==0)return;
+    _recipeCount=[ApplicationDelegate.order getRecipeCount:self.recipe]-1;
     [ApplicationDelegate.order removeRecipe:self.recipe];
-    _recipeCount=[ApplicationDelegate.order getRecipeCount:self.recipe];
     if (_recipeCount<=0) {
         [self.recipeCountLable setText:nil];
         [UIView beginAnimations:@"moveUp" context:nil];
@@ -74,6 +74,11 @@
             [aNextFoodCell setFrame:CGRectMake(aNextFoodCell.frame.origin.x, aNextFoodCell.frame.origin.y-aNextFoodCell.frame.size.height, aNextFoodCell.frame.size.width, aNextFoodCell.frame.size.height)];
             aNextFoodCell=aNextFoodCell.nextFoodCell;
         }
+        if(self.preFoodCell!=nil)
+            [self.preFoodCell setNextFoodCell:self.nextFoodCell];
+        if(self.nextFoodCell!=nil)
+            [self.nextFoodCell setPreFoodCell:self.preFoodCell];
+        [self setAlpha:0];
         [UIView commitAnimations];   
         return;
     }
@@ -90,12 +95,13 @@
     [recipeNameLable release];
     [recipePriceLable release];
     [recipeCountLable release];
+    [super dealloc];
 }
 
 #pragma mark - View lifecycle
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
     [self removeFromSuperview];
-    [self release];
+//    [self release];
 }
 /*
 // Implement loadView to create a view hierarchy programmatically, without using a nib.

@@ -36,14 +36,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%d",[self.view.subviews count]);
     [self.navigationController setNavigationBarHidden:YES]; 
-    UIScrollView *scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 410)];
-    orderView=scrollView;
-    [self.view addSubview:scrollView];
-    [scrollView release];
-    [self.orderView setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1]];
-    
+ 
+   UIScrollView *scrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 410)];
+   orderView=scrollView;
+   [self.view addSubview:scrollView];
+   [scrollView release];
+   [self.orderView setBackgroundColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1]];
+
 //    [self.orderView setContentSize:CGSizeMake(320, 960)];
 //    for (NSInteger i=0; i<20; i++) {
 //        FoodCell *foodCell=[[FoodCell alloc] initWithFrame:CGRectMake(10, i*80+10, 310, 80)];
@@ -56,29 +56,42 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    for (UIView *aView in orderView.subviews){
-        if([aView isKindOfClass:[FoodCell class]]){
-        [aView removeFromSuperview];
-        [aView release];
-        }
+    for (UIView *aView in ((UIView *)[self.view.subviews objectAtIndex:0]).subviews){
+        NSLog(@"%@",[aView class]);
+            [aView removeFromSuperview];
     }
     NSMutableArray *recipes=[ApplicationDelegate.order getRecipes];
+    NSArray *categorys=[ApplicationDelegate.order getCategoryName];
+    
     NSInteger i=0;
     for (NSMutableDictionary *aDic in recipes) {
         ZTRecipe *aRecipe=(ZTRecipe *) [aDic valueForKey:@"recipe"];
         NSString *countString=(NSString *)[aDic valueForKey:@"count"];
         NSInteger rCount=[countString integerValue];
         FoodCell *foodCell=[[FoodCell alloc] initWithFrame:CGRectMake(10, i*60+15, 310, 60)];
+        [foodCell setTag:i];
         [foodCell loadRecipeData:aRecipe count:rCount];
         if (i>0) {
             FoodCell *bFoodCell=(FoodCell *)[self.orderView.subviews objectAtIndex:i-1];
-            [ bFoodCell setNextFoodCell:foodCell];
+            @try {
+                [ bFoodCell setNextFoodCell:foodCell];
+                [foodCell setPreFoodCell:bFoodCell];
+            }
+            @catch (NSException *exception) {
+                NSLog(@"%@",exception);
+            }
+            @finally {
+                
+            }
         }
+        if(aRecipe.cName==[categorys objectAtIndex:0])
         [self.orderView addSubview:foodCell];
         [foodCell release];
         i++;
     }
     [self.orderView setContentSize:CGSizeMake(320, i*60+15)];
+}
+-(void)viewDidAppear:(BOOL)animated{
 }
 - (void)viewDidUnload
 {

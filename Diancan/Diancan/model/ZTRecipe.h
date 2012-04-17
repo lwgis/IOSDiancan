@@ -11,7 +11,7 @@
 @interface ZTRecipe : NSObject
 typedef void(^getRecipeImageBlock)(UIImage *image);
 @property (nonatomic, retain) NSNumber * cID;
-@property (nonatomic, retain) NSNumber * cName;
+@property (nonatomic, retain) NSString * cName;
 @property (nonatomic, retain) NSString * rDescription;
 @property (nonatomic, retain) NSNumber * rID;
 @property (nonatomic, retain) NSString * rImageURL;

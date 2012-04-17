@@ -330,6 +330,9 @@
 }
 -(void)setRecipeCount:(NSInteger)count{
     if (count==0) {
+        [countLabel setText:nil];
+        checkOrderImageView.hidden=YES;
+        _recipeCount=count;
         return;
     }
     _recipeCount=count;

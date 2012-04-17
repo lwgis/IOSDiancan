@@ -17,5 +17,5 @@
 -(void)release;
 -(NSMutableArray *)getRecipes;
 @property(retain,nonatomic)UIViewController *viewController;
-
+-(NSArray *)getCategoryName;
 @end

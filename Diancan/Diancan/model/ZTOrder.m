@@ -63,7 +63,6 @@
             NSString *countString=(NSString *)[aDic valueForKey:@"count"];
             NSInteger count=[countString integerValue];
             count--;
-            NSLog(@"diange%d",count);
             [aDic setValue:[NSString stringWithFormat:@"%d",count] forKey:@"count"];
             if (count==0) {
                 [recipes removeObject:aDic];
@@ -90,5 +89,17 @@
 -(NSMutableArray *)getRecipes{
     return recipes;
 }
-
+-(NSArray *)getCategoryName{
+    if (recipes==nil||[recipes count]==0) {
+        return nil;
+    }
+    NSMutableArray *categorys=[[NSMutableArray alloc] init];
+    for (ZTRecipe *recipe in recipes) {
+//        if(![categorys containsObject:recipe.cName]){
+//            [categorys addObject:recipe.cName];
+//        }
+        NSLog(@"%@",recipe.cName);
+    }
+    return categorys;
+}
 @end
