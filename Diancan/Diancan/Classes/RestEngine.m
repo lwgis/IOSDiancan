@@ -12,6 +12,9 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFJSONRequestOperation.h"
 #import "AFImageRequestOperation.h"
+#import "AFNetworkActivityIndicatorManager.h"
+
+#import "SDURLCache.h"
 
 #import "ZTCategory.h"
 #import "ZTRecipe.h"
@@ -19,12 +22,44 @@
 
 @implementation RestEngine
 
++ (RestEngine *)sharedEngine
+{
+    static RestEngine *engine = nil;
+    if(!engine){
+        engine = [[super allocWithZone:nil] init];
+    }
+    return engine;
+}
+
++ (id)allocWithZone:(NSZone *)zone
+{
+    return [self sharedEngine];
+}
+
+- (id)init
+{
+    self = [super init];
+    if(self){
+        //自定义缓存
+        SDURLCache *urlCache = [[SDURLCache alloc] initWithMemoryCapacity:1024*1024*5   // 1MB mem cache
+                                                             diskCapacity:1024*1024*80 // 5MB disk cache
+                                                                 diskPath:[SDURLCache defaultCachePath]];
+        [NSURLCache setSharedURLCache:urlCache];
+        [urlCache release];
+        
+        //显示菊花
+        [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    }
+    return self;
+}
+
 - (void) dealloc
 {
     [super dealloc];
 }
 
-- (void)getAllCategoriesOnCompletion:(AllCategoriesCompletionBlock)completeBlock onError:(ErrorBlock)errorBlock
+
+- (void)getAllCategoriesOnCompletion:(void (^)(NSArray *list))completeBlock onError:(ErrorBlock)errorBlock
 {       
     NSURL *url = [NSURL URLWithString:ALL_CATEGORY_URL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -50,7 +85,7 @@
     [operation start];
 }
 
-- (void)getRecipesByCategory:(NSInteger)cid OnCompletion:(AllRecipesCompletionBlock)completeBlock onError:(ErrorBlock)errorBlock
+- (void)getRecipesByCategory:(NSInteger)cid OnCompletion:(void (^)(NSArray *list))completeBlock onError:(ErrorBlock)errorBlock
 {
     NSURL *url = [NSURL URLWithString:RECIPE_BY_CATEGORY_URL(cid)];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -78,7 +113,7 @@
     [operation start];
 }
 
-- (void)getAllDesksOnCompletion:(AllCategoriesCompletionBlock)completeBlock onError:(ErrorBlock)errorBlock
+- (void)getAllDesksOnCompletion:(void (^)(NSArray *list))completeBlock onError:(ErrorBlock)errorBlock
 {
     NSURL *url = [NSURL URLWithString:ALL_DESK_URL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -103,7 +138,7 @@
     [operation start];
 }
 
-- (void) getImage:(NSString *)urlStr OnCompletion:(ImageDownloadResponseBlock)completeBlock onError:(ErrorBlock)errorBlock
+- (void) getImage:(NSString *)urlStr OnCompletion:(void (^)(UIImage *image))completeBlock onError:(ErrorBlock)errorBlock
 {
     NSURL *url = [NSURL URLWithString:IMAGE_URL(urlStr)];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
@@ -117,18 +152,15 @@
 //    }];
     
     AFImageRequestOperation *operation = [AFImageRequestOperation imageRequestOperationWithRequest:request success:^(UIImage *image) {
-//        NSLog(@"获取图片成功");
         completeBlock(image);
     }];
     
     [operation start];
 }
 
-- (void) submitOrder:(NSMutableDictionary *)order OnCompletion :(SubmitOrderResponseBlock)completeBlock onError:(ErrorBlock)errorBlock{    
+- (void) submitOrder:(NSMutableDictionary *)order OnCompletion :(void (^)(NSString *orderURL))completeBlock onError:(ErrorBlock)errorBlock{    
     NSURL *url = [NSURL URLWithString:REQUEST_HOST];
     AFHTTPClient *httpClient = [[[AFHTTPClient alloc] initWithBaseURL:url] autorelease];
-    
-//    NSLog(@"%@",order);
     
     NSMutableArray *recipes = [NSMutableArray array];
     NSArray *array = [order valueForKey:@"recipes"];
@@ -145,7 +177,6 @@
     [body setValue:[order valueForKey:@"number"] forKey:@"number"];
     [body setValue:recipes forKey:@"recipes"];
     
-//    NSLog(@"%@",body);
     
     httpClient.parameterEncoding = AFJSONParameterEncoding;
 
@@ -160,7 +191,7 @@
                  }];
 }
 
-- (void) getOrderDetail:(NSInteger)oid OnCompletion:(OrderDetailCompletionBlock) completeBlock onError:(ErrorBlock) errorBlock
+- (void) getOrderDetail:(NSInteger)oid OnCompletion:(void (^)(NSDictionary *orderURL)) completeBlock onError:(ErrorBlock) errorBlock
 {
     NSURL *url = [NSURL URLWithString:ORDER_DETAIL_URL(oid)];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

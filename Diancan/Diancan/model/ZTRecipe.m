@@ -24,7 +24,7 @@
         return ;
     }
     NSString *imageURL = self.rImageURL;
-    [ApplicationDelegate.restEngine getImage:imageURL OnCompletion:^(UIImage *image) {
+    [[RestEngine sharedEngine] getImage:imageURL OnCompletion:^(UIImage *image) {
         [self setRImage:image];
 //        _rImage=image;
         getRecipeImageBlock(_rImage);

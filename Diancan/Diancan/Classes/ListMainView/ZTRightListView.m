@@ -29,7 +29,7 @@
         [subview removeFromSuperview];
     }
     
-    [ApplicationDelegate.restEngine getRecipesByCategory:(NSInteger)[category.cID floatValue]  OnCompletion:^(NSArray *list) {
+    [[RestEngine sharedEngine] getRecipesByCategory:(NSInteger)[category.cID floatValue]  OnCompletion:^(NSArray *list) {
         for (NSInteger i=0; i<[list count]; i++) {
             ZTRightListViewCell *ztRightListView=[[ZTRightListViewCell alloc] initWithFrame:CGRectMake(0, i*80, 240, 80)];
             ztRightListView.tag=i;

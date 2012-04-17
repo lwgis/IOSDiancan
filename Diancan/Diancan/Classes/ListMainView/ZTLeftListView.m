@@ -41,7 +41,7 @@
 }
 
 -(void)loadCategory{
-    [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
+    [[RestEngine sharedEngine] getAllCategoriesOnCompletion:^(NSArray *array) {
         self.listCategory=[[[NSArray alloc] initWithArray:array] autorelease];
         [self setContentSize:CGSizeMake(80, [self.listCategory count]*450+5)];
         listButton =[[NSMutableArray alloc] init];

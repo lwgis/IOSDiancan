@@ -96,7 +96,7 @@
 
 -(void)loadDataByCategory:(ZTCategory *)aCategory{
     NSLog(@"%d",(NSInteger)[aCategory.cID floatValue] );
-    [ApplicationDelegate.restEngine getRecipesByCategory:(NSInteger)[aCategory.cID floatValue]  OnCompletion:^(NSArray *array){        
+    [[RestEngine sharedEngine] getRecipesByCategory:(NSInteger)[aCategory.cID floatValue]  OnCompletion:^(NSArray *array){        
         [self loadData:array ];
         currentFoodView=[listFoodView objectAtIndex:showIndex];
         [self ShowFoodView:showIndex Animation:NO];

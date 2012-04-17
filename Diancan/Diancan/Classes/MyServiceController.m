@@ -58,7 +58,7 @@
 
 - (IBAction)updateData:(id)sender 
 {
-    [ApplicationDelegate.restEngine getAllCategoriesOnCompletion:^(NSArray *array) {
+    [[RestEngine sharedEngine] getAllCategoriesOnCompletion:^(NSArray *array) {
         NSLog(@"所有种类获取成功");
     } onError:^(NSError *error) {
         NSLog(@"获取失败：%@",error);
@@ -68,7 +68,7 @@
 - (IBAction)getRecipeByCategory:(id)sender 
 {
     NSInteger cid = 45;
-    [ApplicationDelegate.restEngine getRecipesByCategory:cid OnCompletion:^(NSArray *list) {
+    [[RestEngine sharedEngine] getRecipesByCategory:cid OnCompletion:^(NSArray *list) {
         NSLog(@"种类菜单获取成功");
 //        NSLog(@"%@",list);
     } onError:^(NSError *error) {
@@ -82,9 +82,9 @@
 //    NSString *imageURL = @"test2.jpg";
 //    NSString *imageURL = @"test5.jpg";
 
-    NSString *imageURL = @"10e8efae-308b-4400-8612-0cff9d5679da.png";
-    [ApplicationDelegate.restEngine getImage:imageURL OnCompletion:^(UIImage *image) {
-//        NSLog(@"图片获取成功");
+    NSString *imageURL = @"10e8efae-308b-4400-8612-0cff9d5679da.jpg";
+    [[RestEngine sharedEngine] getImage:imageURL OnCompletion:^(UIImage *image) {
+        NSLog(@"图片获取成功");
     [myImageView setImage:image];
 
     } onError:^(NSError *error) {
@@ -96,7 +96,7 @@
 
 - (IBAction)getAllDesk:(id)sender 
 {
-    [ApplicationDelegate.restEngine getAllDesksOnCompletion:^(NSArray *array) {
+    [[RestEngine sharedEngine] getAllDesksOnCompletion:^(NSArray *array) {
         NSLog(@"所有桌子获取成功");
     } onError:^(NSError *error) {
         NSLog(@"获取失败：%@",error);
@@ -135,7 +135,7 @@
     
     NSMutableDictionary *body = [self getTestOrder];
     
-    [ApplicationDelegate.restEngine submitOrder:body OnCompletion:^(NSString *orderURL) {
+    [[RestEngine sharedEngine] submitOrder:body OnCompletion:^(NSString *orderURL) {
         NSLog(@"提交订单成功:%@",orderURL);
     } onError:^(NSError *error) {
         NSLog(@"error:%@",error);
@@ -145,7 +145,7 @@
 
 - (IBAction)getOrderDetail:(id)sender
 {
-    [ApplicationDelegate.restEngine getOrderDetail:2 OnCompletion:^(NSDictionary *orderURL) {
+    [[RestEngine sharedEngine] getOrderDetail:2 OnCompletion:^(NSDictionary *orderURL) {
         NSLog(@"获取订单详情成功");
     } onError:^(NSError *error) {
         NSLog(@"获取失败：%@",error);
