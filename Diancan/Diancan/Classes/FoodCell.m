@@ -8,6 +8,7 @@
 
 #import "FoodCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CategoryCell.h"
 @interface FoodCell ()
 @property(nonatomic,retain)UIImageView *recipeImageView;
 @property(nonatomic,retain)UILabel *recipeNameLable;
@@ -37,6 +38,7 @@
         [self addSubview:recipePriceLable];
         removerecipeButton=[UIButton buttonWithType:UIButtonTypeCustom];
         [removerecipeButton addTarget:self action:@selector(removerecipeClick) forControlEvents:UIControlEventTouchUpInside];
+        [removerecipeButton addTarget:self.nextResponder.nextResponder action:@selector(getPrice) forControlEvents:UIControlEventTouchUpInside];
         [removerecipeButton setFrame:CGRectMake(170, 20, 35, 30)];
         removerecipeButton.backgroundColor=[UIColor clearColor];
         [removerecipeButton setImage:[UIImage imageNamed:@"remove.png"] forState:UIControlStateNormal];
@@ -47,6 +49,7 @@
         [self addSubview:recipeCountLable];
         addrecipeButton=[UIButton buttonWithType:UIButtonTypeCustom];
         [addrecipeButton addTarget:self action:@selector(addrecipeClick) forControlEvents:UIControlEventTouchUpInside];
+        [addrecipeButton addTarget:self.nextResponder.nextResponder action:@selector(getPrice) forControlEvents:UIControlEventTouchUpInside];
         addrecipeButton.layer.cornerRadius=0.5;
         [addrecipeButton setFrame:CGRectMake(250, 20, 35, 30)];
         addrecipeButton.backgroundColor=[UIColor clearColor];
@@ -78,7 +81,27 @@
             [self.preFoodCell setNextFoodCell:self.nextFoodCell];
         if(self.nextFoodCell!=nil)
             [self.nextFoodCell setPreFoodCell:self.preFoodCell];
-        [self setAlpha:0];
+        [self setAlpha:0];  
+        CategoryCell *aCategoryCell=(CategoryCell *)self.superview;
+        [aCategoryCell setFrame:CGRectMake(aCategoryCell.frame.origin.x, aCategoryCell.frame.origin.y, aCategoryCell.frame.size.width, aCategoryCell.frame.size.height-60)];
+        CategoryCell *nCategoryCell=aCategoryCell.nextCategoryCell;
+        while (nCategoryCell!=nil) {
+            if (self.preFoodCell==nil&&self.nextFoodCell==nil) {
+                [nCategoryCell setFrame:CGRectMake(nCategoryCell.frame.origin.x, nCategoryCell.frame.origin.y-90, nCategoryCell.frame.size.width, nCategoryCell.frame.size.height)];
+                }
+            else{
+                [nCategoryCell setFrame:CGRectMake(nCategoryCell.frame.origin.x, nCategoryCell.frame.origin.y-60, nCategoryCell.frame.size.width, nCategoryCell.frame.size.height)];
+            }
+                nCategoryCell=nCategoryCell.nextCategoryCell;
+        }
+        UIScrollView *scrollView=(UIScrollView *)self.superview.superview;
+        if (self.preFoodCell==nil&&self.nextFoodCell==nil) {
+        [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, scrollView.contentSize.height-90)];
+        }
+        else{
+            [scrollView setContentSize:CGSizeMake(scrollView.contentSize.width, scrollView.contentSize.height-60)];
+        }
+
         [UIView commitAnimations];   
         return;
     }
@@ -100,6 +123,13 @@
 
 #pragma mark - View lifecycle
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    UIScrollView *scrollView=(UIScrollView *)self.superview.superview;
+    if (self.preFoodCell==nil&&self.nextFoodCell==nil) {
+        CategoryCell *aCategoryCell=(CategoryCell *)self.superview;
+        [aCategoryCell.preCategoryCell setNextCategoryCell:aCategoryCell.nextCategoryCell];
+        [aCategoryCell.nextCategoryCell setPreCategoryCell:aCategoryCell.preCategoryCell];
+        [self.superview removeFromSuperview];
+    }
     [self removeFromSuperview];
 //    [self release];
 }

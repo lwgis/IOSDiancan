@@ -15,6 +15,7 @@
 		181382FE152CCDBA0039FB43 /* 羊皮纸.png in Resources */ = {isa = PBXBuildFile; fileRef = 181382FD152CCDBA0039FB43 /* 羊皮纸.png */; };
 		181A1332153D37CF00C950DD /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 181A1331153D37CF00C950DD /* add.png */; };
 		181A1335153D43E800C950DD /* remove.png in Resources */ = {isa = PBXBuildFile; fileRef = 181A1334153D43E800C950DD /* remove.png */; };
+		181A133F153DE1E300C950DD /* categoryname.png in Resources */ = {isa = PBXBuildFile; fileRef = 181A133E153DE1E300C950DD /* categoryname.png */; };
 		182080DF15356C3B007BD358 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 182080DE15356C3B007BD358 /* back.png */; };
 		182080E21535C885007BD358 /* recipeCount.png in Resources */ = {isa = PBXBuildFile; fileRef = 182080E11535C885007BD358 /* recipeCount.png */; };
 		1843CAC81538933E00E0282F /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843CAC71538933D00E0282F /* CategoryCell.m */; };
@@ -66,7 +67,7 @@
 		18C4CE5214F5267E007B2742 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C4CE5114F5267E007B2742 /* CoreGraphics.framework */; };
 		18C4CE5814F5267E007B2742 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18C4CE5614F5267E007B2742 /* InfoPlist.strings */; };
 		18C4CE9214F54B07007B2742 /* sortednames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18C4CE9114F54B07007B2742 /* sortednames.plist */; };
-		18C92B991530651500C04ADB /* ZTOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C92B981530651500C04ADB /* ZTOrder.m */; };
+		18CF8B40153ECDE9003D64B4 /* ZTOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF8B3F153ECDE9003D64B4 /* ZTOrder.m */; };
 		18F07CC51536BFA30040663E /* Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F07CC41536BFA30040663E /* Rotation.m */; };
 		18F07CC8153738E90040663E /* c.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F07CC7153738E80040663E /* c.png */; };
 		A44D83FF15209DC900296CDC /* RestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D83FE15209DC900296CDC /* RestEngine.m */; };
@@ -98,6 +99,7 @@
 		181382FD152CCDBA0039FB43 /* 羊皮纸.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "羊皮纸.png"; path = "Image/itemImage/羊皮纸.png"; sourceTree = "<group>"; };
 		181A1331153D37CF00C950DD /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = add.png; path = Image/itemImage/add.png; sourceTree = "<group>"; };
 		181A1334153D43E800C950DD /* remove.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = remove.png; path = Image/itemImage/remove.png; sourceTree = "<group>"; };
+		181A133E153DE1E300C950DD /* categoryname.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = categoryname.png; path = Image/itemImage/categoryname.png; sourceTree = "<group>"; };
 		182080DE15356C3B007BD358 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Image/itemImage/back.png; sourceTree = "<group>"; };
 		182080E11535C885007BD358 /* recipeCount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recipeCount.png; path = Image/itemImage/recipeCount.png; sourceTree = "<group>"; };
 		1843CAC61538933D00E0282F /* CategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryCell.h; path = Classes/CategoryCell.h; sourceTree = "<group>"; };
@@ -178,8 +180,8 @@
 		18C4CE5714F5267E007B2742 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		18C4CE5B14F5267E007B2742 /* Diancan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Diancan-Prefix.pch"; sourceTree = "<group>"; };
 		18C4CE9114F54B07007B2742 /* sortednames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sortednames.plist; sourceTree = "<group>"; };
-		18C92B971530651500C04ADB /* ZTOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTOrder.h; path = model/ZTOrder.h; sourceTree = "<group>"; };
-		18C92B981530651500C04ADB /* ZTOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTOrder.m; path = model/ZTOrder.m; sourceTree = "<group>"; };
+		18CF8B3E153ECDE9003D64B4 /* ZTOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTOrder.h; path = model/ZTOrder.h; sourceTree = "<group>"; };
+		18CF8B3F153ECDE9003D64B4 /* ZTOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTOrder.m; path = model/ZTOrder.m; sourceTree = "<group>"; };
 		18F07CC31536BFA30040663E /* Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rotation.h; path = Classes/Rotation.h; sourceTree = "<group>"; };
 		18F07CC41536BFA30040663E /* Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Rotation.m; path = Classes/Rotation.m; sourceTree = "<group>"; };
 		18F07CC7153738E80040663E /* c.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = c.png; sourceTree = "<group>"; };
@@ -266,6 +268,8 @@
 		18BCB13714FF19CA00488BA3 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				18CF8B3E153ECDE9003D64B4 /* ZTOrder.h */,
+				18CF8B3F153ECDE9003D64B4 /* ZTOrder.m */,
 				A475B3461521AB1900A8EAD8 /* Category.h */,
 				A475B3471521AB1A00A8EAD8 /* Category.m */,
 				187AB34715213E0E00103EDF /* Category+Search.h */,
@@ -292,8 +296,6 @@
 				187AB35015213E0E00103EDF /* ZTRecipe.m */,
 				A4CFC1F515249010003940C2 /* ZTDesk.h */,
 				A4CFC1F615249010003940C2 /* ZTDesk.m */,
-				18C92B971530651500C04ADB /* ZTOrder.h */,
-				18C92B981530651500C04ADB /* ZTOrder.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -394,6 +396,7 @@
 		18C4CE6514F526B2007B2742 /* itemImage */ = {
 			isa = PBXGroup;
 			children = (
+				181A133E153DE1E300C950DD /* categoryname.png */,
 				181A1334153D43E800C950DD /* remove.png */,
 				181A1331153D37CF00C950DD /* add.png */,
 				18F07CC7153738E80040663E /* c.png */,
@@ -538,6 +541,7 @@
 				18F07CC8153738E90040663E /* c.png in Resources */,
 				181A1332153D37CF00C950DD /* add.png in Resources */,
 				181A1335153D43E800C950DD /* remove.png in Resources */,
+				181A133F153DE1E300C950DD /* categoryname.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,9 +609,9 @@
 				18825F311528ABAF0078EE1E /* ListMainViewCongtroller.m in Sources */,
 				185A82291529833C008B2B1D /* ZTRightListView.m in Sources */,
 				185A822D1529901C008B2B1D /* ZTRightListViewCell.m in Sources */,
-				18C92B991530651500C04ADB /* ZTOrder.m in Sources */,
 				18F07CC51536BFA30040663E /* Rotation.m in Sources */,
 				1843CAC81538933E00E0282F /* CategoryCell.m in Sources */,
+				18CF8B40153ECDE9003D64B4 /* ZTOrder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

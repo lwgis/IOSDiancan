@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CategoryCell : UIView
-
+@property(nonatomic,assign)CategoryCell *nextCategoryCell;
+@property(nonatomic,assign)CategoryCell *preCategoryCell;
+-(void)setText:(NSString *)cName;
 @end

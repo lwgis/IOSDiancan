@@ -82,6 +82,17 @@
     }
     return 0;
 }
+-(CGFloat)getPrice{
+    CGFloat price=0.0;
+    for (NSMutableDictionary *aDic in recipes) {
+        ZTRecipe *aRecipe=(ZTRecipe *) [aDic valueForKey:@"recipe"];
+            NSString *countString=(NSString *)[aDic valueForKey:@"count"];
+            NSInteger count=[countString integerValue];
+        price=price+count*[aRecipe.rPrice floatValue];
+    }
+    return price;
+}
+
 -(void)release{
     [recipes removeAllObjects];
     [recipes release];
@@ -93,12 +104,12 @@
     if (recipes==nil||[recipes count]==0) {
         return nil;
     }
-    NSMutableArray *categorys=[[NSMutableArray alloc] init];
-    for (ZTRecipe *recipe in recipes) {
-//        if(![categorys containsObject:recipe.cName]){
-//            [categorys addObject:recipe.cName];
-//        }
-        NSLog(@"%@",recipe.cName);
+    NSMutableArray *categorys=[[[NSMutableArray alloc] init] autorelease];
+    for (NSMutableDictionary *aDic in recipes) {
+        ZTRecipe *aRecipe=(ZTRecipe *) [aDic valueForKey:@"recipe"];
+        if ([categorys containsObject:aRecipe.cName]==NO) {
+            [categorys addObject:aRecipe.cName];
+        }
     }
     return categorys;
 }
