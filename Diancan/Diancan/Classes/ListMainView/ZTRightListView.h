@@ -10,5 +10,7 @@
 #import "ZTCategory.h"
 @interface ZTRightListView : UIScrollView<UIScrollViewDelegate>
 @property NSInteger categoryIndex;
+@property(nonatomic,retain)NSMutableArray *listRecipe;
 -(void)loadRecipeWithCategory:(ZTCategory *)category;
+@property NSInteger categoryID;
 @end

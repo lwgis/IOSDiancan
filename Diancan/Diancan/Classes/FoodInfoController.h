@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "FoodCell.h"
-@interface FoodInfoController : UIViewController
-@property (retain, nonatomic) IBOutlet UILabel *foodNameLabel;
-@property (retain,nonatomic) IBOutlet UIImageView *foodImage;
-@property(retain ,nonatomic) FoodCell *foodcell;
+#import "CategoryDailog.h"
+#import "FoodInfoView.h"
+@interface FoodInfoController : UIViewController<UIGestureRecognizerDelegate>
+@property(nonatomic,retain)UIPanGestureRecognizer *gestureRecognizer;
+@property(nonatomic,retain)NSMutableArray *listRecipe;
+@property(nonatomic,retain)NSMutableArray *listFoodInfoView;
+@property(nonatomic,retain)UIButton *categoryBtn;
+@property(nonatomic,assign)CategoryDailog *categoryDailog;
+@property(nonatomic,assign)FoodInfoView *currenFoodInfoView;
+@property(nonatomic,assign)UIBarButtonItem *orderButtonItem;
+-(void)setListRecipeData:(NSInteger)categoryID;
+-(void)showFoodInfo:(NSInteger)index;
+-(void)refreshData;
 @end

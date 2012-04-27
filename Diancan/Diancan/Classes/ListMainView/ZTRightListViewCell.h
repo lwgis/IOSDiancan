@@ -16,8 +16,8 @@
 
 -(void)loadRecipe:(ZTRecipe *)aRecipe;
 -(void)setRecipeCount:(NSInteger) count;
-@property(nonatomic,retain) ZTRightListViewCell *previousZTRightListViewCell;
-@property(nonatomic,retain) ZTRightListViewCell *behindZTRightListViewCell;
+@property(nonatomic,assign) ZTRightListViewCell *previousZTRightListViewCell;
+@property(nonatomic,assign) ZTRightListViewCell *behindZTRightListViewCell;
 @property CGPoint startPoint;
 @property(nonatomic,retain) ZTRecipe *recipe;
 @property(nonatomic,retain)UIView *buttomView;

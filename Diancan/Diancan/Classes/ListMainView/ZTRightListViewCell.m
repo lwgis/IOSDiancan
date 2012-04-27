@@ -9,7 +9,7 @@
 #import "ZTRightListViewCell.h"
 #import <QuartzCore/QuartzCore.h> 
 #import "ZTLeftListView.h"
-#import "MainMenuController.h"
+#import "FoodInfoController.h"
 #import "ListMainViewCongtroller.h"
 #import "ZTRightListView.h"
 #define AMIMATOIN_TIME  0.2
@@ -30,9 +30,13 @@
 
 @synthesize recipe,behindZTRightListViewCell,previousZTRightListViewCell,startPoint,buttomView,isExtend;
 -(void)removeFromSuperview{
-    [recipeImageView setImage:nil forState:UIControlStateNormal];
-    [recipeImageView removeFromSuperview];
-//    [recipeImageView release];
+    [super removeFromSuperview];
+}
+-(void)dealloc{
+    //    [recipeImageView setImage:nil forState:UIControlStateNormal];
+    [recipeImageView.imageView.image release];
+//        [recipeImageView removeFromSuperview];
+//        [recipeImageView release];
     [recipeNameLable removeFromSuperview];
     [recipeNameLable release];
     [recipePriceLable removeFromSuperview];
@@ -46,7 +50,7 @@
     [checkOrderImageView removeFromSuperview];
     [checkOrderImageView release];
     [recipe release];
-    [super removeFromSuperview];
+    [super dealloc];
 }
 - (id)initWithFrame:(CGRect)frame
 {
@@ -107,12 +111,13 @@
 -(void)addrecipeClick{
     [ApplicationDelegate.order addRecipe:self.recipe];
     [self recipeImageAnimation];
-    _recipeCount++;
+
+    _recipeCount=[ApplicationDelegate.order getRecipeCount:self.recipe];
     }
 -(void)removerecipeClick{
     if (_recipeCount==0)return;
     [ApplicationDelegate.order removeRecipe:self.recipe];
-    _recipeCount--;
+    _recipeCount=[ApplicationDelegate.order getRecipeCount:self.recipe];
     if (_recipeCount<=0) {
         [countLabel setText:nil];
         checkOrderImageView.hidden=YES;
@@ -146,18 +151,22 @@
     
 }
 -(void)recipeImageClick{
-    MainMenuController *mainMenuController=[[MainMenuController alloc] initWithNibName:@"MainMenuController" bundle:nil];
+    FoodInfoController *foodInfoController=[[FoodInfoController alloc] initWithNibName:@"FoodInfoController" bundle:nil];
     id controll=[self nextResponder];
     while (![controll isKindOfClass:[ListMainViewCongtroller class]]) {
         controll=[controll nextResponder];
     }
     ListMainViewCongtroller *lc=controll;
-    NSInteger categoryIndex=((ZTRightListView *)self.superview).categoryIndex ;
-    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:self.tag inSection:categoryIndex];
-    [mainMenuController setIndexPath:indexPath];
-    [lc.navigationController pushViewController:mainMenuController animated:YES];
+//    NSInteger categoryIndex=((ZTRightListView *)self.superview).categoryIndex ;
+//    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:self.tag inSection:categoryIndex];
+//    [mainMenuController setIndexPath:indexPath];
+    ZTRightListView *superRightListView=(ZTRightListView *) self.superview;
+    
+    [foodInfoController setListRecipeData:superRightListView.categoryID];
+    [foodInfoController showFoodInfo:self.tag];
+    [lc.navigationController pushViewController:foodInfoController animated:YES];
     NSLog(@"%d",[lc.tabBarController.viewControllers count]);
-    [mainMenuController release];
+    [foodInfoController release];
 
 }
 - (void)setEnableTouch:(BOOL)enableTouch {
@@ -325,7 +334,13 @@
         UIImageView *aImageView=[self.subviews objectAtIndex:5];
         [aImageView removeFromSuperview];
          [countLabel setText:[NSString stringWithFormat:@"%d 份",_recipeCount]];
-        checkOrderImageView.hidden=NO;
+        if(_recipeCount==0){
+            checkOrderImageView.hidden=YES;
+            [countLabel setText:nil];
+        }
+        else{
+            checkOrderImageView.hidden=NO;
+        }
     }
 }
 -(void)setRecipeCount:(NSInteger)count{

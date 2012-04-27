@@ -8,21 +8,97 @@
 
 #import "FoodInfoController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "FoodCell.h"
-#import "ZTAppDelegate.h"
+#import "FoodInfoView.h"
+#import "ZTCategory.h"
+#import "TitleView.h"
 @implementation FoodInfoController
-@synthesize foodNameLabel;
-@synthesize foodImage;
-@synthesize foodcell;
+{
+    BOOL isChanged;
+    NSInteger showIndex;
+}
+@synthesize gestureRecognizer,listRecipe,listFoodInfoView,categoryBtn,categoryDailog,currenFoodInfoView,orderButtonItem;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        gestureRecognizer=[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panned:)];
+        gestureRecognizer.delegate = self;
+        gestureRecognizer.maximumNumberOfTouches = 1;
+        gestureRecognizer.minimumNumberOfTouches = 1;
+        [self.view addGestureRecognizer:gestureRecognizer];
     }
     return self;
 }
+-(void)showFoodInfo:(NSInteger)index{
+    showIndex=index;
+}
 
+- (void)panned:(UIPanGestureRecognizer *)recognizer
+{
+    switch (recognizer.state) {
+        case UIGestureRecognizerStatePossible:
+            isChanged=NO;
+            break;
+            //        case UIGestureRecognizerStateRecognized: // for discrete recognizers
+            //            break;
+        case UIGestureRecognizerStateFailed: // cannot recognize for multi touch sequence
+            break;
+        case UIGestureRecognizerStateBegan: {
+            // allow controlled flip only when touch begins within the pan region
+           
+     
+        }
+            break;
+        case UIGestureRecognizerStateChanged:{            
+            float value = [recognizer translationInView:self.view].y;
+            if (value<-10&&!isChanged) {
+                [UIView beginAnimations:@"animationID" context:nil];
+                [UIView setAnimationDelegate:self];
+                [UIView setAnimationDuration:0.7f];
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                [UIView setAnimationRepeatAutoreverses:NO];
+                [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.view cache:YES];
+                if([self.view.subviews count]>0){
+                FoodInfoView *currentView=[self.view.subviews objectAtIndex:[self.view.subviews count]-1];
+                    if(self.view.subviews.count>1)
+                    self.currenFoodInfoView=[self.view.subviews objectAtIndex:[self.view.subviews count]-2];
+                [currentView removeFromSuperview];
+                }
+                [UIView commitAnimations];
+                isChanged=YES;
+                if (self.categoryDailog!=nil) {
+                    [self.categoryDailog  removeFromSuperview];
+                    self.categoryDailog=nil;
+                }
+            }
+            if (value>10&&!isChanged&&[self.view.subviews count]!=[self.listFoodInfoView count]) {
+                [UIView beginAnimations:@"animationID" context:nil];
+                [UIView setAnimationDelegate:self];
+                [UIView setAnimationDuration:0.7f];
+                [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+                [UIView setAnimationRepeatAutoreverses:NO];
+                [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
+                FoodInfoView *currentView=[self.listFoodInfoView objectAtIndex:[self.view.subviews count]];
+                self.currenFoodInfoView=currentView;
+                [self.view addSubview:currentView];
+                [UIView commitAnimations];
+                isChanged=YES;
+                if (self.categoryDailog!=nil) {
+                    [self.categoryDailog  removeFromSuperview];
+                    self.categoryDailog=nil;
+                }
+            }
+        }break;
+        case UIGestureRecognizerStateCancelled: // cancellation touch
+            break;
+        case UIGestureRecognizerStateEnded: {
+            isChanged=NO;
+        }
+            break;
+        default:
+            break;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -38,16 +114,127 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     //创建一个右边按钮
+    
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc]  initWithTitle:@"点"   
                                                                      style:UIBarButtonItemStyleBordered   
                                                                     target:self   
-                                                                    action:@selector(clickRightButton)];  
-    [self.navigationItem setRightBarButtonItem:rightButton];
+                                                                    action:@selector(rightButtonClick)];  
+    [self setOrderButtonItem:rightButton];
+    [self.navigationItem setRightBarButtonItem:rightButton];    
     [rightButton release];
-//    foodCount=0;
+    TitleView *aTitleView=[[TitleView alloc] initWithFrame:CGRectMake(0, 0, 150, 40)];
+    [self setCategoryBtn:aTitleView];
+    [self.categoryBtn addTarget:self action:@selector(categoryBtnClick) forControlEvents:UIControlEventTouchUpInside];
+
+//    categoryBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+//    categoryBtn.backgroundColor=[UIColor redColor];
+//    [categoryBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [categoryBtn addTarget:self action:@selector(categoryBtnClick) forControlEvents:UIControlEventTouchUpInside];
+//    [categoryBtn setFrame:CGRectMake(0, 0, 150, 40)];
+//    [categoryBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [self.navigationItem setTitleView:aTitleView];
+    [aTitleView release];
+    self.listFoodInfoView=[[NSMutableArray alloc] init];
+    listRecipe=[[NSMutableArray alloc] init];
+}
+-(void)rightButtonClick{
+    if (self.currenFoodInfoView.isCheck) {
+        return;
+    }
+    UIImageView *animationImageView= [[UIImageView alloc] initWithFrame:                            
+                            CGRectMake(1110.0f, 100.0f, 50.0f, 50.0f)];      
+    [animationImageView setImage:self.currenFoodInfoView.foodImageView.image];        
+    [self.view addSubview:animationImageView];
+    CGMutablePathRef thePath =  CGPathCreateMutable();
+    CGPathMoveToPoint(thePath, NULL, 0, 200);
+    CGPathAddLineToPoint(thePath, NULL, 40, 140);
+    CGPathAddLineToPoint(thePath, NULL, 80, 140);
+    CGPathAddLineToPoint(thePath, NULL, 120, 200);
+    CGPathAddLineToPoint(thePath, NULL, 160, 420);
+    CAKeyframeAnimation *theAnimation =[CAKeyframeAnimation animationWithKeyPath:@"position"];
+    theAnimation.path=thePath;
+    theAnimation.duration=0.4;
+    theAnimation.repeatCount = 1; // 无线循环
+    theAnimation.autoreverses=NO;
+    theAnimation.cumulative=YES;
+    theAnimation.delegate=self;
+    [animationImageView.layer addAnimation:theAnimation forKey:@"animateLayer"]; // 添加动画。
+    CFRelease(thePath);    
+    [animationImageView release];
     
 }
+-(void)categoryBtnClick{
+    if (self.categoryDailog==nil) {
+       CategoryDailog *aCd=[[CategoryDailog alloc] initWithFrame:CGRectMake(50, -300, 220, 200)];
+        [aCd showDialog:self.categoryBtn.titleLabel.text];
+//        [aCd setBackgroundColor:[UIColor blackColor]];
+        [self.view addSubview:aCd];
+        [self setCategoryDailog:aCd];
+        [aCd release];
+    }
+    [UIView beginAnimations:@"dialog" context:nil];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:0.5f];
+    [self.categoryDailog setFrame:CGRectMake(50, 0, 220, 200)];
+    [UIView commitAnimations];
+}
+-(void)selectCategoryClick:(UIButton *)sender{
+    [self.listRecipe removeAllObjects];
+    [listRecipe release];
+    for (UIView *aView in listFoodInfoView) {
+        [aView removeFromSuperview];
+    }
+    [self.listFoodInfoView removeAllObjects];
+    [listFoodInfoView release];
+    ZTCategory *aCategory=[ApplicationDelegate.listCategory objectAtIndex:sender.tag];
+    [self setListRecipeData:[aCategory.cID integerValue]];
+    showIndex=0;
+}
+-(void)setListRecipeData:(NSInteger)categoryID{ 
+    [self.orderButtonItem setEnabled:NO];
+    [[RestEngine sharedEngine] getRecipesByCategory:categoryID OnCompletion:^(NSArray *list) {
+        listRecipe=[[NSMutableArray alloc] init];
+        listFoodInfoView=[[NSMutableArray alloc] init];
+        NSInteger i=0;
+        for (ZTRecipe *recipe in list) {
+            FoodInfoView *foodInfoView=[[FoodInfoView alloc] initWithFrame:CGRectMake(0, 0, 320, 390)];
+            [foodInfoView setTag:list.count-i-1];
+            [foodInfoView loadRepiceImage:recipe];
+            [foodInfoView.foodNameLabel setText:recipe.rName];
+            NSString *price=[NSString stringWithFormat:@"￥%.2f",[recipe.rPrice floatValue]];
+            [foodInfoView.foodPriceLable setText:price];
+            NSString *num=[NSString stringWithFormat:@"%d/%d",i+1,[list count]];
+            [foodInfoView.foodNum setText:num];
+            [listFoodInfoView insertObject:foodInfoView atIndex:0];
+            [self.view insertSubview:foodInfoView atIndex:0];
+            [self.listRecipe insertObject:recipe atIndex:0];
+            [foodInfoView release];  
+            i++;
+        }
+        NSInteger index=[self.view.subviews count]-showIndex;
+        if (self.listFoodInfoView.count!=self.view.subviews.count) {
+            index-=1;
+        }
+        while([self.view.subviews count]>index) {
+            FoodInfoView *currentView=[self.view.subviews objectAtIndex:[self.view.subviews count]-1];
+            [currentView removeFromSuperview];    
+        }
+        self.currenFoodInfoView=[self.listFoodInfoView objectAtIndex:index-1];
+        if ([list count]>0) {
+            ZTRecipe *aRecipe =[list objectAtIndex:0];
+            NSString *categoryName=[NSString stringWithFormat:@"%@",aRecipe.cName];
+            [categoryBtn setTitle:categoryName forState:UIControlStateNormal];
+        }
+        [self.categoryDailog removeFromSuperview];
+        self.categoryDailog=nil;
+        [self refreshData];
+        [self.orderButtonItem setEnabled:YES];
+        [self.categoryBtn sizeToFit];
+    } onError:^(NSError *error) {
+    }];
 
+//    [self setListRecipe:(NSMutableArray *)aListRecipe];
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -63,70 +250,77 @@
 }
 
 - (void)dealloc {
-    [foodNameLabel release];
+    [listRecipe removeAllObjects];
+    [listRecipe release];
+    for (UIView *aView in listFoodInfoView) {
+        [aView removeFromSuperview];
+    }
+    [listFoodInfoView removeAllObjects];
+    [listFoodInfoView release];
+    [categoryBtn removeFromSuperview];
     [super dealloc];
 }
-
--(void)clickRightButton
-{
-    
-    //定义图片的位置和尺寸,位置:x=268.0f, y=115.0f ,尺寸:x=20.0f, y=20.0f
-    
-    UIImageView *subview = [[UIImageView alloc] initWithFrame:                            
-                            CGRectMake(1110.0f, 100.0f, 30.0f, 30.0f)];   
-    
-    //设定图片名称,myPic.png已经存在，拖放添加图片文件到image项目文件夹中
-//    [subview setImage:foodcell.ztmenu.image.];    
-//    //启用动画移动
-//    [UIImageView beginAnimations:nil context:NULL];    
-//    //移动时间2秒
-//    [UIImageView setAnimationDuration:2];    
-//    //图片持续移动
-//    [UIImageView setAnimationBeginsFromCurrentState:YES];   
-//    //重新定义图片的位置和尺寸,位置
-//    subview.frame = CGRectMake(80.0, 300.0,50.0, 50.0);    
-//    subview.animationRepeatCount=1;
-//    //完成动画移动
-//    [UIImageView commitAnimations];  
-//    //在 View 中加入图片 subview 
-    
-    [self.view addSubview:subview];
-    CGMutablePathRef thePath =  CGPathCreateMutable();
-//   CGRect bound1 = CGRectMake(110.0f, 100.0f, 30.0f, 30.0f);
-//    CGRect bounds = CGRectMake(210.0f, 150.0f, 30.0f, 30.0f);
-    CGPathMoveToPoint(thePath, NULL, 0, 200);
-    CGPathAddLineToPoint(thePath, NULL, 40, 140);
-    CGPathAddLineToPoint(thePath, NULL, 80, 140);
-    CGPathAddLineToPoint(thePath, NULL, 120, 200);
-    CGPathAddLineToPoint(thePath, NULL, 160, 420);
-//	CGPathAddQuadCurveToPoint(thePath, NULL, 10, 450, 310, 450);
-//	CGPathAddQuadCurveToPoint(thePath, NULL, 310, 10, 10, 10);
-//    CGPathAddLineToPoint(thePath, NULL, 110.0f, 100.0f);
-//    CGPathAddLineToPoint(thePath, NULL, 210.0f, 150.0f);
-    CAKeyframeAnimation *theAnimation =[CAKeyframeAnimation animationWithKeyPath:@"position"];
-    theAnimation.path=thePath;
-    theAnimation.duration=0.4;
-    theAnimation.repeatCount = 1; // 无线循环
-    theAnimation.autoreverses=NO;
-    theAnimation.cumulative=YES;
-    theAnimation.delegate=self;
-    [subview.layer addAnimation:theAnimation forKey:@"animateLayer"]; // 添加动画。
-    CFRelease(thePath);
-    [foodcell addFoodCount];
-    [subview release];
-//    [NSThread sleepForTimeInterval:1];
-       
-
-    
+-(void)refreshData{
+    for (NSInteger i=0;i<self.listRecipe.count; i++) {
+        ZTRecipe *aRecipe=[self.listRecipe objectAtIndex:i];
+        if ([ApplicationDelegate.order getRecipeCount:aRecipe]>0) {
+            FoodInfoView *aFoodInfoView=[self.listFoodInfoView objectAtIndex:i];
+            [aFoodInfoView markByImage:YES Animation:NO];
+            [aFoodInfoView setIsCheck:YES];
+        }
+        else{
+            FoodInfoView *aFoodInfoView=[self.listFoodInfoView objectAtIndex:i];
+            [aFoodInfoView markByImage:NO Animation:NO];
+            [aFoodInfoView setIsCheck:NO];
+        }
+    }
 }
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    ZTAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    int indexICareAbout = 1; 
-    NSString *badgeValue = [NSString stringWithFormat:@"%d",appDelegate.foodCount];  
-    [[[[[self tabBarController] viewControllers] objectAtIndex: indexICareAbout] tabBarItem] setBadgeValue:badgeValue];
-    
+-(void)viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    [self refreshData];
 }
+   -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{    
+    NSLog(@"%@",anim.description);
+    if ([self.view.subviews count]==0) {
+    [UIView beginAnimations:@"animationID" context:nil];
+    [UIView setAnimationDuration:0.7f];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    [UIView setAnimationRepeatAutoreverses:NO];
+    [UIView setAnimationTransition:UIViewAnimationTransitionCurlDown forView:self.view cache:YES];
+    FoodInfoView *currentView=[self.listFoodInfoView objectAtIndex:0];
+    [self.view addSubview:currentView];
+    [UIView commitAnimations];
+    }
+    if (categoryDailog!=nil&&categoryDailog.frame.origin.y<0) {
+        [self.categoryDailog removeFromSuperview];
+        self.categoryDailog = nil;
+    }
+    if ([anim isKindOfClass:[CAKeyframeAnimation class]]) {
+        [self.currenFoodInfoView markByImage:YES Animation:YES];
+        ZTRecipe *aRecipe=[listRecipe objectAtIndex:self.currenFoodInfoView.tag];
+        [ApplicationDelegate.order addRecipe:aRecipe];
+        UIView *aView=[self.view.subviews objectAtIndex:self.view.subviews.count -1];
+        if ([aView isKindOfClass:[UIImageView class]]) {
+            [aView removeFromSuperview];
+        }
 
+//        for (UIView *aView in self.view.subviews) {
+//            if ([aView isKindOfClass:[UIImageView class]]) {
+//                [aView removeFromSuperview];
+//            }
+//        }
+    }
+    [self.orderButtonItem setEnabled:YES];
+}
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    if(self.categoryDailog!=nil&&categoryDailog.frame.origin.y>=0){
+        [UIView beginAnimations:@"dialog" context:nil];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDuration:0.5f];
+        [self.categoryDailog setFrame:CGRectMake(50, -300, 220, 200)];
+        [UIView commitAnimations];      
+    }
+}
 
 @end

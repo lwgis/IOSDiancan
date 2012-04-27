@@ -18,7 +18,7 @@
 @property int foodCount;
 @property (retain,nonatomic)NSMutableArray *orderList;
 @property (retain,nonatomic)ZTOrder *order;
-
+@property(nonatomic,assign)NSArray *listCategory;
 //-(void)addFood:(Category *)aCategory;
 //-(void)countPrice;
 -(NSURL *)applicationDocumentsDirectory;

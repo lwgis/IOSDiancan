@@ -49,7 +49,7 @@
     [leftButtonItem release];
     
     UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain
-                                                                       target:self action:@selector(onRightButton)];
+                                                                       target:nil action:nil];
     self.navigationItem.rightBarButtonItem = rightButtonItem;
     [rightButtonItem release];
 }
@@ -103,7 +103,7 @@
             ZTRecipe *aRecipe=(ZTRecipe *) [aDic valueForKey:@"recipe"];
             NSString *countString=(NSString *)[aDic valueForKey:@"count"];
             NSInteger rCount=[countString integerValue];
-            if(aRecipe.cName==cName){
+            if([aRecipe.cName isEqual:cName]){
                       FoodCell *foodCell=[[FoodCell alloc] initWithFrame:CGRectMake(10, i*60+30, 310, 60)];
             [foodCell setTag:i];
             [foodCell loadRecipeData:aRecipe count:rCount];

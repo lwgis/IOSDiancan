@@ -35,7 +35,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:YES]; 
+//    [self.navigationController setNavigationBarHidden:YES]; 
 
     // Do any additional setup after loading the view from its nib.
 }
@@ -53,6 +53,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
     ListMainView *listMainView=(ListMainView *)self.view;
     ZTLeftListView *ztLview=listMainView.ztLeftListView;
     if(ztLview==nil)return;

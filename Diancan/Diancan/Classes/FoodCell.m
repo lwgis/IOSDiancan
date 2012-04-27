@@ -68,6 +68,7 @@
     _recipeCount=[ApplicationDelegate.order getRecipeCount:self.recipe]-1;
     [ApplicationDelegate.order removeRecipe:self.recipe];
     if (_recipeCount<=0) {
+        [addrecipeButton removeFromSuperview];
         [self.recipeCountLable setText:nil];
         [UIView beginAnimations:@"moveUp" context:nil];
         [UIView setAnimationDelegate:self];
@@ -105,7 +106,7 @@
         [UIView commitAnimations];   
         return;
     }
-    [self.recipeCountLable setText:[NSString stringWithFormat:@"%d 份",_recipeCount]];
+    [self.recipeCountLable setText:[NSString stringWithFormat:@"%d份",_recipeCount]];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -114,6 +115,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 -(void)dealloc{
+    [recipeImageView.image release];
     [recipeImageView release];
     [recipeNameLable release];
     [recipePriceLable release];
@@ -123,7 +125,6 @@
 
 #pragma mark - View lifecycle
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    UIScrollView *scrollView=(UIScrollView *)self.superview.superview;
     if (self.preFoodCell==nil&&self.nextFoodCell==nil) {
         CategoryCell *aCategoryCell=(CategoryCell *)self.superview;
         [aCategoryCell.preCategoryCell setNextCategoryCell:aCategoryCell.nextCategoryCell];
@@ -147,7 +148,9 @@
 //     [arecipe getrecipeImage:^(UIImage *image) {
 //         [self.recipeImageView setImage:image];
 //     }];
-    [self.recipeImageView setImage:aRecipe.rImage];
+    [aRecipe getRecipeImage:^(UIImage *image) {
+        [self.recipeImageView setImage:image];
+    }];
     [self.recipeNameLable setText:aRecipe.rName];
     [self.recipeNameLable sizeToFit];
     [self.recipePriceLable setText:[NSString stringWithFormat:@"￥%.2f" ,[aRecipe.rPrice floatValue]]];

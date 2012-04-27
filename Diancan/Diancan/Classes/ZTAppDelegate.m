@@ -16,7 +16,7 @@
 @synthesize foodCount;
 @synthesize orderList=_orderList;
 @synthesize order;
-
+@synthesize listCategory;
 - (void)dealloc
 {
     [_window release];

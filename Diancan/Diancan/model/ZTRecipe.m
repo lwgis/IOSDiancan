@@ -17,17 +17,18 @@
 @synthesize rImageURL;
 @synthesize rName;
 @synthesize rPrice;
-@synthesize rImage=_rImage;
+@synthesize rImage;
 -(void)getRecipeImage:(getRecipeImageBlock)getRecipeImageBlock{
-    if (_rImage!=nil) {
-        getRecipeImageBlock(_rImage);
-        return ;
-    }
+//    if (self.rImage!=nil) {
+//        getRecipeImageBlock(self.rImage);
+//        return ;
+//    }
+    rImage=nil;
     NSString *imageURL = self.rImageURL;
     [[RestEngine sharedEngine] getImage:imageURL OnCompletion:^(UIImage *image) {
         [self setRImage:image];
 //        _rImage=image;
-        getRecipeImageBlock(_rImage);
+        getRecipeImageBlock(self.rImage);
         //        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         
     } onError:^(NSError *error) {
@@ -36,4 +37,5 @@
 
 
 }
+
 @end

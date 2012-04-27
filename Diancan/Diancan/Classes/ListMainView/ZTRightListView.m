@@ -11,7 +11,7 @@
 #import "ListMainView.h"
 @implementation ZTRightListView{
 }
-@synthesize categoryIndex;
+@synthesize categoryIndex,listRecipe,categoryID;
 -(id)initWithFrame:(CGRect)frame{
     self=[super initWithFrame:frame];
     if (self) {
@@ -24,16 +24,25 @@
     return  self;
 }
 -(void)loadRecipeWithCategory:(ZTCategory *)category{
+    [self setCategoryID:[category.cID integerValue]];
     [self setShowsVerticalScrollIndicator:NO];
     for(ZTRightListViewCell *subview in [self subviews]) {
         [subview removeFromSuperview];
     }
-    
+    NSLog(@"category.cID=%d",[category.cID integerValue]);
     [[RestEngine sharedEngine] getRecipesByCategory:(NSInteger)[category.cID floatValue]  OnCompletion:^(NSArray *list) {
+        if (self.listRecipe!=nil) {
+            [self.listRecipe removeAllObjects];
+            [listRecipe release];
+        }
+        NSMutableArray *aNSMutableArray=[[NSMutableArray alloc] init];
+        [self setListRecipe:aNSMutableArray];
+        [aNSMutableArray release];
         for (NSInteger i=0; i<[list count]; i++) {
             ZTRightListViewCell *ztRightListView=[[ZTRightListViewCell alloc] initWithFrame:CGRectMake(0, i*80, 240, 80)];
             ztRightListView.tag=i;
             ZTRecipe *aRecipe=(ZTRecipe *)[list objectAtIndex:i];
+            [self.listRecipe insertObject:aRecipe atIndex:0];
             [ztRightListView loadRecipe:aRecipe];
             NSInteger count=[ApplicationDelegate.order getRecipeCount:aRecipe];  
             [ztRightListView setRecipeCount:count];        
@@ -73,5 +82,9 @@
     }
     return YES;
 }
-
+-(void)dealloc{
+    [listRecipe removeAllObjects];
+    [listRecipe release];
+    [super dealloc];
+}
 @end

@@ -95,11 +95,13 @@
 //通过category加载菜单
 
 -(void)loadDataByCategory:(ZTCategory *)aCategory{
+    self.userInteractionEnabled=NO;
     NSLog(@"%d",(NSInteger)[aCategory.cID floatValue] );
     [[RestEngine sharedEngine] getRecipesByCategory:(NSInteger)[aCategory.cID floatValue]  OnCompletion:^(NSArray *array){        
         [self loadData:array ];
         currentFoodView=[listFoodView objectAtIndex:showIndex];
         [self ShowFoodView:showIndex Animation:NO];
+        self.userInteractionEnabled=YES;
     }onError:^(NSError *error){} ];
 
 }
