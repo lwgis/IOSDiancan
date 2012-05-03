@@ -131,24 +131,53 @@
 
 - (IBAction)submitOrder:(id)sender 
 {
-    NSLog(@"提交订单");
+    NSLog(@"开台");
     
-    NSMutableDictionary *body = [self getTestOrder];
+//    NSMutableDictionary *body = [self getTestOrder];
     
-    [[RestEngine sharedEngine] submitOrder:body OnCompletion:^(NSString *orderURL) {
-        NSLog(@"提交订单成功:%@",orderURL);
+    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
+    [body setValue:@"11" forKey:@"tid"];
+    [body setValue:@"4" forKey:@"number"];
+    
+    [[RestEngine sharedEngine] submitOrder:body OnCompletion:^(NSDictionary *orderDetail) {
+        NSLog(@"开台成功:%@",orderDetail);
     } onError:^(NSError *error) {
-        NSLog(@"error:%@",error);
+        NSLog(@"开台失败:%@",[error localizedFailureReason]);
     }];
-    
 }
 
 - (IBAction)getOrderDetail:(id)sender
 {
-    [[RestEngine sharedEngine] getOrderDetail:2 OnCompletion:^(NSDictionary *orderURL) {
-        NSLog(@"获取订单详情成功");
+    [[RestEngine sharedEngine] getOrderDetail:24 OnCompletion:^(NSDictionary *orderDetail) {
+        NSLog(@"获取订单详情成功: %@", orderDetail);
     } onError:^(NSError *error) {
-        NSLog(@"获取失败：%@",error);
+        NSLog(@"获取订单详情失败: %@", error);
+    }];
+}
+
+- (IBAction)addRecipe:(id)sender 
+{
+    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
+    [body setValue:@"280" forKey:@"rid"];
+    [body setValue:@"1" forKey:@"count"];
+    
+    [[RestEngine sharedEngine] addRecipe:body ToOrder:24 OnCompletion:^(NSDictionary *orderDetail) {
+        NSLog(@"加减菜成功: %@", orderDetail);
+    } onError:^(NSError *error) {
+        NSLog(@"加减菜失败: %@", error);
+    }];
+}
+
+- (IBAction)reduceRecipe:(id)sender 
+{
+    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
+    [body setValue:@"280" forKey:@"rid"];
+    [body setValue:@"-1" forKey:@"count"];
+    
+    [[RestEngine sharedEngine] addRecipe:body ToOrder:24 OnCompletion:^(NSDictionary *orderDetail) {
+        NSLog(@"加减菜成功: %@", orderDetail);
+    } onError:^(NSError *error) {
+        NSLog(@"加减菜失败: %@", error);
     }];
 }
 
@@ -156,6 +185,7 @@
     [myImageView release];
     [super dealloc];
 }
+
 - (IBAction)serializationTest:(id)sender 
 {
     NSString *serializationFile = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"tempOrder"];
@@ -193,4 +223,5 @@
     ZTDesk *c = (ZTDesk *)[NSKeyedUnarchiver unarchiveObjectWithFile:file];
     NSLog(@"unarchive成功：%@",c);
 }
+
 @end

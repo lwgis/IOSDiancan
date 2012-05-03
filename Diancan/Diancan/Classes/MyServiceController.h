@@ -17,14 +17,16 @@
 - (IBAction)submitOrder:(id)sender;
 - (IBAction)getOrderDetail:(id)sender;
 
+- (IBAction)addRecipe:(id)sender;
+- (IBAction)reduceRecipe:(id)sender;
+
+
 @property (retain, nonatomic) IBOutlet UIImageView *myImageView;
 
 
 - (IBAction)serializationTest:(id)sender;
-
 - (IBAction)unserializationTest:(id)sender;
 
 - (IBAction)archiveTest:(id)sender;
-
 - (IBAction)unarchiveTest:(id)sender;
 @end

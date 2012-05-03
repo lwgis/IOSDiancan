@@ -19,7 +19,7 @@
     [body setValue:@"4" forKey:@"number"];
     [body setValue:recipes forKey:@"recipes"];
     
-    [[RestEngine sharedEngine] submitOrder:body OnCompletion:^(NSString *orderURL) {
+    [[RestEngine sharedEngine] submitOrder:body OnCompletion:^(NSDictionary *orderURL) {
         NSLog(@"提交订单成功:%@",orderURL);
     } onError:^(NSError *error) {
         NSLog(@"error:%@",error);

@@ -14,6 +14,7 @@
 @synthesize dCapacity;
 @synthesize dID;
 @synthesize dName;
+@synthesize dStatus;
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:self.dID forKey:@"dID"];

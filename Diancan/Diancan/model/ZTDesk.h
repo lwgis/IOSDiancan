@@ -14,5 +14,6 @@
 @property (nonatomic, retain) NSNumber * dCapacity;
 @property (nonatomic, retain) NSNumber * dID;
 @property (nonatomic, retain) NSString * dName;
+@property (nonatomic, retain) NSNumber * dStatus;
 
 @end

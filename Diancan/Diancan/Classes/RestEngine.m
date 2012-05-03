@@ -13,6 +13,7 @@
 #import "AFJSONRequestOperation.h"
 #import "AFImageRequestOperation.h"
 #import "AFNetworkActivityIndicatorManager.h"
+#import "AFJSONUtilities.h"
 
 #import "SDURLCache.h"
 
@@ -119,7 +120,7 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-//        NSLog(@"所有桌子:%@",JSON);
+        NSLog(@"所有桌子:%@",JSON);
         NSMutableArray *array = [NSMutableArray array];   
         
         for (NSDictionary *dic in JSON) {
@@ -127,6 +128,8 @@
             [c setDID:[NSNumber numberWithInteger:[[dic objectForKey:@"id"] integerValue]]];
             [c setDName:[dic objectForKey:@"name"]];
             [c setDCapacity: [NSNumber numberWithInteger:[[dic objectForKey:@"capacity"] integerValue]]];
+            [c setDStatus:[NSNumber numberWithInteger:[[dic objectForKey:@"status"] integerValue]]];
+
             [array addObject:c];
             [c release];
         }
@@ -158,34 +161,38 @@
     [operation start];
 }
 
-- (void) submitOrder:(NSMutableDictionary *)order OnCompletion :(void (^)(NSString *orderURL))completeBlock onError:(ErrorBlock)errorBlock{    
+- (void) submitOrder:(NSMutableDictionary *)order OnCompletion :(void (^)(NSDictionary *orderDetail))completeBlock onError:(ErrorBlock)errorBlock{    
     NSURL *url = [NSURL URLWithString:REQUEST_HOST];
     AFHTTPClient *httpClient = [[[AFHTTPClient alloc] initWithBaseURL:url] autorelease];
     
-    NSMutableArray *recipes = [NSMutableArray array];
-    NSArray *array = [order valueForKey:@"recipes"];
-    for (NSDictionary *d in array) {
-        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        ZTRecipe *r = [d valueForKey:@"recipe"];
-        [dic setValue:r.rID forKey:@"rid"];
-        [dic setValue:[d valueForKey:@"count"] forKey:@"count"];
-        [recipes addObject:dic];
-    }
-    
-    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
-    [body setValue:[order valueForKey:@"tid"] forKey:@"tid"];
-    [body setValue:[order valueForKey:@"number"] forKey:@"number"];
-    [body setValue:recipes forKey:@"recipes"];
+//    NSMutableArray *recipes = [NSMutableArray array];
+//    NSArray *array = [order valueForKey:@"recipes"];
+//    for (NSDictionary *d in array) {
+//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//        ZTRecipe *r = [d valueForKey:@"recipe"];
+//        [dic setValue:r.rID forKey:@"rid"];
+//        [dic setValue:[d valueForKey:@"count"] forKey:@"count"];
+//        [recipes addObject:dic];
+//    }
+//    
+//    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
+//    [body setValue:[order valueForKey:@"tid"] forKey:@"tid"];
+//    [body setValue:[order valueForKey:@"number"] forKey:@"number"];
+//    [body setValue:recipes forKey:@"recipes"];
     
     
     httpClient.parameterEncoding = AFJSONParameterEncoding;
 
-    [httpClient postPath:SUBMIT_ORDER_URL parameters:body
+    [httpClient postPath:SUBMIT_ORDER_URL parameters:order
                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
                      NSInteger statusCode = operation.response.statusCode;
                      assert(statusCode == 201);
-                     NSString *orderURL =[NSString stringWithFormat:@"%@", [operation.response.allHeaderFields objectForKey:@"Location"]];
-                     completeBlock(orderURL);
+                     
+                     NSError *error;
+                     NSDictionary *orderDetail = AFJSONDecode(operation.responseData, &error);
+
+//                     NSString *orderURL =[NSString stringWithFormat:@"%@", [operation.response.allHeaderFields objectForKey:@"Location"]];
+                     completeBlock(orderDetail);
                  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                      errorBlock(error);
                  }];
@@ -197,13 +204,30 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"订单详情:%@",JSON);
         completeBlock(JSON);
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
         errorBlock(error);
     }];
     
     [operation start];
+}
+
+- (void) addRecipe:(NSDictionary *)recipeCount ToOrder:(NSInteger)oid OnCompletion:(void (^)(NSDictionary *))completeBlock onError:(ErrorBlock)errorBlock
+{
+    NSURL *url = [NSURL URLWithString:REQUEST_HOST];
+    AFHTTPClient *httpClient = [[[AFHTTPClient alloc] initWithBaseURL:url] autorelease];
+    httpClient.parameterEncoding = AFJSONParameterEncoding;
+    
+    [httpClient postPath:ORDER_DETAIL_URL(oid) parameters:recipeCount
+                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                     NSInteger statusCode = operation.response.statusCode;
+                     assert(statusCode == 200);
+                     NSError *error;
+                     NSDictionary *body = AFJSONDecode(operation.responseData, &error);
+                     completeBlock(body);
+                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                     errorBlock(error);
+                 }];
 }
 
 @end
