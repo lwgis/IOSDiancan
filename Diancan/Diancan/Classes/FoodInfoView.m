@@ -44,7 +44,7 @@
 -(void)markByImage:(BOOL)visiable Animation:(BOOL)animation{
     if (visiable) {
         if (self.markImageView==nil) {
-            UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(110, -100, 100, 100)];
+            UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(120, -80, 80, 80)];
             [imageView setImage:[UIImage imageNamed:@"yidian.png"]];
             [self setMarkImageView:imageView];
             [self addSubview:imageView];
@@ -54,11 +54,12 @@
             [UIView beginAnimations:@"markByImage" context:nil];
             [UIView setAnimationDelegate:self];
             [UIView setAnimationDuration:0.3];
-            [self.markImageView setFrame:CGRectMake(110, 0, 100, 100)];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [self.markImageView setFrame:CGRectMake(120, 0, 80, 80)];
             [UIView commitAnimations];
         }
         else{
-            [self.markImageView setFrame:CGRectMake(110, 0, 100, 100)];
+            [self.markImageView setFrame:CGRectMake(120, 0, 80, 80)];
         }
         [self setIsCheck:YES];
     }
