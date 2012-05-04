@@ -94,6 +94,24 @@
 //    [myImageView setImageWithURL:[NSURL URLWithString:IMAGE_URL(imageURL)]];
 }
 
+- (IBAction)getDeskTypes:(id)sender 
+{
+    [[RestEngine sharedEngine] getAllDeskTypesOnCompletion:^(NSArray *list) {
+        NSLog(@"所有桌子类型成功：%@",list);
+    } onError:^(NSError *error) {
+        NSLog(@"获取失败：%@",error);
+    }];
+}
+
+- (IBAction)getDeskByType:(id)sender 
+{
+    [[RestEngine sharedEngine] getDesksByType:1 OnCompletion:^(NSArray *list) {
+        NSLog(@"所有桌子成功：%@",list);
+    } onError:^(NSError *error) {
+        NSLog(@"获取失败：%@",error);
+    }];
+}
+
 - (IBAction)getAllDesk:(id)sender 
 {
     [[RestEngine sharedEngine] getAllDesksOnCompletion:^(NSArray *array) {
