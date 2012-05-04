@@ -27,6 +27,11 @@
 		1843CAC81538933E00E0282F /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843CAC71538933D00E0282F /* CategoryCell.m */; };
 		185A82291529833C008B2B1D /* ZTRightListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A82281529833C008B2B1D /* ZTRightListView.m */; };
 		185A822D1529901C008B2B1D /* ZTRightListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A822C1529901C008B2B1D /* ZTRightListViewCell.m */; };
+		186BBF58155366170067341F /* SelectDeskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BBF55155366170067341F /* SelectDeskController.m */; };
+		186BBF59155366170067341F /* SelectTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BBF57155366170067341F /* SelectTitleView.m */; };
+		186BBF5C1553890D0067341F /* liebiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BBF5A1553890D0067341F /* liebiao.png */; };
+		186BBF5D1553890D0067341F /* suoluetu.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BBF5B1553890D0067341F /* suoluetu.png */; };
+		186BBF5F155390B90067341F /* refreshDesk.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BBF5E155390B90067341F /* refreshDesk.png */; };
 		1873728B1521481200969633 /* UpdateRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 187372871521481200969633 /* UpdateRecord.m */; };
 		1873728C1521481200969633 /* UpdateRecord+Search.m in Sources */ = {isa = PBXBuildFile; fileRef = 187372891521481200969633 /* UpdateRecord+Search.m */; };
 		1874102B1510F21300AAA72C /* bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 187410241510F21300AAA72C /* bottom.png */; };
@@ -124,6 +129,13 @@
 		185A82281529833C008B2B1D /* ZTRightListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTRightListView.m; path = Classes/ListMainView/ZTRightListView.m; sourceTree = "<group>"; };
 		185A822B1529901B008B2B1D /* ZTRightListViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTRightListViewCell.h; path = Classes/ListMainView/ZTRightListViewCell.h; sourceTree = "<group>"; };
 		185A822C1529901C008B2B1D /* ZTRightListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTRightListViewCell.m; path = Classes/ListMainView/ZTRightListViewCell.m; sourceTree = "<group>"; };
+		186BBF54155366170067341F /* SelectDeskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectDeskController.h; path = Classes/SelectDesk/SelectDeskController.h; sourceTree = "<group>"; };
+		186BBF55155366170067341F /* SelectDeskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectDeskController.m; path = Classes/SelectDesk/SelectDeskController.m; sourceTree = "<group>"; };
+		186BBF56155366170067341F /* SelectTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectTitleView.h; path = Classes/SelectDesk/SelectTitleView.h; sourceTree = "<group>"; };
+		186BBF57155366170067341F /* SelectTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectTitleView.m; path = Classes/SelectDesk/SelectTitleView.m; sourceTree = "<group>"; };
+		186BBF5A1553890D0067341F /* liebiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = liebiao.png; path = Image/itemImage/liebiao.png; sourceTree = "<group>"; };
+		186BBF5B1553890D0067341F /* suoluetu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = suoluetu.png; path = Image/itemImage/suoluetu.png; sourceTree = "<group>"; };
+		186BBF5E155390B90067341F /* refreshDesk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refreshDesk.png; path = Image/itemImage/refreshDesk.png; sourceTree = "<group>"; };
 		187372861521481200969633 /* UpdateRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdateRecord.h; path = model/UpdateRecord.h; sourceTree = "<group>"; };
 		187372871521481200969633 /* UpdateRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdateRecord.m; path = model/UpdateRecord.m; sourceTree = "<group>"; };
 		187372881521481200969633 /* UpdateRecord+Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UpdateRecord+Search.h"; path = "model/UpdateRecord+Search.h"; sourceTree = "<group>"; };
@@ -259,6 +271,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		186BBF471553655E0067341F /* SelectDesk */ = {
+			isa = PBXGroup;
+			children = (
+				186BBF54155366170067341F /* SelectDeskController.h */,
+				186BBF55155366170067341F /* SelectDeskController.m */,
+				186BBF56155366170067341F /* SelectTitleView.h */,
+				186BBF57155366170067341F /* SelectTitleView.m */,
+			);
+			name = SelectDesk;
+			sourceTree = "<group>";
+		};
 		18825F22152879450078EE1E /* ListMainView */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +403,7 @@
 		18C4CE6414F52698007B2742 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				186BBF471553655E0067341F /* SelectDesk */,
 				18825F22152879450078EE1E /* ListMainView */,
 				A44D83FD15209DC900296CDC /* RestEngine.h */,
 				A44D83FE15209DC900296CDC /* RestEngine.m */,
@@ -421,6 +445,9 @@
 		18C4CE6514F526B2007B2742 /* itemImage */ = {
 			isa = PBXGroup;
 			children = (
+				186BBF5E155390B90067341F /* refreshDesk.png */,
+				186BBF5A1553890D0067341F /* liebiao.png */,
+				186BBF5B1553890D0067341F /* suoluetu.png */,
 				18F3D79F154B1056004AF5F2 /* daosanjiao.png */,
 				182B0DEA154A12B00037AF30 /* yidian.png */,
 				18009721154888FA00BCC69E /* cDialogCheck.png */,
@@ -577,6 +604,9 @@
 				18009722154888FA00BCC69E /* cDialogCheck.png in Resources */,
 				182B0DEB154A12B00037AF30 /* yidian.png in Resources */,
 				18F3D7A0154B1056004AF5F2 /* daosanjiao.png in Resources */,
+				186BBF5C1553890D0067341F /* liebiao.png in Resources */,
+				186BBF5D1553890D0067341F /* suoluetu.png in Resources */,
+				186BBF5F155390B90067341F /* refreshDesk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,6 +680,8 @@
 				1836A083154705BC0042E21D /* FoodInfoView.m in Sources */,
 				1800971615484CAA00BCC69E /* CategoryDailog.m in Sources */,
 				18F3D79D154B0E19004AF5F2 /* TitleView.m in Sources */,
+				186BBF58155366170067341F /* SelectDeskController.m in Sources */,
+				186BBF59155366170067341F /* SelectTitleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

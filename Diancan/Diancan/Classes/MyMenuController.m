@@ -11,6 +11,7 @@
 #import "ZTCategory.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CategoryCell.h"
+#import "SelectDeskController.h"
 @interface MyMenuController ()
 @property(nonatomic,assign)UIScrollView *orderView;
 @end
@@ -54,33 +55,17 @@
     [rightButtonItem release];
 }
 -(void)onLeftButton{
-    UIAlertView *prompt = [[UIAlertView alloc] initWithTitle:@"请输入桌号:" 
-                                                     message:@"\n\n" 
-                                                    delegate:self 
-                                           cancelButtonTitle:@"取消" 
-                                           otherButtonTitles:@"确定", nil];
-    
-    
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(27.0, 60.0, 230.0, 25.0)]; 
-    [textField setBackgroundColor:[UIColor whiteColor]];
-    [textField setPlaceholder:@"桌号"];
-    [prompt addSubview:textField];
-    [textField release];
-    
-    
-    [prompt setTransform:CGAffineTransformMakeTranslation(0.0, -100.0)];  //可以调整弹出框在屏幕上的位置
-    
-    [prompt show];
-    
-    [prompt release];
+    SelectDeskController *selectDeskController=[[SelectDeskController alloc] init];
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];  
+    temporaryBarButtonItem.title = @"主界面";  
+    temporaryBarButtonItem.target = self;  
+    temporaryBarButtonItem.action = @selector(back);  
+    self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
+    [temporaryBarButtonItem release];  
+    [self.navigationController pushViewController:selectDeskController animated:YES];
+    [selectDeskController release];
+}
 
-}
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex==1) {
-        UITextField *textField = [alertView.subviews objectAtIndex:5];
-        NSLog(@"%@",textField.text);
-    }
-}
 -(void)getPrice{
     CGFloat price=[ApplicationDelegate.order getPrice];
     [self.navigationItem setTitle:[NSString stringWithFormat:@"总计：%.2f",price]];
