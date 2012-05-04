@@ -96,6 +96,7 @@
 		A4CFC1DE15241823003940C2 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CFC1D415241823003940C2 /* UIImageView+AFNetworking.m */; };
 		A4CFC1F015244DC6003940C2 /* SDURLCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CFC1EF15244DC6003940C2 /* SDURLCache.m */; };
 		A4CFC1F715249010003940C2 /* ZTDesk.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CFC1F615249010003940C2 /* ZTDesk.m */; };
+		A4E7DEF11553A9CC00617CC8 /* ZTDeskType.m in Sources */ = {isa = PBXBuildFile; fileRef = A4E7DEF01553A9CC00617CC8 /* ZTDeskType.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -238,6 +239,8 @@
 		A4CFC1EF15244DC6003940C2 /* SDURLCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDURLCache.m; sourceTree = "<group>"; };
 		A4CFC1F515249010003940C2 /* ZTDesk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTDesk.h; path = model/ZTDesk.h; sourceTree = "<group>"; };
 		A4CFC1F615249010003940C2 /* ZTDesk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTDesk.m; path = model/ZTDesk.m; sourceTree = "<group>"; };
+		A4E7DEEF1553A9CC00617CC8 /* ZTDeskType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZTDeskType.h; sourceTree = "<group>"; };
+		A4E7DEF01553A9CC00617CC8 /* ZTDeskType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZTDeskType.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +318,8 @@
 				187AB35015213E0E00103EDF /* ZTRecipe.m */,
 				A4CFC1F515249010003940C2 /* ZTDesk.h */,
 				A4CFC1F615249010003940C2 /* ZTDesk.m */,
+				A4E7DEEF1553A9CC00617CC8 /* ZTDeskType.h */,
+				A4E7DEF01553A9CC00617CC8 /* ZTDeskType.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 				1836A083154705BC0042E21D /* FoodInfoView.m in Sources */,
 				1800971615484CAA00BCC69E /* CategoryDailog.m in Sources */,
 				18F3D79D154B0E19004AF5F2 /* TitleView.m in Sources */,
+				A4E7DEF11553A9CC00617CC8 /* ZTDeskType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

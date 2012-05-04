@@ -12,6 +12,9 @@
 - (IBAction)updateData:(id)sender;
 - (IBAction)getRecipeByCategory:(id)sender;
 - (IBAction)getImageByURL:(id)sender;
+
+- (IBAction)getDeskTypes:(id)sender;
+- (IBAction)getDeskByType:(id)sender;
 - (IBAction)getAllDesk:(id)sender;
 
 - (IBAction)submitOrder:(id)sender;

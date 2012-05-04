@@ -20,6 +20,8 @@
 #import "ZTCategory.h"
 #import "ZTRecipe.h"
 #import "ZTDesk.h"
+#import "ZTDeskType.h"
+
 
 @implementation RestEngine
 
@@ -114,13 +116,62 @@
     [operation start];
 }
 
+- (void)getAllDeskTypesOnCompletion:(void (^)(NSArray *))completeBlock onError:(ErrorBlock)errorBlock
+{
+    NSURL *url = [NSURL URLWithString:ALL_DESKTYPES_URL];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSMutableArray *array = [NSMutableArray array];   
+        
+        for (NSDictionary *dic in JSON) {
+            ZTDeskType *c = [[ZTDeskType alloc] init];
+            [c setTID:[NSNumber numberWithInteger:[[dic objectForKey:@"id"] integerValue]]];
+            [c setTName:[dic objectForKey:@"name"]];
+            [c setTDescription:[dic objectForKey:@"description"]];
+            [array addObject:c];
+            [c release];
+        }
+        completeBlock(array); 
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+        errorBlock(error);
+    }];
+    
+    [operation start];
+}
+
+- (void)getDesksByType:(NSInteger)tid OnCompletion:(void (^)(NSArray *))completeBlock onError:(ErrorBlock)errorBlock
+{
+    NSURL *url = [NSURL URLWithString:DESK_BY_TYPE_URL(tid)];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSMutableArray *array = [NSMutableArray array];   
+        
+        for (NSDictionary *dic in JSON) {
+            ZTDesk *c = [[ZTDesk alloc] init];            
+            [c setDID:[NSNumber numberWithInteger:[[dic objectForKey:@"id"] integerValue]]];
+            [c setDName:[dic objectForKey:@"name"]];
+            [c setDCapacity: [NSNumber numberWithInteger:[[dic objectForKey:@"capacity"] integerValue]]];
+            [c setDStatus:[NSNumber numberWithInteger:[[dic objectForKey:@"status"] integerValue]]];
+            
+            [array addObject:c];
+            [c release];
+        }
+        completeBlock(array); 
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON){
+        errorBlock(error);
+    }];
+    
+    [operation start];
+}
+
 - (void)getAllDesksOnCompletion:(void (^)(NSArray *list))completeBlock onError:(ErrorBlock)errorBlock
 {
     NSURL *url = [NSURL URLWithString:ALL_DESK_URL];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        NSLog(@"所有桌子:%@",JSON);
         NSMutableArray *array = [NSMutableArray array];   
         
         for (NSDictionary *dic in JSON) {
