@@ -685,6 +685,7 @@
 				1836A083154705BC0042E21D /* FoodInfoView.m in Sources */,
 				1800971615484CAA00BCC69E /* CategoryDailog.m in Sources */,
 				18F3D79D154B0E19004AF5F2 /* TitleView.m in Sources */,
+				A4E7DEF11553A9CC00617CC8 /* ZTDeskType.m in Sources */,
 				186BBF58155366170067341F /* SelectDeskController.m in Sources */,
 				186BBF59155366170067341F /* SelectTitleView.m in Sources */,
 			);
