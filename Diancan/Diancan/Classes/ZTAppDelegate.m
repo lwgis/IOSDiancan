@@ -17,6 +17,7 @@
 @synthesize orderList=_orderList;
 @synthesize order;
 @synthesize listCategory;
+@synthesize deskID,deskName;
 - (void)dealloc
 {
     [_window release];

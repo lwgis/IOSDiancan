@@ -12,7 +12,6 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"UITableView");
     [self.nextResponder touchesBegan:touches withEvent:event];
 }
 @end

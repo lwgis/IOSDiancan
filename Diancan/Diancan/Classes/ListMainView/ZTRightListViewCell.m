@@ -109,9 +109,8 @@
     return self;    
 }
 -(void)addrecipeClick{
-    [ApplicationDelegate.order addRecipe:self.recipe];
     [self recipeImageAnimation];
-
+    [ApplicationDelegate.order addRecipe:self.recipe];
     _recipeCount=[ApplicationDelegate.order getRecipeCount:self.recipe];
     }
 -(void)removerecipeClick{
@@ -360,7 +359,7 @@
 //    
     UIImageView *recipeAnimation= [[UIImageView alloc] initWithFrame:                            
                             CGRectMake(-100, -100, 30.0f, 30.0f)];   
-         [recipeAnimation setImage:self.recipe.rImage];     
+         [recipeAnimation setImage:recipeImageView.imageView.image];     
     [self addSubview:recipeAnimation];
     CGMutablePathRef thePath =  CGPathCreateMutable();
     CGPathMoveToPoint(thePath, NULL, 25, 60);

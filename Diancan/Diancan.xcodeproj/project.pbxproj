@@ -22,13 +22,14 @@
 		181A133F153DE1E300C950DD /* categoryname.png in Resources */ = {isa = PBXBuildFile; fileRef = 181A133E153DE1E300C950DD /* categoryname.png */; };
 		182080DF15356C3B007BD358 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 182080DE15356C3B007BD358 /* back.png */; };
 		182080E21535C885007BD358 /* recipeCount.png in Resources */ = {isa = PBXBuildFile; fileRef = 182080E11535C885007BD358 /* recipeCount.png */; };
+		1824C9701558049900454D61 /* DeskCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824C96F1558049900454D61 /* DeskCellView.m */; };
 		182B0DEB154A12B00037AF30 /* yidian.png in Resources */ = {isa = PBXBuildFile; fileRef = 182B0DEA154A12B00037AF30 /* yidian.png */; };
 		1836A083154705BC0042E21D /* FoodInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1836A082154705BC0042E21D /* FoodInfoView.m */; };
 		1843CAC81538933E00E0282F /* CategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843CAC71538933D00E0282F /* CategoryCell.m */; };
 		185A82291529833C008B2B1D /* ZTRightListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A82281529833C008B2B1D /* ZTRightListView.m */; };
 		185A822D1529901C008B2B1D /* ZTRightListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A822C1529901C008B2B1D /* ZTRightListViewCell.m */; };
 		186BBF58155366170067341F /* SelectDeskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BBF55155366170067341F /* SelectDeskController.m */; };
-		186BBF59155366170067341F /* SelectTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BBF57155366170067341F /* SelectTitleView.m */; };
+		186BBF59155366170067341F /* SelectTitleDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 186BBF57155366170067341F /* SelectTitleDialog.m */; };
 		186BBF5C1553890D0067341F /* liebiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BBF5A1553890D0067341F /* liebiao.png */; };
 		186BBF5D1553890D0067341F /* suoluetu.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BBF5B1553890D0067341F /* suoluetu.png */; };
 		186BBF5F155390B90067341F /* refreshDesk.png in Resources */ = {isa = PBXBuildFile; fileRef = 186BBF5E155390B90067341F /* refreshDesk.png */; };
@@ -54,7 +55,6 @@
 		187410771510F24C00AAA72C /* MainMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187410661510F24C00AAA72C /* MainMenuController.m */; };
 		187410781510F24C00AAA72C /* MyMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187410681510F24C00AAA72C /* MyMenuController.m */; };
 		187410791510F24C00AAA72C /* MyServiceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874106A1510F24C00AAA72C /* MyServiceController.m */; };
-		1874107A1510F24C00AAA72C /* UITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874106C1510F24C00AAA72C /* UITableView.m */; };
 		1874107B1510F24C00AAA72C /* ZTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1874106E1510F24C00AAA72C /* ZTAppDelegate.m */; };
 		1874107C1510F24C00AAA72C /* ZTUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187410701510F24C00AAA72C /* ZTUIView.m */; };
 		187AB35A15213E0E00103EDF /* ZTCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 187AB34615213E0E00103EDF /* ZTCategory.m */; };
@@ -83,6 +83,10 @@
 		18F07CC8153738E90040663E /* c.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F07CC7153738E80040663E /* c.png */; };
 		18F3D79D154B0E19004AF5F2 /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F3D79C154B0E19004AF5F2 /* TitleView.m */; };
 		18F3D7A0154B1056004AF5F2 /* daosanjiao.png in Resources */ = {isa = PBXBuildFile; fileRef = 18F3D79F154B1056004AF5F2 /* daosanjiao.png */; };
+		18FAEC471558AE22003150C6 /* larghdeskcell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18FAEC451558AE22003150C6 /* larghdeskcell.jpg */; };
+		18FAEC481558AE22003150C6 /* smalldeskcell.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18FAEC461558AE22003150C6 /* smalldeskcell.jpg */; };
+		18FAEC4B1558C4B0003150C6 /* SmallMyTable.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FAEC4A1558C4B0003150C6 /* SmallMyTable.png */; };
+		18FAEC4D1559017D003150C6 /* LargeMyTableList.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FAEC4C1559017D003150C6 /* LargeMyTableList.png */; };
 		A44D83FF15209DC900296CDC /* RestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = A44D83FE15209DC900296CDC /* RestEngine.m */; };
 		A475B34C1521AB1A00A8EAD8 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = A475B3471521AB1A00A8EAD8 /* Category.m */; };
 		A475B34D1521AB1A00A8EAD8 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = A475B3491521AB1A00A8EAD8 /* Recipe.m */; };
@@ -121,6 +125,8 @@
 		181A133E153DE1E300C950DD /* categoryname.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = categoryname.png; path = Image/itemImage/categoryname.png; sourceTree = "<group>"; };
 		182080DE15356C3B007BD358 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Image/itemImage/back.png; sourceTree = "<group>"; };
 		182080E11535C885007BD358 /* recipeCount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = recipeCount.png; path = Image/itemImage/recipeCount.png; sourceTree = "<group>"; };
+		1824C96E1558049900454D61 /* DeskCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeskCellView.h; path = Classes/SelectDesk/DeskCellView.h; sourceTree = "<group>"; };
+		1824C96F1558049900454D61 /* DeskCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeskCellView.m; path = Classes/SelectDesk/DeskCellView.m; sourceTree = "<group>"; };
 		182B0DEA154A12B00037AF30 /* yidian.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yidian.png; path = Image/itemImage/yidian.png; sourceTree = "<group>"; };
 		1836A081154705BC0042E21D /* FoodInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoodInfoView.h; path = Classes/FoodInfoView.h; sourceTree = "<group>"; };
 		1836A082154705BC0042E21D /* FoodInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoodInfoView.m; path = Classes/FoodInfoView.m; sourceTree = "<group>"; };
@@ -132,8 +138,8 @@
 		185A822C1529901C008B2B1D /* ZTRightListViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTRightListViewCell.m; path = Classes/ListMainView/ZTRightListViewCell.m; sourceTree = "<group>"; };
 		186BBF54155366170067341F /* SelectDeskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectDeskController.h; path = Classes/SelectDesk/SelectDeskController.h; sourceTree = "<group>"; };
 		186BBF55155366170067341F /* SelectDeskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectDeskController.m; path = Classes/SelectDesk/SelectDeskController.m; sourceTree = "<group>"; };
-		186BBF56155366170067341F /* SelectTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectTitleView.h; path = Classes/SelectDesk/SelectTitleView.h; sourceTree = "<group>"; };
-		186BBF57155366170067341F /* SelectTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectTitleView.m; path = Classes/SelectDesk/SelectTitleView.m; sourceTree = "<group>"; };
+		186BBF56155366170067341F /* SelectTitleDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectTitleDialog.h; path = Classes/SelectDesk/SelectTitleDialog.h; sourceTree = "<group>"; };
+		186BBF57155366170067341F /* SelectTitleDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectTitleDialog.m; path = Classes/SelectDesk/SelectTitleDialog.m; sourceTree = "<group>"; };
 		186BBF5A1553890D0067341F /* liebiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = liebiao.png; path = Image/itemImage/liebiao.png; sourceTree = "<group>"; };
 		186BBF5B1553890D0067341F /* suoluetu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = suoluetu.png; path = Image/itemImage/suoluetu.png; sourceTree = "<group>"; };
 		186BBF5E155390B90067341F /* refreshDesk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refreshDesk.png; path = Image/itemImage/refreshDesk.png; sourceTree = "<group>"; };
@@ -168,8 +174,6 @@
 		187410681510F24C00AAA72C /* MyMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMenuController.m; path = Classes/MyMenuController.m; sourceTree = "<group>"; };
 		187410691510F24C00AAA72C /* MyServiceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyServiceController.h; path = Classes/MyServiceController.h; sourceTree = "<group>"; };
 		1874106A1510F24C00AAA72C /* MyServiceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyServiceController.m; path = Classes/MyServiceController.m; sourceTree = "<group>"; };
-		1874106B1510F24C00AAA72C /* UITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITableView.h; path = Classes/UITableView.h; sourceTree = "<group>"; };
-		1874106C1510F24C00AAA72C /* UITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UITableView.m; path = Classes/UITableView.m; sourceTree = "<group>"; };
 		1874106D1510F24C00AAA72C /* ZTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTAppDelegate.h; path = Classes/ZTAppDelegate.h; sourceTree = "<group>"; };
 		1874106E1510F24C00AAA72C /* ZTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZTAppDelegate.m; path = Classes/ZTAppDelegate.m; sourceTree = "<group>"; };
 		1874106F1510F24C00AAA72C /* ZTUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZTUIView.h; path = Classes/ZTUIView.h; sourceTree = "<group>"; };
@@ -217,6 +221,10 @@
 		18F3D79B154B0E19004AF5F2 /* TitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TitleView.h; path = Classes/TitleView.h; sourceTree = "<group>"; };
 		18F3D79C154B0E19004AF5F2 /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TitleView.m; path = Classes/TitleView.m; sourceTree = "<group>"; };
 		18F3D79F154B1056004AF5F2 /* daosanjiao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = daosanjiao.png; path = Image/itemImage/daosanjiao.png; sourceTree = "<group>"; };
+		18FAEC451558AE22003150C6 /* larghdeskcell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = larghdeskcell.jpg; path = Image/itemImage/larghdeskcell.jpg; sourceTree = "<group>"; };
+		18FAEC461558AE22003150C6 /* smalldeskcell.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = smalldeskcell.jpg; path = Image/itemImage/smalldeskcell.jpg; sourceTree = "<group>"; };
+		18FAEC4A1558C4B0003150C6 /* SmallMyTable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SmallMyTable.png; path = Image/itemImage/SmallMyTable.png; sourceTree = "<group>"; };
+		18FAEC4C1559017D003150C6 /* LargeMyTableList.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LargeMyTableList.png; path = Image/itemImage/LargeMyTableList.png; sourceTree = "<group>"; };
 		A44D83FD15209DC900296CDC /* RestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestEngine.h; path = Classes/RestEngine.h; sourceTree = "<group>"; };
 		A44D83FE15209DC900296CDC /* RestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestEngine.m; path = Classes/RestEngine.m; sourceTree = "<group>"; };
 		A475B3461521AB1900A8EAD8 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Category.h; path = model/Category.h; sourceTree = "<group>"; };
@@ -279,8 +287,10 @@
 			children = (
 				186BBF54155366170067341F /* SelectDeskController.h */,
 				186BBF55155366170067341F /* SelectDeskController.m */,
-				186BBF56155366170067341F /* SelectTitleView.h */,
-				186BBF57155366170067341F /* SelectTitleView.m */,
+				186BBF56155366170067341F /* SelectTitleDialog.h */,
+				186BBF57155366170067341F /* SelectTitleDialog.m */,
+				1824C96E1558049900454D61 /* DeskCellView.h */,
+				1824C96F1558049900454D61 /* DeskCellView.m */,
 			);
 			name = SelectDesk;
 			sourceTree = "<group>";
@@ -427,8 +437,6 @@
 				187410681510F24C00AAA72C /* MyMenuController.m */,
 				187410691510F24C00AAA72C /* MyServiceController.h */,
 				1874106A1510F24C00AAA72C /* MyServiceController.m */,
-				1874106B1510F24C00AAA72C /* UITableView.h */,
-				1874106C1510F24C00AAA72C /* UITableView.m */,
 				1874106D1510F24C00AAA72C /* ZTAppDelegate.h */,
 				1874106E1510F24C00AAA72C /* ZTAppDelegate.m */,
 				1874106F1510F24C00AAA72C /* ZTUIView.h */,
@@ -450,6 +458,10 @@
 		18C4CE6514F526B2007B2742 /* itemImage */ = {
 			isa = PBXGroup;
 			children = (
+				18FAEC4C1559017D003150C6 /* LargeMyTableList.png */,
+				18FAEC4A1558C4B0003150C6 /* SmallMyTable.png */,
+				18FAEC451558AE22003150C6 /* larghdeskcell.jpg */,
+				18FAEC461558AE22003150C6 /* smalldeskcell.jpg */,
 				186BBF5E155390B90067341F /* refreshDesk.png */,
 				186BBF5A1553890D0067341F /* liebiao.png */,
 				186BBF5B1553890D0067341F /* suoluetu.png */,
@@ -612,6 +624,10 @@
 				186BBF5C1553890D0067341F /* liebiao.png in Resources */,
 				186BBF5D1553890D0067341F /* suoluetu.png in Resources */,
 				186BBF5F155390B90067341F /* refreshDesk.png in Resources */,
+				18FAEC471558AE22003150C6 /* larghdeskcell.jpg in Resources */,
+				18FAEC481558AE22003150C6 /* smalldeskcell.jpg in Resources */,
+				18FAEC4B1558C4B0003150C6 /* SmallMyTable.png in Resources */,
+				18FAEC4D1559017D003150C6 /* LargeMyTableList.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,7 +662,6 @@
 				187410771510F24C00AAA72C /* MainMenuController.m in Sources */,
 				187410781510F24C00AAA72C /* MyMenuController.m in Sources */,
 				187410791510F24C00AAA72C /* MyServiceController.m in Sources */,
-				1874107A1510F24C00AAA72C /* UITableView.m in Sources */,
 				1874107B1510F24C00AAA72C /* ZTAppDelegate.m in Sources */,
 				1874107C1510F24C00AAA72C /* ZTUIView.m in Sources */,
 				A44D83FF15209DC900296CDC /* RestEngine.m in Sources */,
@@ -687,7 +702,8 @@
 				18F3D79D154B0E19004AF5F2 /* TitleView.m in Sources */,
 				A4E7DEF11553A9CC00617CC8 /* ZTDeskType.m in Sources */,
 				186BBF58155366170067341F /* SelectDeskController.m in Sources */,
-				186BBF59155366170067341F /* SelectTitleView.m in Sources */,
+				186BBF59155366170067341F /* SelectTitleDialog.m in Sources */,
+				1824C9701558049900454D61 /* DeskCellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

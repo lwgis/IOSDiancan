@@ -62,6 +62,7 @@
     temporaryBarButtonItem.action = @selector(back);  
     self.navigationItem.backBarButtonItem = temporaryBarButtonItem;  
     [temporaryBarButtonItem release];  
+    selectDeskController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:selectDeskController animated:YES];
     [selectDeskController release];
 }
@@ -72,6 +73,16 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    if (ApplicationDelegate.deskName!=nil) {
+        NSLog(@"%@",ApplicationDelegate.deskName);
+        [self.navigationItem.leftBarButtonItem setTitle:ApplicationDelegate.deskName];
+        [self.navigationItem.leftBarButtonItem setEnabled:NO];
+    }
+    else
+    {
+        [self.navigationItem.leftBarButtonItem setTitle:@"桌号"];
+        [self.navigationItem.leftBarButtonItem setEnabled:YES];
+    }
     [self getPrice];
     for (UIView *aView in ((UIView *)[self.view.subviews objectAtIndex:0]).subviews){
         NSLog(@"%@",[aView class]);

@@ -7,7 +7,7 @@
 //
 
 #import "ZTOrder.h"
-
+#import "RestEngine.h"
 @implementation ZTOrder{
     NSMutableArray *recipes;
     NSInteger allRecipeCount;
@@ -29,6 +29,16 @@
     if (recipes==nil) {
         recipes=[[NSMutableArray alloc] init];
     }
+    NSLog(@"%d",ApplicationDelegate.deskID);
+    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
+    [body setValue:recipe.rID forKey:@"rid"];
+    [body setValue:@"1" forKey:@"count"];    
+    [[RestEngine sharedEngine] addRecipe:body ToOrder:ApplicationDelegate.deskID OnCompletion:^(NSDictionary *orderDetail) {
+        NSLog(@"加减菜成功: %@", orderDetail);
+    } onError:^(NSError *error) {
+        NSLog(@"加减菜失败: %@", error);
+    }];
+
     allRecipeCount++;
     [[viewController tabBarItem] setBadgeValue:[NSString stringWithFormat:@"%d",allRecipeCount]];
     for (NSMutableDictionary *aDic in recipes) {
@@ -48,6 +58,14 @@
     [dic release];
 }
 -(void)removeRecipe:(ZTRecipe *)recipe{
+    NSMutableDictionary *body = [NSMutableDictionary dictionary]; 
+    [body setValue:recipe.rID forKey:@"rid"];
+    [body setValue:@"-1" forKey:@"count"];    
+    [[RestEngine sharedEngine] addRecipe:body ToOrder:ApplicationDelegate.deskID OnCompletion:^(NSDictionary *orderDetail) {
+        NSLog(@"加减菜成功: %@", orderDetail);
+    } onError:^(NSError *error) {
+        NSLog(@"加减菜失败: %@", error);
+    }];
     NSInteger allCount=allRecipeCount-1;
     if(allCount<=0){
         allRecipeCount=0;

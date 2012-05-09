@@ -19,6 +19,8 @@
 @property (retain,nonatomic)NSMutableArray *orderList;
 @property (retain,nonatomic)ZTOrder *order;
 @property(nonatomic,assign)NSArray *listCategory;
+@property NSInteger deskID;
+@property(nonatomic,retain)NSString *deskName;
 //-(void)addFood:(Category *)aCategory;
 //-(void)countPrice;
 -(NSURL *)applicationDocumentsDirectory;

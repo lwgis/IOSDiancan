@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SelectDeskController : UIViewController<UITableViewDataSource, UITableViewDelegate>
--(void)refreshData;
-@property(nonatomic,retain)NSArray * listDesk;
+#import "SelectTitleDialog.h"
+@interface SelectDeskController : UIViewController<UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate,UISearchBarDelegate>
+-(void)refreshData:(NSInteger)tID;
+@property(nonatomic,retain)NSMutableArray * listDesk;
+@property(nonatomic,retain)NSMutableArray *listDeskBack;
 @property(nonatomic,assign)UITableView *deskTableView;
+@property(nonatomic,retain)NSArray *listDeskType;
+@property(nonatomic,assign)SelectTitleDialog *selectTitleDialog;
+@property(nonatomic,assign)UIScrollView *thumbnailsView; 
+@property(nonatomic,assign)UIButton *deskTypeButton;
+@property(nonatomic,assign)UISearchBar *deskSearchBar;
 @end
