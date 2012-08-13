@@ -161,7 +161,7 @@
     [animationImageView.layer addAnimation:theAnimation forKey:@"animateLayer"]; // 添加动画。
     CFRelease(thePath);    
     [animationImageView release];
-    
+    self.currenFoodInfoView.isCheck=YES;
 }
 -(void)categoryBtnClick{
     if (self.categoryDailog==nil) {
