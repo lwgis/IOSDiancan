@@ -65,7 +65,20 @@
 - (void)getAllCategoriesOnCompletion:(void (^)(NSArray *list))completeBlock onError:(ErrorBlock)errorBlock
 {       
     NSURL *url = [NSURL URLWithString:ALL_CATEGORY_URL];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] initWithURL:url]
+                                    autorelease];
+    
+    NSString *post = nil;
+    post = [[NSString alloc] initWithFormat:@"name=%@&password=%@",@"u1",@"111111"];
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    [request setURL:[NSURL URLWithString:@"http://192.168.10.220:18080/data/1.jsp"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
 //        NSLog(@"所有种类:%@",JSON);

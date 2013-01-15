@@ -7,7 +7,7 @@
 //
 
 #import "ZTAppDelegate.h"
-
+#import <QuartzCore/QuartzCore.h>
 @implementation ZTAppDelegate
 
 
@@ -38,6 +38,10 @@
   
     order=[[ZTOrder alloc] init];
     order.viewController=[[rootController viewControllers] objectAtIndex:1];
+    
+    
+
+    
     return YES;
 }
 
@@ -126,4 +130,5 @@
 //
 //                    return _orderList;
 //}
+
 @end
